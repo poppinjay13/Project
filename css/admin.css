@@ -1,0 +1,89 @@
+body{
+	margin: 0px;
+	font-family: "Poppins", sans-serif;
+}
+h1,h2{
+	text-align: center;
+}
+.navbar{
+	position: fixed;
+	float: left;
+    margin-top: 0px;
+    padding: 0px;
+	height: 100%;
+	background-color:#3F29CC;
+	width: 10%;
+	list-style-type: none;
+}
+.navbar li{
+	margin: 0px;
+	padding: 5px;
+}
+.navbar .img{
+	height: 120px;
+}
+.img img{
+	height: 110px;
+	width: 95%;
+}
+.navbar a{
+	color: black;
+	width: 100%;
+	display: block;
+	text-align: center;
+	padding: 20px 0px;
+	font-size: 20px;
+	border-radius: 5px;
+	text-decoration: none;
+}
+.navbar li a:hover {
+    background-color: #555;
+    color: white;
+}
+.navbar li .active{
+	background-color:#2B2929;
+    color: white;
+}
+.stats{
+	float: right;
+	width: 89%;
+	padding-bottom: 30px;
+}
+section{
+	border-radius: 15px;
+	margin: 4px;
+	width: 22%;
+	height: 20%;
+	background-color: aqua;
+	padding: 10 0 10 25px;
+	float: left;
+}
+.load-data{
+	padding: 20px 7px;
+	background-color: white;
+	float: right;
+	width: 89%;
+}
+.tenderdata{
+	width: 90%;
+}
+table{
+	width: 100%;
+	border-collapse: collapse;
+	overflow: visible;
+}
+tbody{
+	background: #fff;
+}
+tr{
+	box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.03);
+}
+.spacer{
+	height: 5px;
+	background: transparent;
+}
+td{
+	text-align: center;
+	background-color: aquamarine;
+	padding: 15px 0px;
+}

@@ -1,0 +1,94 @@
+body{
+	margin: 0px;
+	font-family: "Poppins", sans-serif;
+}
+.navbar{
+	position: fixed;
+	float: left;
+    margin-top: 0px;
+    padding: 0px;
+	height: 100%;
+	background-color:#3F29CC;
+	width: 10%;
+	list-style-type: none;
+}
+.navbar li{
+	margin: 0px;
+	padding: 5px;
+}
+.navbar .img{
+	height: 120px;
+}
+.img img{
+	height: 110px;
+	width: 95%;
+}
+.navbar a{
+	color: black;
+	width: 100%;
+	display: block;
+	text-align: center;
+	padding: 20px 0px;
+	font-size: 20px;
+	border-radius: 5px;
+	text-decoration: none;
+}
+.navbar li a:hover {
+    background-color: #555;
+    color: white;
+}
+.navbar li .active{
+	background-color:#2B2929;
+    color: white;
+}
+.stats{
+	float: right;
+	width: 89%;
+	padding-bottom: 30px;
+}
+.load-data{
+	padding: 20px 7px;
+	background-color: white; 
+	float: right;
+	width: 89%;
+}
+.tenderdata{
+	width: 90%;
+}
+.editor{
+	cursor: pointer;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 14px;
+	color: #fff;
+	padding:5px;
+	border-radius: 3px;
+	background-color: red;
+}
+.searchbar{
+	text-align: center;
+	padding: 5px 0px 15px ;
+}
+.searchbar input[type=text]{
+	width: 25%;
+	padding: 5px;
+	border-radius: 5px;
+	border-color:aqua;
+}
+table{
+	width: 100%;
+	border-collapse: collapse;
+	overflow: visible;
+}
+tbody{
+	background: #fff;
+}
+.spacer{
+	height: 5px;
+	background: transparent;
+}
+td{
+	text-align: center;
+	background-color: aquamarine;
+	padding: 15px 0px;
+}
