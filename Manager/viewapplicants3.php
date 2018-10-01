@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("config.php");
+include("../config.php");
 $tenderId=$_GET['TenderID'];
 
 $tab = 1;
@@ -11,18 +11,18 @@ $count= mysqli_num_rows($result);
 
 ?>
 <head>
-		<link href="css/home.css" type="text/css" rel="stylesheet">
-		<link href="images/fav.png" rel="icon" type="image/x-icon" />
+		<link href="../assets/css/home.css" type="text/css" rel="stylesheet">
+		<link href="../assets/images/fav.png" rel="icon" type="image/x-icon" />
 		<title>View tender applications</title>
 	</head>
 	<body>
 	<ul class="navbar">
-		<li><span><img src="images/menu.png"></span></li>
-		<li><a href="amanager.php" ><span>Home</span></a></li>
-		<li><a href="managerdetails.php"><span>My Details</span></a></li>
+		<li><span><img src="../assets/images/menu.png"></span></li>
+		<li><a href="manager.php" ><span>Home</span></a></li>
+		<li><a href="details.php"><span>My Details</span></a></li>
     <li><a href="#" class="active">View applicants</a></li>
 		<div class="top_right">
-		<li class="profpic"><img src="images/pic/<?php echo $uid?>.jpg"></li>
+		<li class="profpic"><img src="../assets/images/pic/<?php echo $uid?>.jpg"></li>
 		</div>
 	</ul>
 <div class="tendernew"><br>

@@ -12,11 +12,11 @@
         		 $row=mysqli_fetch_row($result);
              if($row[1]=='tenderer'){
                $_SESSION['UserID'] = $row[0];
-               header("location: home.php");
+               header("location: Tenderer/home.php");
              }
              else{
-               $_SESSION['Idnum'] = $row[0];
-               header("location: amanager.php");
+               $_SESSION['ManID'] = $row[0];
+               header("location: Manager/manager.php");
              }
       }else {
          $error = "Your Login Account or Password is invalid !";
@@ -25,7 +25,7 @@
 ?>
 <html>
 	<head>
-		<link href="css/login.css" type="text/css" rel="stylesheet">
+		<link href="assets/css/login.css" type="text/css" rel="stylesheet">
 		<link href="images/fav.png" rel="icon" type="image/x-icon" />
 		<title>School Tendering System</title>
 	</head>
@@ -40,11 +40,11 @@
 		</div>
 		<div class="login_box">
 			<center><section>
-				<img src="images/loginbg.png" class="loginbg"><br>
+				<img src="assets/images/loginbg.png" class="loginbg"><br>
 				<h5>Please log into your account to continue</h5>
 				<form method="post">
-					<input type="text" placeholder="Email" name="email" style="background-image: url(images/login.png)"><br>
-					<input type="password" placeholder="Password" name="password"  style="background-image: url(images/password.png)"><br>
+					<input type="text" placeholder="Email" name="email" style="background-image: url(assets/images/login.png)"><br>
+					<input type="password" placeholder="Password" name="password"  style="background-image: url(assets/images/password.png)"><br>
 					<button formaction="#">LOGIN</button>
 				</form>
 				<?php

@@ -5,11 +5,11 @@
     #If the session is not set it will redirect you to the login page
     if (!isset($_SESSION['Idnum']) && !isset($_SESSION['Password']) || empty($_SESSION['Idnum'])) {
         # code...
-        header("location:../Project/amanager.php");
+        header("location:../index.php");
             exit;
     }
     //Include the connection file
-    require_once '../Project/config.php';
+    require_once '../config.php';
 
     //Define variables and initialize them with empty variables
     $Name =  $Department = $Requirements = $Enquiries = $Deadtime = $Deaddate= "";
@@ -43,7 +43,7 @@
                 #Attempt to execute the prepared statement
                 if ($stmt->execute()){
                     #Redirect to manager page
-                    header("location: amanager.php");
+                    header("location: manager.php");
                 }else{
                     echo "Something went wrong :( Please try again later";
                 }
@@ -57,18 +57,18 @@
 ?>
 <html>
 	<head>
-		<link href="css/home.css" type="text/css" rel="stylesheet">
-		<link href="images/fav.png" rel="icon" type="image/x-icon" />
+		<link href="../assets/css/home.css" type="text/css" rel="stylesheet">
+		<link href="../assets/images/fav.png" rel="icon" type="image/x-icon" />
 		<title>Edit tender</title>
 	</head>
 	<body>
 	<ul class="navbar">
-		<li><span><img src="images/menu.png"></span></li>
-		<li><a href="amanager.php"><span>Home</span></a></li>
-		<li><a href="managerdetails.php"><span>My Details</span></a></li>
+		<li><span><img src="../assets/images/menu.png"></span></li>
+		<li><a href="manager.php"><span>Home</span></a></li>
+		<li><a href="details.php"><span>My Details</span></a></li>
     <li><a href="#" class="active"><span>Floating tender</span></a></li>
     <div class="top_right">
-		<li class="profpic"><img src="images/pic/<?php echo $uid?>.jpg"></li>
+		<li class="profpic"><img src="../assets/images/pic/<?php echo $uid?>.jpg"></li>
 	</div>
 	</ul>
 <div class="tendernew"><br>

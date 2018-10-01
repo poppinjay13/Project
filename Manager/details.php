@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("config.php");
+include("../config.php");
 $tab = 1;
 $count = 0;
 $uid = $_SESSION['Idnum'];
@@ -11,22 +11,22 @@ $row=mysqli_fetch_row($result);
 ?>
 <html>
 	<head>
-		<link href="css/port.css" type="text/css" rel="stylesheet">
-		<link href="images/fav.png" rel="icon" type="image/x-icon" />
+		<link href="../assets/css/port.css" type="text/css" rel="stylesheet">
+		<link href="../assets/images/fav.png" rel="icon" type="image/x-icon" />
 		<title>Manager's details</title>
 	</head>
 	<body>
 	<ul class="navbar">
-		<li><span><img src="images/menu.png"></span></li>
-		<li><a href="amanager.php"><span>Home</span></a></li>
+		<li><span><img src="../assets/images/menu.png"></span></li>
+		<li><a href="manager.php"><span>Home</span></a></li>
 		<li><a href="#" class="active"><span>My Details</span></a></li>
 		<div class="top_right">
-		<li class="profpic"><img src="images/pic/<?php echo $uid?>.jpg"></li>
+		<li class="profpic"><img src="../assets/images/pic/<?php echo $uid?>.jpg"></li>
 	</div>
 	</ul>
 
 	<div class="uhead">
-		<img src="images/user.png">
+		<img src="../assets/images/user.png">
 		<div class="uinfo">
 		Name:
 		<input type="text" name="name" value="<?php printf($row[1])?>" readonly><br><br>

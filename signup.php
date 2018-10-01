@@ -2,8 +2,11 @@
 session_start();
 include("config.php");
 $error = "null";
+$status = "tenderer";
 $stmt = $conn->prepare("INSERT INTO tenderers (Name, IDNo, Phone, Email, Address, POBox, Password) VALUES (?,?,?,?,?,?,?)");
 $stmt->bind_param("sssssss",$name,$id,$num,$mail,$add,$box,$password);
+$stmt2 = $conn->prepare("INSERT INTO login (Idnum, Status, Email, Password) VALUES (?,?,?,?)");
+$stmt2->bind_param("ssss",$id,$status,$mail,$password);
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 	try{
 		$name = mysqli_real_escape_string($conn,$_POST['name']);
@@ -24,8 +27,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 		   $error = "The ID number or Email address you entered is already in use";
 	   }else{
 			 $stmt->execute();
+			 $stmt2->execute();
 		   $_SESSION['UserID'] = $id;
-		   header("location: user.php");
+		   header("location: Tenderer/home.php");
 	   }
 		}
    } catch (Exception $e) {
@@ -35,8 +39,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <html>
 	<head>
-		<link href="css/signup.css" type="text/css" rel="stylesheet">
-		<link href="images/fav.png" rel="icon" type="image/x-icon" />
+		<link href="assets/css/signup.css" type="text/css" rel="stylesheet">
+		<link href="assets/images/fav.png" rel="icon" type="image/x-icon" />
 		<title>School Tendering System</title>
 	</head>
 	<body>
@@ -51,7 +55,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 		<div class="sign_box">
 			<center><section>
 				<h5>Create a new account below</h5>
-				<form method="POST" action="signup.php">
+				<form method="POST">
 					<input type="text" placeholder="Full Name" name="name" required><br>
 					<input type="text" placeholder="National ID Number (12345600)" name="IDNo" required><br>
 					<input type="text" placeholder="Phone Number (0712345678)" name="phone" required><br>
@@ -65,9 +69,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 				<?php
 					if($error != "null"){
 				?>
-				<script>
-				alert(<?php echo $error ?>);
-				</script>
+				<div style = "font-size:18px; color:#cc0000; margin-top:0px"><?php echo $error; ?></div>
 				<?php
 					}
 				?>
@@ -75,4 +77,4 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 		</div>
 	</body>
 </html>
-<!--work on error messages for failed signup --!>
+<!--work on error messages for failed signup -->

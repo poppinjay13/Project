@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("config.php");
+include("../config.php");
 //$uid = $_SESSION['User_ID'];
 $float=$tenderer=$dept=$done="";
 $float = "SELECT * FROM tenders";
@@ -22,16 +22,16 @@ $count = mysqli_num_rows($result);
 ?>
 <html>
 <head>
-  <link href="css/admin.css" rel="stylesheet">
+  <link href="../assets/css/admin.css" rel="stylesheet">
   <title>Admin Module</title>
 </head>
 <body>
    <ul class="navbar">
-   <li class="img"><img src="images/user.png"></li>
+   <li class="img"><img src="../assets/images/user.png"></li>
     <li><a class="active">Dashboard</a></li>
     <li><a href="users.php">Users</a></li>
     <li><a href="">Profile</a></li>
-    <li><a href="logout.php">Log Out</a></li>
+    <li><a href="../logout.php">Log Out</a></li>
    </ul>
   <div class="stats">
   <h1><B>Dashboard</B></h1>

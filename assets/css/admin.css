@@ -8,8 +8,8 @@ h1,h2{
 .navbar{
 	position: fixed;
 	float: left;
-    margin-top: 0px;
-    padding: 0px;
+  margin-top: 0px;
+  padding: 0px;
 	height: 100%;
 	background-color:#3F29CC;
 	width: 10%;

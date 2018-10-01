@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("config.php");
+include("../config.php");
 if($_SERVER["REQUEST_METHOD"] == "GET") {
 	$_SESSION['tendid'] = $_GET['key'];
 }
@@ -11,18 +11,18 @@ $count1 = mysqli_num_rows($result1);
 ?>
 <html>
 	<head>
-		<link href="css/tender.css" type="text/css" rel="stylesheet">
-		<link href="images/fav.png" rel="icon" type="image/x-icon" />
+		<link href="../assets/css/tender.css" type="text/css" rel="stylesheet">
+		<link href="../assets/images/fav.png" rel="icon" type="image/x-icon" />
 		<title>Tenderer's Module</title>
 	</head>
 	<body>
 	<ul class="navbar">
-		<li><span><img src="images/menu.png"></span></li>
+		<li><span><img src="../assets/images/menu.png"></span></li>
 		<li><a href="home.php"><span>Home</span></a></li>
 		<li><a href="port.php"><span>Portfolio</span></a></li>
 		<li><a href="#" class="active"><span>Tender Details</span></a></li>
 		<div class="top_right">
-		<li class="profpic"><img src="images/pic/<?php echo $uid?>.jpg"></li>
+		<li class="profpic"><img src="../assets/images/pic/<?php echo $uid?>.jpg"></li>
 	</div>
 	</ul>
 	<div class="tend">
@@ -114,7 +114,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
       //code for file upload below
 			$filename = $_FILES['doc']['name'];
       $newname = $tenderid."-".$tendererid.".pdf";
-      $target_dir = "applications/";
+      $target_dir = "../applications/";
       $target_file = $target_dir.$newname;
       $uploadOk = 1;
       $DocType = strtolower(pathinfo($filename,PATHINFO_EXTENSION));
@@ -145,7 +145,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 		}
 	 }catch(Exception $e){
 		 echo "<script>alert('Unable to submit application presently. Please try again later');</script>";
-		 header("location: user.php");
+		 header("location: home.php");
 	 }
  }
 ?>

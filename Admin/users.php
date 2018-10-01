@@ -3,16 +3,16 @@
 ?>
 <html>
 <head>
-  <link href="css/users.css" rel="stylesheet">
+  <link href="../assets/css/users.css" rel="stylesheet">
   <title>Admin Module</title>
 </head>
 <body>
    <ul class="navbar">
-   <li class="img"><img src="images/user.png"></li>
+   <li class="img"><img src="../assets/images/user.png"></li>
     <li><a href="admin.php">Dashboard</a></li>
     <li><a class="active">Users</a></li>
     <li><a href="">Profile</a></li>
-    <li><a href="logout.php">Log Out</a></li>
+    <li><a href="../logout.php">Log Out</a></li>
    </ul>
   <div class="load-data">
    <div class="searchbar">

@@ -1,39 +1,35 @@
 
 <?php
 session_start();
-include("config.php");
+include("../config.php");
 $tab = 1;
 $count = 0;
 $tab2 = 1;
 $count2 = 0;
-
-$uid = $_SESSION['Idnum'];
+$uid = $_SESSION['ManID'];
 $sqli = "SELECT * FROM heads where HeadID = $uid";
 $result2 = mysqli_query($conn,$sqli);
 $count2 = mysqli_num_rows($result2);
 $row2=mysqli_fetch_row($result2);
 $_SESSION['Department'] = $row2[3];
-        $depart = $_SESSION['Department'];
-
+$depart = $_SESSION['Department'];
 $sql = "SELECT * FROM tenders";
 $result = mysqli_query($conn,$sql);
 $count = mysqli_num_rows($result);
-
 ?>
-
 <html>
 	<head>
-		<link href="css/home.css" type="text/css" rel="stylesheet">
-		<link href="images/fav.png" rel="icon" type="image/x-icon" />
+		<link href="../assets/css/home.css" type="text/css" rel="stylesheet">
+		<link href="../assets/images/fav.png" rel="icon" type="image/x-icon" />
 		<title>Department manager's Module</title>
 	</head>
 	<body>
 	<ul class="navbar">
-		<li><span><img src="images/menu.png"></span></li>
+		<li><span><img src="../assets/images/menu.png"></span></li>
 		<li><a href="#" class="active"><span>Home</span></a></li>
-		<li><a href="managerdetails.php"><span>My Details</span></a></li>
+		<li><a href="details.php"><span>My Details</span></a></li>
     <div class="top_right">
-		<li class="profpic"><img src="images/pic/<?php echo $uid?>.jpg"></li>
+		<li class="profpic"><img src="../assets/images/pic/<?php echo $uid?>.jpg"></li>
 	</div>
 	</ul>
 

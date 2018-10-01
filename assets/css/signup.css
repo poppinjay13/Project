@@ -28,24 +28,24 @@ body{
 	background-color:#3EA2F0;
 	transform:rotate(13deg);
 	margin-top:-13%;
-  	margin-right:-5%;
+  margin-right:-5%;
 }
 .sign_box section {
 	font-size: 30px;
-	margin: 30% 5% 20% 5%;
+	margin: 25% 5% 0% 5%;
 	transform:rotate(-13deg);
 }
 .sign_box input{
 	background-size: 23px 23px;
-    background-position: 3px 3px;
-    background-repeat: no-repeat;
+  background-position: 3px 3px;
+  background-repeat: no-repeat;
 	color: aliceblue;
 	font-size: 18px;
 	width: 50%;
-	padding: 5px 20px 8px 40px;
-    margin: 7px 0px;
+	padding: 5px 20px 5px 40px;
+  margin: 7px 0px;
 	border: none;
-    border-bottom: 2px solid white;
+  border-bottom: 2px solid white;
 	background-color: transparent;
 }
 .sign_box .button{
@@ -56,10 +56,10 @@ body{
 	border: none;
 	background-color: #3BF0CF;
 	color: black;
-    padding: 7px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+  padding: 5px 22px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 	cursor:pointer;
 }

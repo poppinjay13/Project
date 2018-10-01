@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("config.php");
+include("../config.php");
 $uid = $_SESSION['UserID'];
 $sql = "SELECT * FROM tenderers where IDNo = $uid";
 $result = mysqli_query($conn,$sql);
@@ -10,6 +10,10 @@ $stmt = $conn->prepare("UPDATE tenderers
 SET Phone = ?, Email = ?, Address = ?, POBox = ?, Password = ?
 WHERE IDNo = $uid");
 $stmt->bind_param("sssss",$num,$mail,$add,$box,$password);
+//$stmt2 = $conn->prepare("UPDATE login
+//SET Email = ?, Password = ?
+//WHERE IDNo = $uid");
+//$stmt2->bind_param("ss",$mail,$password);
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 	try{
 	   $num = mysqli_real_escape_string($conn,$_POST['phone']);
@@ -20,7 +24,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 		 if(isset($_FILES['pic'])) {
 		   $filename = $_FILES["pic"]["name"];
 		   $newname = $uid.".jpg";
-		   $target_dir = "images/pic/";
+		   $target_dir = "../assets/images/pic/";
 		   $target_file = $target_dir.$newname;
 		   $uploadOk = 1;
 		     if ($uploadOk != 0){
@@ -33,6 +37,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 		     }
 		   }
 		 $stmt->execute();
+		 //$stmt2->execute();
 		 header("location: port.php");
 	   }catch (Exception $e) {
     $error = "Error Updating your account details!<br> Please contact the administrator!";
@@ -54,40 +59,40 @@ $count3 = mysqli_num_rows($result3);
 ?>
 <html>
 	<head>
-		<link href="css/port.css" type="text/css" rel="stylesheet">
-		<link href="images/fav.png" rel="icon" type="image/x-icon" />
+		<link href="../assets/css/port.css" type="text/css" rel="stylesheet">
+		<link href="../assets/images/fav.png" rel="icon" type="image/x-icon" />
 		<title>Tenderer's Module</title>
 	</head>
 	<body>
 	<ul class="navbar">
-		<li><span><img src="images/menu.png"></span></li>
+		<li><span><img src="../assets/images/menu.png"></span></li>
 		<li><a href="home.php"><span>Home</span></a></li>
 		<li><a href="#" class="active"><span>Portfolio</span></a></li>
 		<div class="top_right">
-		<li class="profpic"><img src="images/pic/<?php echo $uid?>.jpg"></li>
+		<li class="profpic"><img src="../assets/images/pic/<?php echo $uid?>.jpg"></li>
 		<!--<li class="btnexit"><a href="logout.php"><img src="images/logout.png" title="logout"></a></li>-->
 	</div>
 	</ul>
 	<div class="sidebar">
 		<!--Sidebar with tenderer's tender history-->
 		<div class="sdinfo">
-		<img src="images/pending.png">
+		<img src="../assets/images/pending.png">
 		<h2><?php echo $count1 ?></h2>
 		<h3>Submitted<br>Applications</h3>
 		</div>
 		<div class="sdinfo">
-		<img src="images/approved.png">
+		<img src="../assets/images/approved.png">
 		<h2><?php echo $count2 ?></h2>
 		<h3>Approved<br>Tenders</h3>
 		</div>
 		<div class="sdinfo">
-		<img src="images/complete.png">
+		<img src="../assets/images/complete.png">
 		<h2><?php echo $count3 ?></h2>
 		<h3>Succesful<br>Tenders</h3>
 		</div>
 	</div>
-	<div class="uhead">
-		<label for='pic'><img src="images/pic/<?php echo('100446.jpg') ?>" title="Click to upload new profile picture"></label>
+	<div class="uhead"><!--refer back to image path-->
+		<label for='pic'><img src="../assets/images/pic/<?php echo('100446.jpg') ?>" title="Click to upload new profile picture"></label>
 		<div class="uinfo">
 		Name:
 		<input type="text" name="name" value="<?php printf($row[1])?>" readonly><br><br>

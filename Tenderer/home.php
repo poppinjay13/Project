@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("config.php");
+include("../config.php");
 $tab = 1;
 $count = 0;
 $sql = "SELECT * FROM tenders";
@@ -9,17 +9,17 @@ $count = mysqli_num_rows($result);
 ?>
 <html>
 	<head>
-		<link href="css/home.css" type="text/css" rel="stylesheet">
-		<link href="images/fav.png" rel="icon" type="image/x-icon" />
+		<link href="../assets/css/home.css" type="text/css" rel="stylesheet">
+		<link href="../assets/images/fav.png" rel="icon" type="image/x-icon" />
 		<title>Tenderer's Module</title>
 	</head>
 	<body>
 	<ul class="navbar">
-		<li><span><img src="images/menu.png"></span></li>
+		<li><span><img src="../assets/images/menu.png"></span></li>
 		<li><a href="#" class="active"><span>Home</span></a></li>
 		<li><a href="port.php"><span>Portfolio</span></a></li>
 		<div class="top_right">
-		<li class="profpic"><img src="images/pic/<?php echo $uid?>.jpg"></li>
+		<li class="profpic"><img src="../assets/images/pic/<?php echo $uid?>.jpg"></li>
 	</div>
 	</ul>
 	<div class="bod">
