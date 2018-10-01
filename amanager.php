@@ -6,14 +6,15 @@ $tab = 1;
 $count = 0;
 $tab2 = 1;
 $count2 = 0;
+
 $uid = $_SESSION['Idnum'];
 $sqli = "SELECT * FROM heads where HeadID = $uid";
 $result2 = mysqli_query($conn,$sqli);
 $count2 = mysqli_num_rows($result2);
 $row2=mysqli_fetch_row($result2);
 $_SESSION['Department'] = $row2[3];
-$depart = $_SESSION['Department'];
-
+        $depart = $_SESSION['Department'];
+        
 $sql = "SELECT * FROM tenders";
 $result = mysqli_query($conn,$sql);
 $count = mysqli_num_rows($result);
@@ -38,7 +39,7 @@ $count = mysqli_num_rows($result);
 		</div>
 		</div>
 	</ul>
-<div style="padding-top: 52px;">
+
 	<?php
 		if($count <= 0) {
 	?>
@@ -53,8 +54,8 @@ $count = mysqli_num_rows($result);
 	<?php
 
         while ($row=mysqli_fetch_row($result)){
-
-          if($row[2]==$depart){
+               
+          if($row[2]==$depart){      
 	?>
 	<div class="tender">
 	<div class="text">
@@ -63,18 +64,27 @@ $count = mysqli_num_rows($result);
 		<h2><?php printf($row[1])?></h2>
 		<h3>Requirements: <?php printf($row[3])?></h3>
 		<h3>Due Date: <?php printf($row[6])?></h3>
-        <button  class="cust"><a href="viewapplicants.php" style="text-decoration:none">view applicants</a></button>
-		<button class="cust"><a href="edittender.php" style="text-decoration:none"></a>edit tender</button>
+
+  
+
+   <button class="cust"  >
+        <?php
+            echo "<a href='viewapplicants3.php?TenderID=". $row[0] ."' title='ViewApplicants'  >View Applicants</a>";
+          
+        ?></button>
+     <button class="cust"  ><?php
+            echo "<a href='edittender2.php?TenderID=". $row[0] ."' title='ViewApplicants' >Edit tender</a>";
+          
+        ?></button>
 	</div>
 	</div>
 	<?php
 			$tab++;
-
+		
             }
 	}}
 	?>
         <button class="floatnew"><a href="newtender.php" style="text-decoration:none"> <h2>+FLOAT TENDER</h2></a>
         </button>
-      </div>
 	</body>
 </html>
