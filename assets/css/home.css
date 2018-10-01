@@ -1,0 +1,130 @@
+body{
+	color: black;
+	background-color: #303940;
+	margin: 0px;
+}
+.navbar{
+	background-color: #283138;
+	list-style:none;
+	width:100%;
+	margin:0px;
+	padding:0px;
+	font-size:18px;
+	position:fixed;
+}
+.navbar li{
+	float:left;
+	padding: 12px 15px 8px;
+}
+.navbar li img{
+	width: 40px;
+	height: 28px;
+	background-color: #283138;
+	padding: 10px 25px;
+}
+.navbar a{
+	display:block;
+	color:#FFF;
+	background-color: #303940;
+	border-radius: 10px;
+	padding:10px 30px 10px 30px;
+	text-decoration:none;
+}
+.navbar .active{
+	color:#000000;
+	background-color: #FFED05;
+}
+.navbar .top_right {
+	float: right;
+	overflow: hidden;
+}
+.navbar .profpic{
+	width: 10px;
+	height: 40px;
+	padding-right: 70px;
+	border: none;
+	border-radius: 5px;
+  outline: none;
+}
+/*
+.navbar .dropdown {
+	float: right;
+	overflow: hidden;
+}
+.navbar .dropdown .navbtn{
+	width: 30px;
+	height: 40px;
+	padding-right: 120px;
+	border: none;
+  	outline: none;
+}
+.navbar .dropdown .dropdown-content {
+	display: none;
+	position: absolute;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+	padding-top: 70px;
+}
+.navbar .dropdown .dropdown-content a {
+	color: white;
+	padding: 15px;
+	text-decoration: none;
+	display: block;
+	text-align: center;
+}
+.navbar .dropdown:hover .dropdown-content {
+	display: block;
+}*/
+.tender{
+	background-color: #FFED05;
+	width: 330px;
+	height: 250px;
+	float: left;
+	margin: 20px 20px 10px 20px;
+	border-radius: 60px;
+	cursor: pointer;
+}
+.text{
+	margin: 30px;
+}
+.bod{
+	padding-top: 52px;
+}
+.floatnew{
+  position:absolute;
+  top: 700px;
+  left: -100x;
+  right: 700px;
+  bottom: 0px;
+  background-color:gainsboro;
+	width: 200px;
+	height: 50px;
+	float: left;
+	margin: 20px 20px 10px 20px;
+	border-radius: 60px;
+}
+
+.cust{
+  background-color:gainsboro;
+	width: 90px;
+	height: 40px;
+	float: center;
+	margin: 20px 20px 10px 20px;
+	border-radius: 60px;
+  cursor: pointer;
+}
+.tendernew{
+	background-color: #FFED05;
+  position:absolute;
+  top: 50px;
+  left: -100x;
+  right: 200px;
+  bottom: 0px;
+	width: 1200px;
+	height: 650px;
+	float: left;
+	margin: 20px 20px 10px 20px;
+	border-radius: 60px;
+  cursor: pointer;
+}

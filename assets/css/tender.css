@@ -1,0 +1,129 @@
+body{
+	color: white;
+	background-color: #303940;
+	margin: 0px;
+	font-size: 20px;
+}
+h1{
+	text-align: center;
+}
+h3{
+	text-align: center;
+}
+.navbar{
+	background-color: #283138;
+	list-style:none;
+	width:100%;
+	margin: 0px;
+	padding:0px;
+	font-size:18px;
+	position:fixed;
+}
+.navbar li{
+	float:left;
+	padding: 12px 15px 8px;
+}
+.navbar li img{
+	width: 40px;
+	height: 28px;
+	background-color: #283138;
+	padding: 10px 25px;
+}
+.navbar a{
+	display:block;
+	color:#FFF;
+	background-color: #303940;
+	border-radius: 10px;
+	padding:10px 30px 10px 30px;
+	text-decoration:none;
+}
+.navbar .active{
+	color:#000000;
+	background-color: #FFED05;
+}
+.navbar .top_right {
+	float: right;
+	overflow: hidden;
+}
+.navbar .profpic{
+	width: 10px;
+	height: 40px;
+	padding-right: 70px;
+	border: none;
+	border-radius: 5px;
+  outline: none;
+}
+.tend{
+	padding-top: 55px;
+	height: 400px;
+	background-color: inherit;
+	margin: 0px;
+	padding-left: 15px;
+}
+.tend input{
+	align-content: center;
+}
+.tendall{
+	padding-top: 50px;
+	width: 100%;
+}
+.tendall input{
+	width: 400px;
+	padding: 10px;
+	color: white;
+	background: inherit;
+	border: none;
+    border-bottom: 2px solid white;
+}
+.tendrght{
+	width: 49%;
+	float: right;
+}
+.tendrght input{
+	position: absolute;
+	left: 900px;
+}
+.tendrlft{
+	width: 49%;
+	float: left;
+	padding-left: 20px;
+}
+.tendrlft input{
+	position: absolute;
+	left: 150px;
+}
+#centre{
+	text-align: center;
+	padding-bottom: 30px;
+	width: 100%;
+}
+#upload{
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+#fileupload{
+	margin: 0px 500px;
+	background-color: aquamarine;
+	padding: 30px 0px;
+}
+label{
+	cursor: pointer;
+	padding: 20px;
+	color: black;
+}
+#btnSub{
+	align: center;
+	width: 500px;
+	height: 50px;
+	background-color: aqua;
+	border-radius: 5px;
+	font-size: 22px;
+}
+input[disabled]
+{
+   bachground-color: Gray;
+}

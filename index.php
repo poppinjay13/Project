@@ -12,7 +12,7 @@
         		 $row=mysqli_fetch_row($result);
              if($row[1]=='tenderer'){
                $_SESSION['UserID'] = $row[0];
-               header("location: user.php");
+               header("location: home.php");
              }
              else{
                $_SESSION['Idnum'] = $row[0];
