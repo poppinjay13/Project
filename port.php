@@ -17,6 +17,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	   $add = mysqli_real_escape_string($conn,$_POST['address']);
 	   $box = mysqli_real_escape_string($conn,$_POST['pobox']);
 	   $password = mysqli_real_escape_string($conn,$_POST['password']);
+		 if(isset($_FILES['pic'])) {
+		   $filename = $_FILES["pic"]["name"];
+		   $newname = $uid.".jpg";
+		   $target_dir = "images/pic/";
+		   $target_file = $target_dir.$newname;
+		   $uploadOk = 1;
+		     if ($uploadOk != 0){
+		       if (move_uploaded_file($_FILES["pic"]["tmp_name"], $target_file)) {
+		         echo "<script>alert('New image set');</script>";
+		         $prof = $newname;
+		       } else {
+		         echo "<script>alert('Sorry, there was an error uploading your picture.');</script>";
+		       }
+		     }
+		   }
 		 $stmt->execute();
 		 header("location: port.php");
 	   }catch (Exception $e) {
@@ -49,7 +64,7 @@ $count3 = mysqli_num_rows($result3);
 		<li><a href="user.php"><span>Home</span></a></li>
 		<li><a href="#" class="active"><span>Portfolio</span></a></li>
 		<div class="dropdown">
-		<li class="navbtn"><img src="images/user.png"></li>
+		<li class="navbtn"><img src="images/pic/<?php echo $uid?>.jpg"></li>
 		<div class="dropdown-content">
 		  <a href="logout.php">Log Out</a>
 		</div>
@@ -74,7 +89,7 @@ $count3 = mysqli_num_rows($result3);
 		</div>
 	</div>
 	<div class="uhead">
-		<img src="images/user.png">
+		<label for='pic'><img src="images/pic/<?php echo('100446.jpg') ?>" title="Click to upload new profile picture"></label>
 		<div class="uinfo">
 		Name:
 		<input type="text" name="name" value="<?php printf($row[1])?>" readonly><br><br>
@@ -83,7 +98,8 @@ $count3 = mysqli_num_rows($result3);
 		</div>
 	</div>
 	<div class="uedit">
-		<form method="post" action="#">
+		<form method="post" action="#" enctype="multipart/form-data">
+			<input type="file" id='pic' name='pic' accept="application/jpg" style="display: none;"/>
 			Phone Number:
 			<input type="text" name="phone" value="<?php printf($row[3])?>"><br><br>
 			Email Address:

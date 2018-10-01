@@ -70,9 +70,11 @@ body{
 	height: 250px;
 }
 .uhead img{
-	width: 250px;
-	height: inherit;
+	padding-left: 15px;
+	width: 200px;
+	height: 250px;
 	float: left;
+	cursor: pointer;
 }
 input{
 	padding: 10px;
