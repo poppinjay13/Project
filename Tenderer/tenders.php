@@ -1,6 +1,10 @@
 <?php
 session_start();
 include("../config.php");
+if (!isset($_SESSION['UserID'])) {
+		header("location:../index.php");
+		exit;
+}
 if($_SERVER["REQUEST_METHOD"] == "GET") {
 	$_SESSION['tendid'] = $_GET['key'];
 }

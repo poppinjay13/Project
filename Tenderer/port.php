@@ -1,10 +1,13 @@
 <?php
 session_start();
 include("../config.php");
+if (!isset($_SESSION['UserID'])) {
+		header("location:../index.php");
+		exit;
+}
 $uid = $_SESSION['UserID'];
 $sql = "SELECT * FROM tenderers where IDNo = $uid";
 $result = mysqli_query($conn,$sql);
-$count = mysqli_num_rows($result);
 $row=mysqli_fetch_row($result);
 $stmt = $conn->prepare("UPDATE tenderers
 SET Phone = ?, Email = ?, Address = ?, POBox = ?, Password = ?

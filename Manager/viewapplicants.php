@@ -1,11 +1,14 @@
 <?php
 session_start();
 include("../config.php");
+$tenderId=$_GET['TenderID'];
+
 $tab = 1;
 $count = 0;
-$sql = "SELECT * FROM applications";
+$sql = "SELECT * FROM applications where TenderID=$tenderId";
 $result = mysqli_query($conn,$sql);
-$count = mysqli_num_rows($result);
+$count= mysqli_num_rows($result);
+
 ?>
 <head>
 		<link href="../assets/css/home.css" type="text/css" rel="stylesheet">
@@ -17,7 +20,7 @@ $count = mysqli_num_rows($result);
 		<li><span><img src="../assets/images/menu.png"></span></li>
 		<li><a href="manager.php" ><span>Home</span></a></li>
 		<li><a href="details.php"><span>My Details</span></a></li>
-  	<li><a href="#" class="active">View applicants</a></li>
+    <li><a href="#" class="active">View applicants</a></li>
 		<div class="top_right">
 		<li class="profpic"><img src="../assets/images/pic/<?php echo $uid?>.jpg"></li>
 		</div>
@@ -27,8 +30,8 @@ $count = mysqli_num_rows($result);
 
 
 
-
 			 <?php
+
 
                      if($result = $conn->query($sql)){
                         if($result->num_rows > 0){
@@ -44,7 +47,10 @@ $count = mysqli_num_rows($result);
                                 echo "</tr>";
                             echo "</thead>";
                             echo "<tbody>";
-                   while($row = $result->fetch_array()){
+
+                   while($row= $result->fetch_array()){
+
+
                                 echo "<tr>";
                                     echo "<td>" . $row['TenderID'] . "</td>";
                                     echo "<td>" . $row['IDNo'] . "</td>";
@@ -65,9 +71,10 @@ $count = mysqli_num_rows($result);
                                 }
                             echo "</tbody>";
                         echo "</table>";
+
                         // Free result set
                         $result->free();
-                        } else{
+                         }else{
                         echo "<p class='lead'><em>No records were found.</em></p>";
                         }
                          }

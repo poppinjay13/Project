@@ -14,9 +14,14 @@
                $_SESSION['UserID'] = $row[0];
                header("location: Tenderer/home.php");
              }
-             else{
-               $_SESSION['ManID'] = $row[0];
+             else if($row[1]=='manager'){
+               $_SESSION['ManagerID'] = $row[0];
                header("location: Manager/manager.php");
+             }else if($row[1]=='administrator'){
+               $_SESSION['AdminID'] = $row[0];
+               header("location: Admin/admin.php");
+             }else{
+               $error = "Please contact the administrator for help with your account!";
              }
       }else {
          $error = "Your Login Account or Password is invalid !";
@@ -26,7 +31,7 @@
 <html>
 	<head>
 		<link href="assets/css/login.css" type="text/css" rel="stylesheet">
-		<link href="images/fav.png" rel="icon" type="image/x-icon" />
+		<link href="assets/images/fav.png" rel="icon" type="image/x-icon" />
 		<title>School Tendering System</title>
 	</head>
 	<body>

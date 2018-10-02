@@ -3,9 +3,9 @@
 #Initialize the session
     session_start();
     #If the session is not set it will redirect you to the login page
-    if (!isset($_SESSION['Idnum']) && !isset($_SESSION['Password']) || empty($_SESSION['Idnum'])) {
+    if (!isset($_SESSION['ManID'])) {
         # code...
-        header("location:manager.php");
+        header("location:../index.php");
             exit;
     }
     //Include the connection file

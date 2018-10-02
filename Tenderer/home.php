@@ -1,6 +1,11 @@
 <?php
 session_start();
 include("../config.php");
+if (!isset($_SESSION['UserID'])) {
+		header("location:../index.php");
+		exit;
+}
+$uid = $_SESSION['UserID'];
 $tab = 1;
 $count = 0;
 $sql = "SELECT * FROM tenders";
@@ -53,7 +58,7 @@ $count = mysqli_num_rows($result);
 	<script>
 		function send(data){
 			var form = document.createElement("form");
-			form.target = "_blank";
+			form.target = "_self";
 			form.method = "GET";
 			form.action = "tenders.php";
 			form.style.display = "none";
