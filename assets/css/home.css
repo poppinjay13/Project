@@ -34,9 +34,17 @@ body{
 	color:#000000;
 	background-color: #FFED05;
 }
-.navbar .top_right {
+.top_right {
 	float: right;
-	overflow: hidden;
+	border-radius: 90px;
+}.top_right img{
+	padding: 0px;
+	margin: 0px;
+	width: 10px;
+	height: 15px;
+}.top_right a{
+	background-color: #283138;
+	padding: 0px;
 }
 .navbar .profpic{
 	width: 10px;
