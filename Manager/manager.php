@@ -62,11 +62,11 @@ $count = mysqli_num_rows($result);
 
    <button class="cust"  >
         <?php
-            echo "<a href='viewapplicants3.php?TenderID=". $row[0] ."' title='ViewApplicants'  >View Applicants</a>";
+            echo "<a href='viewapplicants.php?TenderID=". $row[0] ."' title='ViewApplicants'  >View Applicants</a>";
 
         ?></button>
      <button class="cust"  ><?php
-            echo "<a href='edittender2.php?TenderID=". $row[0] ."' title='ViewApplicants' >Edit tender</a>";
+            echo "<a href='edittender.php?TenderID=". $row[0] ."' title='ViewApplicants' >Edit tender</a>";
 
         ?></button>
 	</div>
