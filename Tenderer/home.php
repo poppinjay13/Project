@@ -21,7 +21,6 @@ $count = mysqli_num_rows($result);
 	<body>
 	<ul class="navbar">
 		<li class="profpic"><img src="../assets/images/pic/<?php echo $uid?>.jpg"></li>
-		<!--<li><span><img src="../assets/images/menu.png"></span></li>-->
 		<li><a href="#" class="active"><span>Home</span></a></li>
 		<li><a href="port.php"><span>Portfolio</span></a></li>
 		<div class="top_right">

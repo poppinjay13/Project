@@ -67,15 +67,14 @@ $count3 = mysqli_num_rows($result3);
 		<title>Tenderer's Module</title>
 	</head>
 	<body>
-	<ul class="navbar">
-		<li><span><img src="../assets/images/menu.png"></span></li>
-		<li><a href="home.php"><span>Home</span></a></li>
-		<li><a href="#" class="active"><span>Portfolio</span></a></li>
-		<div class="top_right">
-		<li class="profpic"><img src="../assets/images/pic/<?php echo $uid?>.jpg"></li>
-		<!--<li class="btnexit"><a href="logout.php"><img src="images/logout.png" title="logout"></a></li>-->
-	</div>
-	</ul>
+		<ul class="navbar">
+			<li class="profpic"><img src="../assets/images/pic/<?php echo $uid?>.jpg"></li>
+			<li><a href="home.php"><span>Home</span></a></li>
+			<li><a href="#" class="active"><span>Portfolio</span></a></li>
+			<div class="top_right">
+				<li><a href="../logout.php" title="logout"><img src="../assets/images/logout.png"></a></li>
+			</div>
+		</ul>
 	<div class="sidebar">
 		<!--Sidebar with tenderer's tender history-->
 		<div class="sdinfo">
