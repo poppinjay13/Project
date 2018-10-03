@@ -25,11 +25,11 @@ $count = mysqli_num_rows($result);
 	</head>
 	<body>
 	<ul class="navbar">
-		<li><span><img src="../assets/images/menu.png"></span></li>
+		<li class="profpic"><img src="../assets/images/pic/<?php echo $uid?>.jpg"></li>
 		<li><a href="#" class="active"><span>Home</span></a></li>
 		<li><a href="details.php"><span>My Details</span></a></li>
     <div class="top_right">
-		<li class="profpic"><img src="../assets/images/pic/<?php echo $uid?>.jpg"></li>
+		<li><a href="../logout.php" title="logout"><img src="../assets/images/logout.png"></a></li>
 	</div>
 	</ul>
 

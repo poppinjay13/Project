@@ -9,10 +9,11 @@ echo "Success";
 }else{
 echo "Failure";
 }*/
+/*
 include("../config.php");
 $sql = "SELECT Name FROM tenderers WHERE IDNo = '100446'";
 $result = mysqli_query($conn,$sql);
 while($row=mysqli_fetch_row($result)){
   echo $row[0];
-}
+}*/
 ?>
