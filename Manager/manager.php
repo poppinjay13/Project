@@ -1,35 +1,45 @@
 
 <?php
 session_start();
-include("../config.php");
+include("config.php");
 $tab = 1;
 $count = 0;
 $tab2 = 1;
 $count2 = 0;
-$uid = $_SESSION['ManID'];
+
+$uid = $_SESSION['Idnum'];
 $sqli = "SELECT * FROM heads where HeadID = $uid";
 $result2 = mysqli_query($conn,$sqli);
 $count2 = mysqli_num_rows($result2);
 $row2=mysqli_fetch_row($result2);
 $_SESSION['Department'] = $row2[3];
-$depart = $_SESSION['Department'];
+        $depart = $_SESSION['Department'];
+        
 $sql = "SELECT * FROM tenders";
 $result = mysqli_query($conn,$sql);
 $count = mysqli_num_rows($result);
+
 ?>
+
 <html>
 	<head>
-		<link href="../assets/css/home.css" type="text/css" rel="stylesheet">
-		<link href="../assets/images/fav.png" rel="icon" type="image/x-icon" />
+		<link href="css/user.css" type="text/css" rel="stylesheet">
+		<link href="images/fav.png" rel="icon" type="image/x-icon" />
 		<title>Department manager's Module</title>
 	</head>
 	<body>
 	<ul class="navbar">
+
 		<li class="profpic"><img src="../assets/images/pic/<?php echo $uid?>.jpg"></li>
+
 		<li><a href="#" class="active"><span>Home</span></a></li>
+
 		<li><a href="details.php"><span>My Details</span></a></li>
+
     <div class="top_right">
+
 		<li><a href="../logout.php" title="logout"><img src="../assets/images/logout.png"></a></li>
+
 	</div>
 	</ul>
 
@@ -47,8 +57,8 @@ $count = mysqli_num_rows($result);
 	<?php
 
         while ($row=mysqli_fetch_row($result)){
-
-          if($row[2]==$depart){
+               
+          if($row[2]==$depart){      
 	?>
 	<div class="tender">
 	<div class="text">
@@ -56,24 +66,24 @@ $count = mysqli_num_rows($result);
 <!--		<h3>ID: <?php //printf($row[0])?></h3>-->
 		<h2><?php printf($row[1])?></h2>
 		<h3>Requirements: <?php printf($row[3])?></h3>
-		<h3>Due Date: <?php printf($row[6])?></h3>
+		<h3>Due Date: <?php printf($row[5])?></h3>
 
-
+  
 
    <button class="cust"  >
         <?php
-            echo "<a href='viewapplicants.php?TenderID=". $row[0] ."' title='ViewApplicants'  >View Applicants</a>";
-
+            echo "<a href='viewapplicants.php?TENDERID=". $row[0] ."' title='ViewApplicants'  >View Applicants</a>";
+          
         ?></button>
      <button class="cust"  ><?php
-            echo "<a href='edittender.php?TenderID=". $row[0] ."' title='ViewApplicants' >Edit tender</a>";
-
+            echo "<a href='edittender.php?TENDERID=". $row[0] ."' title='ViewApplicants' >Edit tender</a>";
+          
         ?></button>
 	</div>
 	</div>
 	<?php
 			$tab++;
-
+		
             }
 	}}
 	?>
