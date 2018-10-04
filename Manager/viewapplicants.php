@@ -23,7 +23,7 @@ $count= mysqli_num_rows($result);
 	<ul class="navbar">
 		<li class="profpic"><img src="../assets/images/pic/<?php echo $uid?>.jpg"></li>
 		<li><a href="manager.php" ><span>Home</span></a></li>
-		<li><a href="managerdetails.php"><span>My Details</span></a></li>
+		<li><a href="details.php"><span>My Details</span></a></li>
         <li><a href="#" class="active">View applicants</a></li>
 		<div class="top_right">
 
