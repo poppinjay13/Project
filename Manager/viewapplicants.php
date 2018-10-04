@@ -12,18 +12,7 @@ $count= mysqli_num_rows($result);
 <head>
           
     <script src="jquery.js"></script>
-        <script>
-            var expanded=false;
-        $(function showCheckboxes(){
-                var checkboxes=document.getElementById("checkboxes");
-            if(!expanded){
-                checkboxes.style.display="block";
-                expanded=true;
-            }else{
-                checkboxes.style.display="none";
-                expanded=false;
-            }
-        });
+       
             
         </script>
 		<link href="css/user.css" type="text/css" rel="stylesheet">
