@@ -14,11 +14,11 @@
                $_SESSION['UserID'] = $row[0];
                header("location: Tenderer/home.php");
              }
-             else if($row[1]=='manager'){
-               $_SESSION['ManagerID'] = $row[0];
+             else if($row[1]=='department manager'){
+               $_SESSION['UserID'] = $row[0];
                header("location: Manager/manager.php");
              }else if($row[1]=='administrator'){
-               $_SESSION['AdminID'] = $row[0];
+               $_SESSION['UserID'] = $row[0];
                header("location: Admin/admin.php");
              }else{
                $error = "Please contact the administrator for help with your account!";
