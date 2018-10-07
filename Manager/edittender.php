@@ -4,9 +4,9 @@ session_start();
 include("../config.php");
 $tab = 1;
 $count = 0;
-$tenderId=$_GET['TenderID'];
+$Tenderid= $_GET['TENDERID'];
 
-$sql = "SELECT * FROM tenders WHERE TenderID=$tenderId";
+$sql = "SELECT * FROM tenders WHERE TenderID=$Tenderid";
 $result = mysqli_query($conn,$sql);
 $count = mysqli_num_rows($result);
 
@@ -62,10 +62,9 @@ $count = mysqli_num_rows($result);
                         <br><br>
                     Enquiries:<br>
                         <input  type="text" name="enquiries" value="<?php printf($row[4])?>" placeholder=""><br><br>
-                    Deadtime:<br>
-                        <input  type="datetime" name="deadtime" value="<?php printf($row[5])?>" placeholder=""><br><br>
+                  
                     Deaddate:<br>
-                     <input  type="datetime" name="deadtime" value="<?php printf($row[6])?>" placeholder=""><br><br>
+                     <input  type="datetime" name="deadtime" value="<?php printf($row[5])?>" placeholder=""><br><br>
 
 
                         <button  type="submit" name="submit" class="cust">submit</button>
