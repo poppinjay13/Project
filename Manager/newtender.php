@@ -3,13 +3,13 @@
 #Initialize the session
     session_start();
     #If the session is not set it will redirect you to the login page
-    if (!isset($_SESSION['Idnum']) && !isset($_SESSION['Password']) || empty($_SESSION['Idnum'])) {
+    if (!isset($_SESSION['UserID']) && !isset($_SESSION['Password']) || empty($_SESSION['UserID'])) {
         # code...
-        header("location:../Project/manager.php");
+        header("location:../Manager/manager.php");
             exit;
     }
     //Include the connection file
-    require_once '../Project/config.php';
+    require_once '../config.php';
 
     //Define variables and initialize them with empty variables
     $Name =  $Department = $Requirements = $Enquiries = $Deadtime = $Deaddate= "";
@@ -41,7 +41,7 @@
                 #Attempt to execute the prepared statement
                 if ($stmt->execute()){
                     #Redirect to manager page
-                    header("location: manager.php");
+                    header("location: ../Manager/manager.php");
                 }else{
                     echo "Something went wrong :( Please try again later";
                 }
@@ -55,9 +55,9 @@
 ?>
 <html>
 	<head>
-         <link rel="stylesheet" href="jquery.datetimepicker.min.css">
-    <script src="jquery.js"></script>
-    <script src="jquery.datetimepicker.full.js"></script>
+         <link rel="stylesheet" href="../assets/js/jquery.datetimepicker.min.css">
+    <script src="../assets/js/jquery.js"></script>
+    <script src="../assets/js/jquery.datetimepicker.full.js"></script>
         <script>
         $(function(){
                 $("#datetime").datetimepicker();
@@ -65,8 +65,8 @@
             
         </script>
         
-		<link href="css/user.css" type="text/css" rel="stylesheet">
-		<link href="images/fav.png" rel="icon" type="image/x-icon" />
+		<link href="../assets/css/home.css" type="text/css" rel="stylesheet">
+		<link href="../assets/images/fav.png" rel="icon" type="image/x-icon" />
 		<title>Floating new tender</title>
 	</head>
 	<body>
