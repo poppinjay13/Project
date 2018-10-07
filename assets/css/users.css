@@ -5,8 +5,8 @@ body{
 .navbar{
 	position: fixed;
 	float: left;
-    margin-top: 0px;
-    padding: 0px;
+  margin-top: 0px;
+  padding: 0px;
 	height: 100%;
 	background-color:#3F29CC;
 	width: 10%;
@@ -48,7 +48,7 @@ body{
 }
 .load-data{
 	padding: 20px 7px;
-	background-color: white; 
+	background-color: white;
 	float: right;
 	width: 89%;
 }
@@ -64,16 +64,6 @@ body{
 	padding:5px;
 	border-radius: 3px;
 	background-color: red;
-}
-.searchbar{
-	text-align: center;
-	padding: 5px 0px 15px ;
-}
-.searchbar input[type=text]{
-	width: 25%;
-	padding: 5px;
-	border-radius: 5px;
-	border-color:aqua;
 }
 table{
 	width: 100%;
@@ -91,4 +81,17 @@ td{
 	text-align: center;
 	background-color: aquamarine;
 	padding: 15px 0px;
+}
+#btnadd{
+	text-align: center;
+	padding-bottom: 13px;
+}
+.btnadd{
+	font-size: 18px;
+	text-align: center;
+	padding: 13px;
+	border-radius: 8px;
+	border: none;
+	background-color: aquamarine;
+	cursor: pointer;
 }

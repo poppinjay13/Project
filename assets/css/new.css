@@ -2,9 +2,6 @@ body{
 	margin: 0px;
 	font-family: "Poppins", sans-serif;
 }
-h1,h2{
-	text-align: center;
-}
 .navbar{
 	position: fixed;
 	float: left;
@@ -44,8 +41,19 @@ h1,h2{
 	background-color:#2B2929;
     color: white;
 }
-.details{
-	margin: 0px;
-	width: 89%;
-	float: right;
+.data{
+  width: 89%;
+  float: right;
+  text-align: center;
+}
+.data form{
+  margin-top: 5%;
+}
+.data input{
+  width: 250px;
+  padding: 5px;
+}
+.data .btn{
+  padding: 8px;
+  font-size: 15px;
 }
