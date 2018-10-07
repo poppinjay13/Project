@@ -1,13 +1,13 @@
 
 <?php
 session_start();
-include("config.php");
+include("../config.php");
 $tab = 1;
 $count = 0;
 $tab2 = 1;
 $count2 = 0;
 
-$uid = $_SESSION['Idnum'];
+$uid = $_SESSION['UserID'];
 $sqli = "SELECT * FROM heads where HeadID = $uid";
 $result2 = mysqli_query($conn,$sqli);
 $count2 = mysqli_num_rows($result2);
@@ -23,8 +23,8 @@ $count = mysqli_num_rows($result);
 
 <html>
 	<head>
-		<link href="css/user.css" type="text/css" rel="stylesheet">
-		<link href="images/fav.png" rel="icon" type="image/x-icon" />
+		<link href="../assets/css/home.css" type="text/css" rel="stylesheet">
+		<link href="../assets/images/fav.png" rel="icon" type="image/x-icon" />
 		<title>Department manager's Module</title>
 	</head>
 	<body>
@@ -35,10 +35,12 @@ $count = mysqli_num_rows($result);
 		<li><a href="#" class="active"><span>Home</span></a></li>
 
 		<li><a href="details.php"><span>My Details</span></a></li>
+        
+        <li><a href="newtender.php"><span>+ Float new tender</span></a></li>
 
     <div class="top_right">
 
-		<li><a href="../logout.php" title="logout"><img src="../assets/images/logout.png"></a></li>
+		<li><a href="../index.php" title="logout"><img src="../assets/images/logout.png"></a></li>
 
 	</div>
 	</ul>
@@ -87,7 +89,7 @@ $count = mysqli_num_rows($result);
             }
 	}}
 	?>
-        <button class="floatnew"><a href="newtender.php" style="text-decoration:none"> <h2>+FLOAT TENDER</h2></a>
-        </button>
+       <!-- <button class="floatnew"><a href="newtender.php" style="text-decoration:none"> <h2>+FLOAT TENDER</h2></a>
+        </button> -->
 	</body>
 </html>
