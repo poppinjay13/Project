@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("config.php");
+include("../config.php");
 $Tenderid= $_GET['TENDERID'];
 $tab = 1;
 $count = 0;   
@@ -15,8 +15,8 @@ $count= mysqli_num_rows($result);
        
             
         </script>
-		<link href="css/user.css" type="text/css" rel="stylesheet">
-		<link href="images/fav.png" rel="icon" type="image/x-icon" />
+		<link href="../assets/css/home.css" type="text/css" rel="stylesheet">
+		<link href="../assets/images/fav.png" rel="icon" type="image/x-icon" />
 		<title>View tender applications</title>
 	</head>
 	<body>
@@ -62,14 +62,14 @@ $count= mysqli_num_rows($result);
                      
                                 echo "<tr>";
                                     echo "<td>" . $row['TenderID'] . "</td>";
-                                    echo "<td>" . $row['IDNo'] . "</td>";
-                                    echo "<td>" . $row['Submission_date'] . "</td>";
+                                    echo "<td>" . $row['TendererID'] . "</td>";
+                                    echo "<td>" . $row['Completion'] . "</td>";
                                   echo "<td>" . $row['Status'] . "</td>";
                     
              
                                 echo "<td>";
                                   
-                                         echo "<a href='download.php?Filename=".$row['path']."'>download</a> ";
+                                         echo "<a href='download.php?Filename=".$row['Docs']."'>download</a> ";
 
                                     echo "</td>";
                        echo "<td>";
@@ -79,12 +79,12 @@ $count= mysqli_num_rows($result);
                $_SESSION['IDNo'] = $row[1];
         $_SESSION['TenderID'] = $row[0];
                        
-                       echo "<a href='accepted.php?IDno=".$row['IDNo']."' ><img src='../assets/images/accept.jpg'></a>";
+                       echo "<a href='accepted.php?TendererID=".$row['TendererID']."' ><img src='../assets/images/accept.jpg'></a>";
                      
                        echo"</td>";
                        echo "<td>";
                    
-                       echo "<a href='rejected.php?IDno=".$row['IDNo']."' ><img src='i../assets/images/reject.png'></a>";
+                       echo "<a href='rejected.php?TendererID=".$row['TendererID']."' ><img src='../assets/images/reject.png'></a>";
                      
                        echo"</td>";
                        
