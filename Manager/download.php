@@ -12,7 +12,7 @@
     header('Content-Length: ' . filesize($name));
     ob_clean();
     flush();
-    readfile("C:\xampp\htdocs\Tender\Project\applications/".$name); 
+    readfile("C:\xampp\htdocs\Tender\applications/".$name); 
     exit;
 
 ?>
