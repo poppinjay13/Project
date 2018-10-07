@@ -1,9 +1,9 @@
 <?php
 session_start();
-include("config.php");
+include("../config.php");
 $tab = 1;
 $count = 0;
-$uid = $_SESSION['Idnum'];
+$uid = $_SESSION['UserID'];
 $sql = "SELECT * FROM heads where HeadID = $uid";
 $result = mysqli_query($conn,$sql);
 $count = mysqli_num_rows($result);
@@ -11,8 +11,8 @@ $row=mysqli_fetch_row($result);
 ?>
 <html>
 	<head>
-		<link href="css/port.css" type="text/css" rel="stylesheet">
-		<link href="images/fav.png" rel="icon" type="image/x-icon" />
+		<link href="../assets/css/port.css" type="text/css" rel="stylesheet">
+		<link href="../assets/images/fav.png" rel="icon" type="image/x-icon" />
 		<title>Manager's details</title>
 	</head>
 	<body>
