@@ -23,6 +23,7 @@ $count = mysqli_num_rows($result);
 <html>
 <head>
   <link href="../assets/css/admin.css" rel="stylesheet">
+  <link href="../assets/images/fav.png" rel="icon" type="image/x-icon" />
   <title>Admin Module</title>
 </head>
 <body>
