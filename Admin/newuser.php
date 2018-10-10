@@ -39,7 +39,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <html>
 	<head>
-		<link href="../assets/css/new.css" type="text/css" rel="stylesheet">
+		<link href="../assets/css/adminnew.css" type="text/css" rel="stylesheet">
 		<link href="../assets/images/fav.png" rel="icon" type="image/x-icon" />
 		<title>Admin Module</title>
 	</head>
@@ -62,7 +62,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 					<input type="text" name="phone"/><br><br>
 					<label for="email">Email</label><br>
 					<input type="text" name="email"/><br><br>
-					<input type=""/><br><br>
 					<label for="address">Physical Address</label><br>
 					<input type="text" name="address"/><br><br>
 					<label for="pobox">P.O. Box</label><br>

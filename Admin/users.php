@@ -57,7 +57,7 @@ include '../config.php';
     <tr class="spacer"></tr>
     <tr class="spacer"></tr>
     </table>
-    <div id="btnadd"><a href="new.php"><button class="btnadd">Add New Department Manager</button></a></div>
+    <div id="btnadd"><a href="newdept.php"><button class="btnadd">Add New Department Manager</button></a></div>
     <!--TABLE FOR TENDERERS-->
     <h1 style="text-align:center;">TENDERERS</h1>
      <?php
@@ -96,7 +96,7 @@ include '../config.php';
       <tr class="spacer"></tr>
       <tr class="spacer"></tr>
       </table>
-      <div id="btnadd"><a href="new.php"><button class="btnadd">Add New Tenderer</button></a></div>
+      <div id="btnadd"><a href="newuser.php"><button class="btnadd">Add New Tenderer</button></a></div>
   </div>
   <script>
 		function send(data){
