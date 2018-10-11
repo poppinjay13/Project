@@ -12,37 +12,41 @@ $row=mysqli_fetch_row($result);
 $stmt = $conn->prepare("UPDATE tenderers
 SET Phone = ?, Email = ?, Address = ?, POBox = ?, Password = ?
 WHERE IDNo = $uid");
-$stmt->bind_param("sssss",$num,$mail,$add,$box,$password);
-//$stmt2 = $conn->prepare("UPDATE login
-//SET Email = ?, Password = ?
-//WHERE IDNo = $uid");
-//$stmt2->bind_param("ss",$mail,$password);
+$stmt2 = $conn->prepare("UPDATE login
+SET Email = ?, Password = ?
+WHERE IDNo = $uid");
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 	try{
-	   $num = mysqli_real_escape_string($conn,$_POST['phone']);
-	   $mail = mysqli_real_escape_string($conn,$_POST['email']);
-	   $add = mysqli_real_escape_string($conn,$_POST['address']);
-	   $box = mysqli_real_escape_string($conn,$_POST['pobox']);
-	   $password = mysqli_real_escape_string($conn,$_POST['password']);
-		 if(isset($_FILES['pic'])) {
-		   $filename = $_FILES["pic"]["name"];
-		   $newname = $uid.".jpg";
-		   $target_dir = "../assets/images/pic/";
-		   $target_file = $target_dir.$newname;
-		   $uploadOk = 1;
-		     if ($uploadOk != 0){
-		       if (move_uploaded_file($_FILES["pic"]["tmp_name"], $target_file)) {
-		         echo "<script>alert('New image set');</script>";
-		         $prof = $newname;
-		       } else {
-		         echo "<script>alert('Sorry, there was an error uploading your picture.');</script>";
-		       }
-		     }
-		   }
-		 $stmt->execute();
-		 //$stmt2->execute();
-		 header("location: port.php");
-	   }catch (Exception $e) {
+		if(isset($_FILES['pic'])) {//upload profile picture
+			$filename = $_FILES["pic"]["name"];
+			$newname = $uid.".jpg";
+			$target_dir = "../assets/images/pic/";
+			$target_file = $target_dir.$newname;
+			$uploadOk = 1;
+			if ($uploadOk != 0){
+				if (move_uploaded_file($_FILES["pic"]["tmp_name"], $target_file)) {
+					echo "<script>alert('New image set');</script>";
+				} else {
+					echo "<script>alert('Sorry, there was an error uploading your picture.');</script>";
+				}
+			}
+		}
+		if($password == $repassword){
+			$num = mysqli_real_escape_string($conn,$_POST['phone']);
+	   	$mail = mysqli_real_escape_string($conn,$_POST['email']);
+	   	$add = mysqli_real_escape_string($conn,$_POST['address']);
+	   	$box = mysqli_real_escape_string($conn,$_POST['pobox']);
+	   	$password = mysqli_real_escape_string($conn,$_POST['password']);
+		 	$repassword = mysqli_real_escape_string($conn,$_POST['repassword']);
+		 	$stmt->bind_param("sssss",$num,$mail,$add,$box,$password);
+		 	$stmt->execute();
+		 	if($password != ""){
+				$stmt2->bind_param("ss",$mail,$password);
+		 		$stmt2->execute();
+	 		}
+		 	header("location: port.php");
+		}
+	}catch (Exception $e) {
     $error = "Error Updating your account details!<br> Please contact the administrator!";
 	}
 }
@@ -114,7 +118,9 @@ $count3 = mysqli_num_rows($result3);
 			P.O. Box:
 			<input type="text" name="pobox" value="<?php printf($row[6])?>"><br><br>
 			Password:
-			<input type="password" name="password" value="<?php printf($row[7])?>"><br><br>
+			<input type="password" name="password"><br><br>
+			Re-enter Password:
+			<input type="password" name="repassword"><br><br>
 			<input type="checkbox" name="confirm" style="margin:0px; position:static; width:13px; margin-left:80px;" required>
 			I confirm that information entered above is true to the best of my knowledge<br><br>
 			<input type="submit" value="SUBMIT DETAILS" id="button">

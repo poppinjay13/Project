@@ -64,8 +64,8 @@ $count = mysqli_num_rows($result);
       		<td><?php echo $row[1]?></td>
       		<td><?php echo $row[2]?></td>
       		<td><?php echo $row[4]?></td>
+      		<td><?php echo substr($row[5],0,19)?></td>
       		<td><?php echo $row[6]?></td>
-      		<td><?php echo $row[7]?></td>
       	</tr>
       	<tr class="spacer"></tr>
       <?php
