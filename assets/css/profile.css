@@ -73,4 +73,5 @@ form input{
 	height: 50px;
 	background-color: aquamarine;
 	font-size: 20px;
+	cursor: pointer;
 }

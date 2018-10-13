@@ -1,41 +1,39 @@
 <?php
 session_start();
 include("../config.php");
-/*$error = "null";
-$status = $_GET['status'];
-$stmt = $conn->prepare("INSERT INTO tenderers (Name, IDNo, Phone, Email, Address, POBox, Password) VALUES (?,?,?,?,?,?,?)");
-$stmt->bind_param("sssssss",$name,$id,$num,$mail,$add,$box,$password);
+$error = "null";
+$status = "department manager";
+$newid= mt_rand(0,100000);
+$stmt = $conn->prepare("INSERT INTO heads (HeadID, Name, Email, Department, Phone_Num) VALUES (?,?,?,?,?)");
 $stmt2 = $conn->prepare("INSERT INTO login (Idnum, Status, Email, Password) VALUES (?,?,?,?)");
-$stmt2->bind_param("ssss",$id,$status,$mail,$password);
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 	try{
-		$name = mysqli_real_escape_string($conn,$_POST['name']);
-	   $id = mysqli_real_escape_string($conn,$_POST['IDNo']);
+		 $name = mysqli_real_escape_string($conn,$_POST['name']);
+		 $mail = mysqli_real_escape_string($conn,$_POST['email']);
+		 $dept = mysqli_real_escape_string($conn,$_POST['department']);
 	   $num = mysqli_real_escape_string($conn,$_POST['phone']);
-	   $mail = mysqli_real_escape_string($conn,$_POST['email']);
-	   $add = mysqli_real_escape_string($conn,$_POST['address']);
-	   $box = mysqli_real_escape_string($conn,$_POST['pobox']);
 	   $password = mysqli_real_escape_string($conn,$_POST['password']);
-	   $password2 = mysqli_real_escape_string($conn,$_POST['passval']);
+	   $password2 = mysqli_real_escape_string($conn,$_POST['repassword']);
 	   if ($password != $password2) {
 		   $error = "Please ensure passwords entered match.";
 	   }else{
-	   $sql = "SELECT * FROM tenderers WHERE IDNo = '$id' or Email = '$mail'";
+	   $sql = "SELECT * FROM heads WHERE Email = '$mail'";
 	   $result = mysqli_query($conn,$sql);
 	   $count = mysqli_num_rows($result);
 	   if($count > 0) {
-		   $error = "The ID number or Email address you entered is already in use";
+		   $error = "The Email Address you entered is already in use";
 	   }else{
+		 	 $stmt->bind_param("sssss",$newid,$name,$mail,$dept,$num);
 			 $stmt->execute();
-			 $stmt2->execute();
-		   $_SESSION['UserID'] = $id;
-		   header("location: Tenderer/home.php");
+			 //$stmt2->bind_param("ssss",$newid,$status,$mail,$password);
+			 //$stmt2->execute();
+		   header("location: users.php");
 	   }
 		}
    } catch (Exception $e) {
-    $error = "Error Signing you up for service. Please try again later!";
+    $error = "Error Creating Account. Please try again later!";
 	}
-}*/
+}
 ?>
 <html>
 	<head>
@@ -76,10 +74,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 				<label for = "phone">Phone Number</label><br/>
 				<input name="phone" type="text"/><br/><br/>
 				<label for = "password">Password</label><br/>
-				<input name="password" type="password" onclick="reshow();"/><br/><br/>
-				<label for = "repassword" class="repassword">Re-Enter Password</label><br/>
-				<input name="repassword" type="password" class="repassword"/><br/><br/>
-				<input type="submit" class="btn" value="Create New User"/><br/><br/>
+				<input name="password" type="password"/><br/><br/>
+				<label for = "repassword">Re-Enter Password</label><br/>
+				<input name="repassword" type="password"/><br/><br/>
+				<input type="submit" class="btn" value="Create New Account"/><br/><br/>
 			</fieldset>
 			</form>
 		</div>

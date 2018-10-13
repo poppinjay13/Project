@@ -1,22 +1,20 @@
 <?php
 session_start();
 include("../config.php");
-/*$error = "null";
-$status = $_GET['status'];
-$stmt = $conn->prepare("INSERT INTO tenderers (Name, IDNo, Phone, Email, Address, POBox, Password) VALUES (?,?,?,?,?,?,?)");
-$stmt->bind_param("sssssss",$name,$id,$num,$mail,$add,$box,$password);
+$error = "null";
+$status = "tenderer";
+$stmt = $conn->prepare("INSERT INTO tenderers (Name, IDNo, Phone, Email, Address, POBox) VALUES (?,?,?,?,?,?)");
 $stmt2 = $conn->prepare("INSERT INTO login (Idnum, Status, Email, Password) VALUES (?,?,?,?)");
-$stmt2->bind_param("ssss",$id,$status,$mail,$password);
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 	try{
 		$name = mysqli_real_escape_string($conn,$_POST['name']);
-	   $id = mysqli_real_escape_string($conn,$_POST['IDNo']);
+	   $id = mysqli_real_escape_string($conn,$_POST['idnum']);
 	   $num = mysqli_real_escape_string($conn,$_POST['phone']);
 	   $mail = mysqli_real_escape_string($conn,$_POST['email']);
 	   $add = mysqli_real_escape_string($conn,$_POST['address']);
 	   $box = mysqli_real_escape_string($conn,$_POST['pobox']);
 	   $password = mysqli_real_escape_string($conn,$_POST['password']);
-	   $password2 = mysqli_real_escape_string($conn,$_POST['passval']);
+	   $password2 = mysqli_real_escape_string($conn,$_POST['repassword']);
 	   if ($password != $password2) {
 		   $error = "Please ensure passwords entered match.";
 	   }else{
@@ -26,16 +24,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	   if($count > 0) {
 		   $error = "The ID number or Email address you entered is already in use";
 	   }else{
+			 $stmt->bind_param("ssssss",$name,$id,$num,$mail,$add,$box);
 			 $stmt->execute();
+			 $stmt2->bind_param("ssss",$id,$status,$mail,$password);
 			 $stmt2->execute();
-		   $_SESSION['UserID'] = $id;
-		   header("location: Tenderer/home.php");
+		   header("location: users.php");
 	   }
 		}
    } catch (Exception $e) {
     $error = "Error Signing you up for service. Please try again later!";
 	}
-}*/
+}
 ?>
 <html>
 	<head>
@@ -54,6 +53,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     </ul>
 		<div class="data">
 			<form method="post" action="#">
+				<fieldset>
 					<label for="name">Name</label><br>
 					<input type="text" name="name"/><br><br>
 					<label for="idnum">ID Number</label><br>
@@ -71,6 +71,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 					<label for="repassword">Re-enter Password</label><br>
 					<input type="password" name="repassword"/><br><br>
 					<input type="submit" name="submit" value="CREATE ACCOUNT" class="btn"/>
+				</fieldset>
 			</form>
 		</div>
 	</body>

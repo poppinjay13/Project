@@ -5,9 +5,9 @@ $uid = $_SESSION['UserID'];//insert ID from sessions
 $sql = "SELECT * FROM administrators where AdminID = $uid";
 $result = mysqli_query($conn,$sql);
 $row=mysqli_fetch_row($result);
-$stmt = $conn->prepare("UPDATE administrators
-SET Email = ?, Phone = ?
-WHERE AdminID = $uid");
+$stmt = $conn->prepare("UPDATE administrators SET Email = ?, Phone = ? WHERE AdminID = $uid");//update details in admin table
+$logmail = $conn->prepare("UPDATE login SET Email = ? WHERE Idnum = $uid");//update email in login table
+$logpass = $conn->prepare("UPDATE login SET Password = ? WHERE Idnum = $uid");//update email in login table
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 	try{
 	   $email = mysqli_real_escape_string($conn,$_POST['email']);
@@ -17,11 +17,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 		 if($password == $repassword){//if password fields are matching
 			 $stmt->bind_param("ss",$email,$phone);
 			 $stmt->execute();
+			 $logmail->bind_param("s",$email);
+			 $logmail->execute();
 			 if($password != ""){//if new passwords are not null
-				 $pass = "UPDATE login SET Password = $password WHERE Idnum = $uid";
-				 mysqli_query($conn,$pass);
+				 $logpass->bind_param("s",$password);
+				 $logpass->execute();
 			 }
 			 header("location: profile.php");//reload page to refresh form
+		 }else{
+			 $error = "Ensure passwords entered match!";
 		 }
    }catch(Exception $ex){
      $error = "Error Updating Your Account Details!";

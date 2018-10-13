@@ -38,17 +38,14 @@ include '../config.php';
       <tbody>
       <?php
         while ($row=mysqli_fetch_row($reshead)){
-          $dept = "SELECT NAME FROM DEPARTMENTS WHERE DeptMan = '$row[0]'";
-          $resdept = mysqli_query($conn,$dept);
-          $rowdept=mysqli_fetch_row($resdept);
       ?>
       <div class="tenderdata">
       	<tr>
       		<td><?php echo $row['0']?></td>
       		<td><?php echo $row['1']?></td>
       		<td><?php echo $row['2']?></td>
-      		<td><?php echo $rowdept[0] ?></td>
-			<td><span class="editor" onClick="send(<?php echo $data ?>)">EDIT USER DETAILS</span></td><!--php send id-->
+      		<td><?php echo $row['3'] ?></td>
+			<td><span class="editor" onClick="test();">EDIT USER DETAILS</span></td><!--php send id-->
       	</tr>
       	<tr class="spacer"></tr>
       </div>
@@ -87,7 +84,7 @@ include '../config.php';
         		<td><?php echo $row['4']?></td>
         		<td><?php echo $row['5']?></td>
         		<td><?php echo $row['6']?></td>
-  			<td><span class="editor" onClick="send(<?php echo $data ?>)">EDIT USER DETAILS</span></td><!--php send id-->
+  			<td><div class="editor" onClick="test();">EDIT USER DETAILS</div></td><!--php send id-->
         	</tr>
         	<tr class="spacer"></tr>
         </div>
@@ -99,7 +96,10 @@ include '../config.php';
       <div id="btnadd"><a href="newuser.php"><button class="btnadd">Add New Tenderer</button></a></div>
   </div>
   <script>
-		function send(data){
+    function test(){
+      alert("onClick working!");
+    }
+		function send(var data){
 			alert("clicked!");
 			var form = document.createElement("form");
 			form.target = "_blank";

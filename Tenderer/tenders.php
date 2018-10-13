@@ -5,6 +5,7 @@ if (!isset($_SESSION['UserID'])) {
 		header("location:../index.php");
 		exit;
 }
+$uid = $_SESSION['UserID'];
 if($_SERVER["REQUEST_METHOD"] == "GET") {
 	$_SESSION['tendid'] = $_GET['key'];
 }
