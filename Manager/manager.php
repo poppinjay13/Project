@@ -45,22 +45,26 @@ $count = mysqli_num_rows($result);
 	</div>
 	</ul>
 
+	
+	<div class="bod">
 	<?php
 		if($count <= 0) {
 	?>
 	<center>
-	<h2>You have not floated any tender.</h2><br>
-	<h3>Click on float tender to add a tender.</h3>
+	<h2 style="color:white;" style="color:white;">You have not floated any tenders yet</h2><br>
+	<h3 style="color:white;">Click on float new tender to float a tender</h3>
 	</center>
 	<?php
 		}else {
 		?>
-	<h1>Available Tender Requests</h1>
+	<center>
+	<h1 style="color:white;">Floated tenders</h1>
+  </center>
 	<?php
 
         while ($row=mysqli_fetch_row($result)){
-               
-          if($row[2]==$depart){      
+         if($row[2]==$depart){        
+              
 	?>
 	<div class="tender">
 	<div class="text">
@@ -74,11 +78,11 @@ $count = mysqli_num_rows($result);
 
    <button class="cust"  >
         <?php
-            echo "<a href='viewapplicants.php?TENDERID=". $row[0] ."' title='ViewApplicants'  >View Applicants</a>";
+            echo "<a href='viewapplicants.php?TENDERID=". $row[0] ."' title='ViewApplicants'  >View Applicants</a>";//on clicking this button you can view applicants of the specific tender selected
           
         ?></button>
      <button class="cust"  ><?php
-            echo "<a href='edittender.php?TENDERID=". $row[0] ."' title='ViewApplicants' >Edit tender</a>";
+            echo "<a href='edittender.php?TENDERID=". $row[0] ."' title='ViewApplicants' >Edit tender</a>";// this button allows you 
           
         ?></button>
 	</div>
@@ -87,7 +91,10 @@ $count = mysqli_num_rows($result);
 			$tab++;
 		
             }
-	}}
+            
+	}
+    
+        }
 	?>
        <!-- <button class="floatnew"><a href="newtender.php" style="text-decoration:none"> <h2>+FLOAT TENDER</h2></a>
         </button> -->
