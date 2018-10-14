@@ -1,7 +1,7 @@
 <?php
 session_start();
 include '../config.php';
-//$uid = $_SESSION['User_ID'];
+$uid = $_SESSION['UserID'];
 ?>
 <html>
 <head>
@@ -45,7 +45,11 @@ include '../config.php';
       		<td><?php echo $row['1']?></td>
       		<td><?php echo $row['2']?></td>
       		<td><?php echo $row['3'] ?></td>
-			<td><span class="editor" onClick="test();">EDIT USER DETAILS</span></td><!--php send id-->
+          <td>
+            <?php
+            echo "<div onclick='manager($row[0])' class='editor'>EDIT USER DETAILS</div>";
+            ?>
+          </td><!--php send id-->
       	</tr>
       	<tr class="spacer"></tr>
       </div>
@@ -84,7 +88,11 @@ include '../config.php';
         		<td><?php echo $row['4']?></td>
         		<td><?php echo $row['5']?></td>
         		<td><?php echo $row['6']?></td>
-  			<td><div class="editor" onClick="test();">EDIT USER DETAILS</div></td><!--php send id-->
+  			    <td>
+              <?php
+              echo "<div onclick='user($row[2])' class='editor'>EDIT USER DETAILS</div>";
+              ?>
+            </td><!--php send id-->
         	</tr>
         	<tr class="spacer"></tr>
         </div>
@@ -95,16 +103,12 @@ include '../config.php';
       </table>
       <div id="btnadd"><a href="newuser.php"><button class="btnadd">Add New Tenderer</button></a></div>
   </div>
-  <script>
-    function test(){
-      alert("onClick working!");
-    }
-		function send(var data){
-			alert("clicked!");
+  <script type="text/javascript">
+		function manager(data){
 			var form = document.createElement("form");
-			form.target = "_blank";
+			form.target = "_self";
 			form.method = "GET";
-			form.action = "edit.php";
+			form.action = "editdept.php";
 			form.style.display = "none";
 			var input = document.createElement("input");
 			form.appendChild(input);
@@ -115,6 +119,21 @@ include '../config.php';
 			form.submit();
 			document.body.removeChild(form);
 			}
+      function user(data){
+  			var form = document.createElement("form");
+  			form.target = "_self";
+  			form.method = "GET";
+  			form.action = "edituser.php";
+  			form.style.display = "none";
+  			var input = document.createElement("input");
+  			form.appendChild(input);
+  			input.type = "hidden";
+  			input.name = "user";
+  			input.value = data;
+  			document.body.appendChild(form);
+  			form.submit();
+  			document.body.removeChild(form);
+  			}
 	</script>
 </body>
 </html>

@@ -3,8 +3,8 @@ session_start();
 include("config.php");
 $error = "null";
 $status = "tenderer";
-$stmt = $conn->prepare("INSERT INTO tenderers (Name, IDNo, Phone, Email, Address, POBox, Password) VALUES (?,?,?,?,?,?,?)");
-$stmt->bind_param("sssssss",$name,$id,$num,$mail,$add,$box,$password);
+$stmt = $conn->prepare("INSERT INTO tenderers (Name, IDNo, Phone, Email, Address, POBox) VALUES (?,?,?,?,?,?)");
+$stmt->bind_param("ssssss",$name,$id,$num,$mail,$add,$box);
 $stmt2 = $conn->prepare("INSERT INTO login (Idnum, Status, Email, Password) VALUES (?,?,?,?)");
 $stmt2->bind_param("ssss",$id,$status,$mail,$password);
 if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -61,7 +61,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 					<input type="text" placeholder="Phone Number (0712345678)" name="phone" required><br>
 					<input type="text" placeholder="Email" name="email" required><br>
 					<input type="text" placeholder="Physical Address" name="address"><br>
-					<input type="text" placeholder="P.O.Box ..." name="pobox" required><br>
+					<input type="text" placeholder="P.O.Box ..." name="pobox"><br>
 					<input type="password" placeholder="Enter Password" name="password" required><br>
 					<input type="password" placeholder="Re-enter Password" name="passval" required><br>
 					<input type="submit" class="button" value="SIGN UP">

@@ -72,7 +72,11 @@ $count3 = mysqli_num_rows($result3);
 	</head>
 	<body>
 		<ul class="navbar">
-			<li class="profpic"><img src="../assets/images/pic/<?php echo $uid?>.jpg"></li>
+			<li class="profpic">
+			<object data="../assets/images/pic/<?php echo $uid?>.jpg" type="image/png">
+	      <img src="../assets/images/pic/profile.jpg" alt="profile">
+	    </object>
+			</li>
 			<li><a href="home.php"><span>Home</span></a></li>
 			<li><a href="#" class="active"><span>Portfolio</span></a></li>
 			<div class="top_right">
@@ -98,7 +102,11 @@ $count3 = mysqli_num_rows($result3);
 		</div>
 	</div>
 	<div class="uhead"><!--refer back to image path-->
-		<label for='pic'><img src="../assets/images/pic/<?php echo('100446.jpg') ?>" title="Click to upload new profile picture"></label>
+		<label for='pic' title="Click to upload new profile picture">
+			<object data="../assets/images/pic/<?php echo $uid?>.jpg" type="image/png">
+	      <img src="../assets/images/pic/profile.jpg" alt="profile">
+	    </object>
+		</label>
 		<div class="uinfo">
 		Name:
 		<input type="text" name="name" value="<?php printf($row[1])?>" readonly><br><br>

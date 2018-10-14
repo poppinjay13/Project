@@ -20,7 +20,11 @@ $count = mysqli_num_rows($result);
 	</head>
 	<body>
 	<ul class="navbar">
-		<li class="profpic"><img src="../assets/images/pic/<?php echo $uid?>.jpg"></li>
+		<li class="profpic">
+		<object data="../assets/images/pic/<?php echo $uid?>.jpg" type="image/png">
+      <img src="../assets/images/pic/profile.jpg" alt="profile">
+    </object>
+		</li>
 		<li><a href="#" class="active"><span>Home</span></a></li>
 		<li><a href="port.php"><span>Portfolio</span></a></li>
 		<div class="top_right">

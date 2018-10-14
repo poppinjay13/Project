@@ -17,7 +17,7 @@ body{
 	float:left;
 	padding: 8px 15px 8px;
 }
-.navbar li img{
+.navbar li img,.navbar li object{
 	width: 40px;
 	height: 28px;
 	background-color: #283138;
@@ -61,7 +61,7 @@ body{
 	width: 69%;
 	height: 250px;
 }
-.uhead img{
+.uhead img, .uhead object{
 	padding-top: 20px;
 	padding-left: 15px;
 	width: 200px;

@@ -16,7 +16,7 @@ body{
 	float:left;
 	padding: 12px 15px 8px;
 }
-.navbar li img{
+.navbar li img, .navbar li object{
 	width: 40px;
 	height: 28px;
 	background-color: #283138;

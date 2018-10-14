@@ -1,5 +1,8 @@
 <?php
 include "../config.php";
+if($_SERVER["REQUEST_METHOD"] == "GET"){
+  
+}
 /*
 $sql = "SELECT * FROM administrators where AdminID = $uid";
 $result = mysqli_query($conn,$sql);

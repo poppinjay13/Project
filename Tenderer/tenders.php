@@ -1,6 +1,7 @@
 <?php
 session_start();
-include("../config.php");
+require("../config.php");
+require("../mail.php");
 if (!isset($_SESSION['UserID'])) {
 		header("location:../index.php");
 		exit;
@@ -22,7 +23,11 @@ $count1 = mysqli_num_rows($result1);
 	</head>
 	<body>
 	<ul class="navbar">
-		<li class="profpic"><img src="../assets/images/pic/<?php echo $uid?>.jpg"></li>
+		<li class="profpic">
+		<object data="../assets/images/pic/<?php echo $uid?>.jpg" type="image/png">
+      <img src="../assets/images/pic/profile.jpg" alt="profile">
+    </object>
+		</li>
 		<li><a href="home.php"><span>Home</span></a></li>
 		<li><a href="port.php"><span>Portfolio</span></a></li>
 		<li><a href="#" class="active"><span>Tender Details</span></a></li>
@@ -55,7 +60,7 @@ $count1 = mysqli_num_rows($result1);
 	$result2 = mysqli_query($conn,$sql2);
 	$count2 = mysqli_num_rows($result2);
 	if($count2 == 1){
-	$row=mysqli_fetch_row($result2);
+	$rowt=mysqli_fetch_row($result2);
 	?>
 	<hr>
 	<div class="tendall">
@@ -63,9 +68,9 @@ $count1 = mysqli_num_rows($result1);
 	<div class="tendrlft">
 	<form method="post" action="#" enctype="multipart/form-data">
 		Name:
-		<input type="text" name="tername" value="<?php printf($row[1])?>" readonly><br><br>
+		<input type="text" name="tername" value="<?php printf($rowt[1])?>" readonly><br><br>
 		ID Number:
-		<input type="text" name="terID" value="<?php printf($row[2])?>" readonly><br><br>
+		<input type="text" name="terID" value="<?php printf($rowt[2])?>" readonly><br><br>
 		Business:
 		<input type="text" name="biz" placeholder="Registered name of your Business" required><br><br>
 		Position:
@@ -143,6 +148,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
           echo "<script>alert('The file ". basename( $_FILES["doc"]["name"])." has been uploaded.');</script>";
           $docs = $newname;
 		  		$stmt->execute();
+					$message = "Your Tender Has Been Succesfully Sent.";
+					$recipient = $rowt['4'];
+					sendmail($message,$recepient);
         } else {
           echo "<script>alert('Sorry, there was an error uploading your file.');</script>";
         }
