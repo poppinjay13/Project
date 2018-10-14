@@ -14,8 +14,19 @@ $count = mysqli_num_rows($result);
 
 <html>
 	<head>
+        
 		<link href="../assets/css/home.css" type="text/css" rel="stylesheet">
 		<link href="../assets/images/fav.png" rel="icon" type="image/x-icon" />
+              <link rel="stylesheet" href="../assets/js/jquery.datetimepicker.min.css">
+    <script src="../assets/js/jquery.js"></script>
+    <script src="../assets/js/jquery.datetimepicker.full.js"></script>
+        <script>
+        $(function(){
+                $("#datetime").datetimepicker();
+        });
+            
+        </script>
+        
 		<title>Department manager's Module</title>
 	</head>
 	<body>
@@ -29,17 +40,14 @@ $count = mysqli_num_rows($result);
 	</div>
 	</ul>
 
+	<div class="bod">
 	<?php
-		if($count <= 0) {
+		
 	?>
 	<center>
-	<h2>You have not floated any tender.</h2><br>
-	<h3>Click on float tender to add a tender.</h3>
-	</center>
-	<?php
-		}else {
-		?>
+	<h2 style="color:white;" style="color:white;">Edit tender details</h2><br>
 
+	</center>
 	<?php
 
         while ($row=mysqli_fetch_row($result)){
@@ -64,7 +72,7 @@ $count = mysqli_num_rows($result);
                         <input  type="text" name="enquiries" value="<?php printf($row[4])?>" placeholder=""><br><br>
                   
                     Deaddate:<br>
-                     <input  type="datetime" name="deadtime" value="<?php printf($row[5])?>" placeholder=""><br><br>
+                     <input  type="datetime" name="deadtime" value="<?php printf($row[5])?>" placeholder="" id="datetime"><br><br>
 
 
                         <button  type="submit" name="submit" class="cust">submit</button>
@@ -77,7 +85,7 @@ $count = mysqli_num_rows($result);
 			$tab++;
 
             }
-	}
+	
 	?>
 
 	</body>

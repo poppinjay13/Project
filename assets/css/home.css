@@ -57,7 +57,7 @@ body{
 .tender{
 	background-color: #FFED05;
 	width: 370px;
-	height: 250px;
+	height: 300px;
 	float: left;
 	margin: 20px 20px 10px 50px;
 	border-radius: 60px;
@@ -93,16 +93,11 @@ body{
   cursor: pointer;
 }
 .tendernew{
-	background-color: #FFED05;
-  position:absolute;
-  top: 50px;
-  left: -100x;
-  right: 200px;
-  bottom: 0px;
-	width: 1200px;
+	 background-color: #FFED05;
+	width: 770px;
 	height: 650px;
-	float: left;
-	margin: 20px 20px 10px 20px;
+	float:right;
+	margin: 20px 300px 10px 50px;
 	border-radius: 60px;
-  cursor: pointer;
+	cursor: pointer;
 }

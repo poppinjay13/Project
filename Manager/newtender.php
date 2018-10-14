@@ -10,6 +10,8 @@
     }
     //Include the connection file
     require_once '../config.php';
+$depart = $_SESSION['Department'];
+
 
     //Define variables and initialize them with empty variables
     $Name =  $Department = $Requirements = $Enquiries = $Deadtime = $Deaddate= "";
@@ -17,7 +19,7 @@
     //Process form data when the form is submitted
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $Name = $conn->real_escape_string($_REQUEST['Name']);
-        $Department = $conn->real_escape_string($_REQUEST['Department']);
+        $Department =$conn->real_escape_string($_REQUEST['Department']);
         $Requirements = $conn->real_escape_string($_REQUEST['Requirements']);
         $Enquiries = $conn->real_escape_string($_REQUEST['Enquiries']);
         $Deaddate = $conn->real_escape_string($_REQUEST['Deaddate']);
@@ -86,7 +88,16 @@
 
 	</div>
 	</ul>
-<div class="tendernew"><br>
+        <div class="bod">
+	<?php
+		
+	?>
+	<center>
+	<h2 style="color:white;" style="color:white;">You are now floating a new tender</h2><br>
+
+	</center>
+	
+<div class="tendernew" ><br>
 <center><h3>ADD NEW TENDER</h3>
      <div id="form">
                 <form action="" method="post" accept-charset="utf-8">
@@ -94,20 +105,7 @@
                         <input  type="text" name="Name" value="" placeholder="enter tender name" size="35" required><br><br>
     
                      Department:<br>
-                    <select name="Department"  >
-                    <option value="Languages">Languages</option>
-                    <option value="Mathematics">Mathematics</option>
-                    <option value="Humanities">Humanities</option>
-                    <option value="Sciences">Sciences</option>
-                    <option value="Technical">Technical</option>
-                        <option value="Economics">Economics</option>
-                        <option value="Business">Business</option>
-                        <option value="Laboratory">Laboratory</option>
-                        <option value="Finance">Finance</option>
-                        <option value="Administration">Administration</option>
-                        <option value="Guidance and counselling">Guidance and counselling</option>
-                    </select>
-                        <br><br>
+                        <input  type="text" name="Department" value="<?php echo $depart; ?>" placeholder="" size="35" required readonly><br><br>
                     Requirements:<br>
                     <textarea name="Requirements" value="" placeholder="Tender description..." rows="10" cols="30" required></textarea>
                         <br><br>
@@ -125,5 +123,6 @@
             </div>
 </center>
 </div>
+           
 	</body>
 </html>

@@ -2,13 +2,24 @@
 session_start();
 include("../config.php");
 $Tenderid= $_GET['TENDERID'];
+$depart = $_SESSION['Department'];
+
 $tab = 1;
 $count = 0;   
 $sql = "SELECT * FROM applications where TenderID=$Tenderid";
 $result = mysqli_query($conn,$sql);
 $count= mysqli_num_rows($result);
+   
+$tab2 = 1;
+$count2 = 0;   
+$sqli = "SELECT * FROM tenders where TenderID='$Tenderid' AND Department='$depart' ";
+$result2 = mysqli_query($conn,$sqli);
+$count2= mysqli_num_rows($result2);
+$row2=mysqli_fetch_row($result2);
+
 
 ?>
+<html>
 <head>
           
     <script src="jquery.js"></script>
@@ -31,6 +42,16 @@ $count= mysqli_num_rows($result);
 
 		</div>
 	</ul>
+        	
+	<div class="bod">
+	<?php
+		
+	?>
+	<center>
+	<h2 style="color:white;" style="color:white;">Applicants of  <?php echo $row2[1];?></h2><br>
+
+	</center>
+       
 <div class="tendernew"><br>
 <center><h3>APPLICANTS</h3>
     
@@ -96,7 +117,7 @@ $count= mysqli_num_rows($result);
                         // Free result set
                         $result->free();
                          }else{
-                        echo "<p class='lead'><em>No records were found.</em></p>";
+                        echo "<p class='lead'><em>No applicants yet.</em></p>";
                         }
                          }
                         
