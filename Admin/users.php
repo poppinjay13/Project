@@ -1,11 +1,16 @@
 <?php
 session_start();
 include '../config.php';
-$uid = $_SESSION['UserID'];
+if (!isset($_SESSION['AdminID'])) {
+		header("location:../index.php");
+		exit;
+}
+$uid = $_SESSION['AdminID'];
 ?>
 <html>
 <head>
   <link href="../assets/css/users.css" rel="stylesheet">
+	<link href="../assets/css/alert.css" type="text/css" rel="stylesheet">
   <link href="../assets/images/fav.png" rel="icon" type="image/x-icon" />
   <title>Admin Module</title>
 </head>
@@ -18,6 +23,12 @@ $uid = $_SESSION['UserID'];
     <li><a href="../logout.php">Log Out</a></li>
    </ul>
   <div class="load-data">
+		<?php
+	    if(isset($_SESSION['alert'])){
+	      echo "<div class='alert'>$_SESSION[alert]</div>";
+				unset($_SESSION['alert']);
+	    }
+	    ?>
     <!--TABLE FOR DEPARTMENT MANAGERS-->
     <h1 style="text-align:center;">DEPARTMENT MANAGERS</h1>
     <?php
@@ -31,6 +42,8 @@ $uid = $_SESSION['UserID'];
           <th>NAME</th>
           <th>EMAIL</th>
           <th>DEPARTMENT</th>
+          <th>CONTACT</th>
+          <th></th>
           <th></th>
 		</tr>
      	<tr class="spacer"></tr>
@@ -45,11 +58,17 @@ $uid = $_SESSION['UserID'];
       		<td><?php echo $row['1']?></td>
       		<td><?php echo $row['2']?></td>
       		<td><?php echo $row['3'] ?></td>
+          <td><?php echo $row['4'] ?></td>
           <td>
             <?php
             echo "<div onclick='manager($row[0])' class='editor'>EDIT USER DETAILS</div>";
             ?>
-          </td><!--php send id-->
+          </td>
+          <td>
+            <?php
+            echo "<div onclick='delete()' class='del' title='Delete User'><img src = '../assets/images/delete.png'></div>";
+            ?>
+          </td>
       	</tr>
       	<tr class="spacer"></tr>
       </div>
@@ -92,7 +111,12 @@ $uid = $_SESSION['UserID'];
               <?php
               echo "<div onclick='user($row[2])' class='editor'>EDIT USER DETAILS</div>";
               ?>
-            </td><!--php send id-->
+            </td>
+            <td>
+              <?php
+              echo "<div onclick='delete()' class='del' title='Delete User'><img src = '../assets/images/delete.png'/></div>";
+              ?>
+            </td>
         	</tr>
         	<tr class="spacer"></tr>
         </div>
@@ -113,7 +137,11 @@ $uid = $_SESSION['UserID'];
 			var input = document.createElement("input");
 			form.appendChild(input);
 			input.type = "hidden";
-			input.name = "user";
+<<<<<<< HEAD
+			input.name = "head";
+=======
+			input.name = "deptid";
+>>>>>>> e6e7e27be7aaa61c097857f629e11a50741ff4eb
 			input.value = data;
 			document.body.appendChild(form);
 			form.submit();
@@ -133,7 +161,13 @@ $uid = $_SESSION['UserID'];
   			document.body.appendChild(form);
   			form.submit();
   			document.body.removeChild(form);
-  			}
+  		}
+      function delete(){
+        alert("deleted!");
+        <?php
+        $delete = $conn->prepare("DELETE FROM `heads` WHERE HeadID = echo(head)");
+        ?>
+      }
 	</script>
 </body>
 </html>

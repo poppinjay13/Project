@@ -9,12 +9,9 @@ $uid = $_SESSION['UserID'];
 $sql = "SELECT * FROM tenderers where IDNo = $uid";
 $result = mysqli_query($conn,$sql);
 $row=mysqli_fetch_row($result);
-$stmt = $conn->prepare("UPDATE tenderers
-SET Phone = ?, Email = ?, Address = ?, POBox = ?, Password = ?
-WHERE IDNo = $uid");
-$stmt2 = $conn->prepare("UPDATE login
-SET Email = ?, Password = ?
-WHERE IDNo = $uid");
+$stmt = $conn->prepare("UPDATE tenderers SET Name = ?, Email = ?, Phone = ?, Address = ?, POBox =  ? WHERE IDNo = $uid");//update tenderers table
+$logmail = $conn->prepare("UPDATE login SET Email = ? WHERE Idnum = $uid");//update email in login table
+$logpass = $conn->prepare("UPDATE login SET Password = ? WHERE Idnum = $uid");//update email in login table
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 	try{
 		if(isset($_FILES['pic'])) {//upload profile picture
@@ -67,6 +64,7 @@ $count3 = mysqli_num_rows($result3);
 <html>
 	<head>
 		<link href="../assets/css/port.css" type="text/css" rel="stylesheet">
+		<link href="../assets/css/alert.css" type="text/css" rel="stylesheet">
 		<link href="../assets/images/fav.png" rel="icon" type="image/x-icon" />
 		<title>Tenderer's Module</title>
 	</head>
@@ -101,7 +99,13 @@ $count3 = mysqli_num_rows($result3);
 		<h3>Succesful<br>Tenders</h3>
 		</div>
 	</div>
-	<div class="uhead"><!--refer back to image path-->
+	<div class="uhead">
+		<?php
+	    if(isset($_SESSION['alerts'])){
+	      echo "<div class='alert'>$_SESSION[alerts]</div>";
+				unset($_SESSION['alerts']);
+	    }
+	    ?>
 		<label for='pic' title="Click to upload new profile picture">
 			<object data="../assets/images/pic/<?php echo $uid?>.jpg" type="image/png">
 	      <img src="../assets/images/pic/profile.jpg" alt="profile">

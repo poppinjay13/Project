@@ -1,28 +1,47 @@
 <?php
+session_start();
 include "../config.php";
-if($_SERVER["REQUEST_METHOD"] == "GET"){
-  
+if (!isset($_SESSION['AdminID'])) {
+		header("location:../index.php");
+		exit;
 }
-/*
-$sql = "SELECT * FROM administrators where AdminID = $uid";
-$result = mysqli_query($conn,$sql);
-$row=mysqli_fetch_row($result);
-$stmt = $conn->prepare("UPDATE administrators
-SET Email = ?, Password = ?
-WHERE AdminID = $uid");
-//$stmt->bind_param("ss",$email,$password);
+if($_SERVER["REQUEST_METHOD"] == "GET"){
+  $deptid = $_GET['deptid'];
+  $sql = "SELECT * FROM heads where HeadID = $deptid";
+  $result = mysqli_query($conn,$sql);
+  $row=mysqli_fetch_row($result);
+}
+$deptid = $_GET['deptid'];
+$stmt = $conn->prepare("UPDATE heads SET Name = ?, Email = ?, Phone_Num = ? WHERE HeadID = $deptid");//update heads table
+$logmail = $conn->prepare("UPDATE login SET Email = ? WHERE Idnum = $deptid");//update email in login table
+$logpass = $conn->prepare("UPDATE login SET Password = ? WHERE Idnum = $deptid");//update email in login table
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 	try{
-	   $email = mysqli_real_escape_string($conn,$_POST['email']);
+	   $name = mysqli_real_escape_string($conn,$_POST['name']);
+     $email = mysqli_real_escape_string($conn,$_POST['email']);
+     $phone = mysqli_real_escape_string($conn,$_POST['phone']);
 	   $password = mysqli_real_escape_string($conn,$_POST['password']);
+   	 $repassword = mysqli_real_escape_string($conn,$_POST['repassword']);
+     if($password == $repassword){//if password fields are matching
+			 $stmt->bind_param("sss", $name, $email, $phone);
+			 $stmt->execute();
+			 $logmail->bind_param("s",$email);
+			 $logmail->execute();
+			 if($password != ""){//if new passwords are not null
+				 $logpass->bind_param("s",$password);
+				 $logpass->execute();
+			 }
+			 header("location: users.php");
+     }
    }catch(Exception $ex){
-     $error = "Error Updating Account Details!";
+     $_SESSION['alert'] = "Error Updating Account Details!";
    }
- }*/
+ }
 ?>
 <html>
 <head>
   <link href="../assets/css/adminedit.css" rel="stylesheet"/>
+	<link href="../assets/css/alert.css" type="text/css" rel="stylesheet">
   <link href="../assets/images/fav.png" rel="icon" type="image/x-icon" />
   <title>Admin Module</title>
 </head>
@@ -36,15 +55,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
    <li><a href="../logout.php">Log Out</a></li>
   </ul>
   <div class="details"><!--department manager details to be edited-->
+		<?php
+	    if(isset($_SESSION['alert'])){
+	      echo "<div class='alert'>$_SESSION[alert]</div>";
+				unset($_SESSION['alert']);
+	    }
+	    ?>
     <form method="POST">
     <fieldset>
-      <legend><?php echo "Manager ID:"//"$row['1']" ?></legend>
+      <legend><?php echo "Manager ID: ".$row['0'] ?></legend>
       <label for = "name">Full Name</label><br/>
-      <input name="name" type="text" value="<?php //echo $row['0'] ?>"/><br/><br/>
+      <input name="name" type="text" value="<?php echo $row['1'] ?>"/><br/><br/>
       <label for = "email">Email Address</label><br/>
-      <input name="email" type="text"/><br/><br/>
+      <input name="email" type="text" value="<?php echo $row['2'] ?>"/><br/><br/>
       <label for = "department">Department</label><br/>
-      <select name="department">
+      <select name="department" id="department">
         <option value="Languages">Languages</option>
         <option value="Mathematics">Mathematics</option>
         <option value="Humanities">Humanities</option>
@@ -53,34 +78,27 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <option value="Economics">Economics</option>
         <option value="Business">Business</option>
         <option value="Laboratory">Laboratory</option>
-        <option value="Administration" selected>Administration</option>
+        <option value="Administration">Administration</option>
         <option value="Finance">Finance</option>
         <option value="Guidance and Counselling">Guidance and Counselling</option>
       </select><br/><br/>
       <label for = "phone">Phone Number</label><br/>
-      <input name="phone" type="text"/><br/><br/>
+      <input name="phone" type="text" value="<?php echo $row['4'] ?>"/><br/><br/>
       <label for = "password">Password</label><br/>
-      <input name="password" type="password" onclick="reshow();"/><br/><br/>
+      <input name="password" type="password"/><br/><br/>
       <label for = "repassword" class="repassword">Re-Enter Password</label><br/>
-      <input name="repassword" type="password" class="repassword"/><br/><br/>
+      <input name="repassword" type="password"/><br/><br/>
       <input type="submit" class="btn" value="Update Details"/><br/><br/>
     </fieldset>
     </form>
   </div>
 </body>
 <script>
-document.ready({
-  var reenter = document.getElementsByClassName('repassword'), i;
-
-  for (var i = 0; i < reenter.length; i ++) {
-      reenter[i].style.display = 'none';
-  }
-function reshow(){
-//the re-enter password field is only visible if the password field is clicked
-for (var i = 0; i < reenter.length; i ++) {
-    reenter[i].style.display = 'visible';
+SelectElement("department", "<?php echo $row['3']?>");
+function SelectElement(id, valueToSelect)
+{
+    var element = document.getElementById(id);
+    element.value = valueToSelect;
 }
-}
-});
 </script>
 </html>

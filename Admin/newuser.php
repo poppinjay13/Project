@@ -1,7 +1,10 @@
 <?php
 session_start();
 include("../config.php");
-$error = "null";
+if (!isset($_SESSION['AdminID'])) {
+		header("location:../index.php");
+		exit;
+}
 $status = "tenderer";
 $stmt = $conn->prepare("INSERT INTO tenderers (Name, IDNo, Phone, Email, Address, POBox) VALUES (?,?,?,?,?,?)");
 $stmt2 = $conn->prepare("INSERT INTO login (Idnum, Status, Email, Password) VALUES (?,?,?,?)");
@@ -16,13 +19,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	   $password = mysqli_real_escape_string($conn,$_POST['password']);
 	   $password2 = mysqli_real_escape_string($conn,$_POST['repassword']);
 	   if ($password != $password2) {
-		   $error = "Please ensure passwords entered match.";
+		   $_SESSION['alert'] = "Please ensure passwords entered match.";
 	   }else{
 	   $sql = "SELECT * FROM tenderers WHERE IDNo = '$id' or Email = '$mail'";
 	   $result = mysqli_query($conn,$sql);
 	   $count = mysqli_num_rows($result);
 	   if($count > 0) {
-		   $error = "The ID number or Email address you entered is already in use";
+		   $_SESSION['alert'] = "The ID number or Email address you entered is already in use";
 	   }else{
 			 $stmt->bind_param("ssssss",$name,$id,$num,$mail,$add,$box);
 			 $stmt->execute();
@@ -32,13 +35,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	   }
 		}
    } catch (Exception $e) {
-    $error = "Error Signing you up for service. Please try again later!";
+    $_SESSION['alert'] = "Error Signing you up for service. Please try again later!";
 	}
 }
 ?>
 <html>
 	<head>
 		<link href="../assets/css/adminnew.css" type="text/css" rel="stylesheet">
+		<link href="../assets/css/alert.css" type="text/css" rel="stylesheet">
 		<link href="../assets/images/fav.png" rel="icon" type="image/x-icon" />
 		<title>Admin Module</title>
 	</head>
@@ -52,6 +56,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
      <li><a href="../logout.php">Log Out</a></li>
     </ul>
 		<div class="data">
+			<?php
+		    if(isset($_SESSION['alert'])){
+		      echo "<div class='alert'>$_SESSION[alert]</div>";
+					unset($_SESSION['alert']);
+		    }
+		    ?>
 			<form method="post" action="#">
 				<fieldset>
 					<label for="name">Name</label><br>
