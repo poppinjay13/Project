@@ -43,6 +43,7 @@ $uid = $_SESSION['AdminID'];
           <th>EMAIL</th>
           <th>DEPARTMENT</th>
           <th>CONTACT</th>
+<<<<<<< HEAD
           <th></th>
           <th></th>
 		</tr>
@@ -139,6 +140,7 @@ $uid = $_SESSION['AdminID'];
 			input.type = "hidden";
 <<<<<<< HEAD
 			input.name = "head";
+			input.name = "deptid";
 =======
 			input.name = "deptid";
 >>>>>>> e6e7e27be7aaa61c097857f629e11a50741ff4eb
