@@ -1,5 +1,4 @@
 <?php
-session_start();
 require("../config.php");
 require("../mail.php");
 if (!isset($_SESSION['UserID'])) {
@@ -46,8 +45,7 @@ $count1 = mysqli_num_rows($result1);
 		<form>
 			Tender Name:  <i><?php printf($row[1])?></i><br><br>
 			Tender Description:  <i><?php printf($row[3])?></i><br><br>
-			Deadline for Applications is  <i><?php printf($row[6])?></i>  at
-<i><?php printf(substr($row[5],0,8))?></i><br><br>
+			Deadline for Applications is at <i><?php printf(substr($row[5],0,10))?></i><br><br>
 			For Enquiries or clarification please contact:  <i><?php printf($row[4])?></i><br><br>
 		</form>
 	</div>

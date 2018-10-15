@@ -15,6 +15,7 @@ $count = mysqli_num_rows($result);
 <html>
 	<head>
 		<link href="../assets/css/home.css" type="text/css" rel="stylesheet">
+		<link href="../assets/css/alert.css" type="text/css" rel="stylesheet">
 		<link href="../assets/images/fav.png" rel="icon" type="image/x-icon" />
 		<title>Tenderer's Module</title>
 	</head>
@@ -32,6 +33,12 @@ $count = mysqli_num_rows($result);
 		</div>
 	</ul>
 	<div class="bod">
+		<?php
+	    if(isset($_SESSION['alerts'])){
+	      echo "<div class='alert'>$_SESSION[alerts]</div>";
+				unset($_SESSION['alerts']);
+	    }
+	    ?>
 	<?php
 		if($count <= 0) {
 	?>
