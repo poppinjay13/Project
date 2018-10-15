@@ -10,6 +10,7 @@ $uid = $_SESSION['AdminID'];
 <html>
 <head>
   <link href="../assets/css/users.css" rel="stylesheet">
+	<link href="../assets/css/alert.css" type="text/css" rel="stylesheet">
   <link href="../assets/images/fav.png" rel="icon" type="image/x-icon" />
   <title>Admin Module</title>
 </head>
@@ -22,6 +23,12 @@ $uid = $_SESSION['AdminID'];
     <li><a href="../logout.php">Log Out</a></li>
    </ul>
   <div class="load-data">
+		<?php
+	    if(isset($_SESSION['alert'])){
+	      echo "<div class='alert'>$_SESSION[alert]</div>";
+				unset($_SESSION['alert']);
+	    }
+	    ?>
     <!--TABLE FOR DEPARTMENT MANAGERS-->
     <h1 style="text-align:center;">DEPARTMENT MANAGERS</h1>
     <?php

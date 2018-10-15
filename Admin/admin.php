@@ -26,6 +26,7 @@ $count = mysqli_num_rows($result);
 <html>
 <head>
   <link href="../assets/css/admin.css" rel="stylesheet">
+	<link href="../assets/css/alert.css" type="text/css" rel="stylesheet">
   <link href="../assets/images/fav.png" rel="icon" type="image/x-icon" />
   <title>Admin Module</title>
 </head>
@@ -38,6 +39,12 @@ $count = mysqli_num_rows($result);
     <li><a href="../logout.php">Log Out</a></li>
    </ul>
   <div class="stats">
+		<?php
+	    if(isset($_SESSION['alert'])){
+	      echo "<div class='alert'>$_SESSION[alert]</div>";
+				unset($_SESSION['alert']);
+	    }
+	    ?>
   <h1><B>Dashboard</B></h1>
   <section><h3><?php echo $countf?><br>Tenders floated</h3></section>
   <section><h3><?php echo $countt?><br>Tenderers</h3></section>

@@ -19,29 +19,30 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	   $password = mysqli_real_escape_string($conn,$_POST['password']);
 	   $password2 = mysqli_real_escape_string($conn,$_POST['repassword']);
 	   if ($password != $password2) {
-		   $error = "Please ensure passwords entered match.";
+		   $_SESSION['alert'] = "Please ensure passwords entered match.";
 	   }else{
 	   $sql = "SELECT * FROM heads WHERE Email = '$mail'";
 	   $result = mysqli_query($conn,$sql);
 	   $count = mysqli_num_rows($result);
 	   if($count > 0) {
-		   $error = "The Email Address you entered is already in use";
+		   $_SESSION['alert'] = "The Email Address you entered is already in use";
 	   }else{
 		 	 $stmt->bind_param("sssss",$newid,$name,$mail,$dept,$num);
 			 $stmt->execute();
-			 //$stmt2->bind_param("ssss",$newid,$status,$mail,$password);
-			 //$stmt2->execute();
+			 $stmt2->bind_param("ssss",$newid,$status,$mail,$password);
+			 $stmt2->execute();
 		   header("location: users.php");
 	   }
 		}
    } catch (Exception $e) {
-    $error = "Error Creating Account. Please try again later!";
+    $_SESSION['alert'] = "Error Creating Account. Please try again later!";
 	}
 }
 ?>
 <html>
 	<head>
 		<link href="../assets/css/adminnew.css" type="text/css" rel="stylesheet">
+		<link href="../assets/css/alert.css" type="text/css" rel="stylesheet">
 		<link href="../assets/images/fav.png" rel="icon" type="image/x-icon" />
 		<title>Admin Module</title>
 	</head>
@@ -55,6 +56,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
      <li><a href="../logout.php">Log Out</a></li>
     </ul>
 		<div class="data">
+			<?php
+		    if(isset($_SESSION['alert'])){
+		      echo "<div class='alert'>$_SESSION[alert]</div>";
+					unset($_SESSION['alert']);
+		    }
+		    ?>
 			<form method="post" action="#">
 				<fieldset>
 				<label for = "name">Full Name</label><br/>

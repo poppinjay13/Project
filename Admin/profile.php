@@ -29,16 +29,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 			 }
 			 header("location: profile.php");//reload page to refresh form
 		 }else{
-			 $error = "Ensure passwords entered match!";
+			 $_SESSION['alert'] = "Ensure passwords entered match!";
 		 }
    }catch(Exception $ex){
-     $error = "Error Updating Your Account Details!";
+     $_SESSION['alert'] = "Error Updating Your Account Details!";
    }
  }
 ?>
 <html>
 <head>
   <link href="../assets/css/profile.css" rel="stylesheet"/>
+	<link href="../assets/css/alert.css" type="text/css" rel="stylesheet">
   <link href="../assets/images/fav.png" rel="icon" type="image/x-icon" />
   <title>Admin Module</title>
 </head>
@@ -51,6 +52,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
    <li><a href="../logout.php">Log Out</a></li>
   </ul>
   <div class="details"><!--admin details-->
+		<?php
+	    if(isset($_SESSION['alert'])){
+	      echo "<div class='alert'>$_SESSION[alert]</div>";
+				unset($_SESSION['alert']);
+	    }
+	    ?>
     <form method="POST">
     <fieldset>
       <legend><?php echo $row['1'] ?></legend>
