@@ -1,21 +1,44 @@
 <?php
+session_start();
 include "../config.php";
-/*
-$sql = "SELECT * FROM administrators where AdminID = $uid";
-$result = mysqli_query($conn,$sql);
-$row=mysqli_fetch_row($result);
-$stmt = $conn->prepare("UPDATE administrators
-SET Email = ?, Password = ?
-WHERE AdminID = $uid");
-//$stmt->bind_param("ss",$email,$password);
+if (!isset($_SESSION['AdminID'])) {
+		header("location:../index.php");
+		exit;
+}
+if($_SERVER["REQUEST_METHOD"] == "GET"){
+  $userid = $_GET['user'];
+  $sql = "SELECT * FROM tenderers where IDNo = $userid";
+  $result = mysqli_query($conn,$sql);
+  $row=mysqli_fetch_row($result);
+}
+$userid = $_GET['user'];
+$stmt = $conn->prepare("UPDATE tenderers SET Name = ?, Email = ?, Phone = ?, Address = ?, POBox =  ? WHERE IDNo = $userid");//update tenderers table
+$logmail = $conn->prepare("UPDATE login SET Email = ? WHERE Idnum = $userid");//update email in login table
+$logpass = $conn->prepare("UPDATE login SET Password = ? WHERE Idnum = $userid");//update email in login table
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 	try{
-	   $email = mysqli_real_escape_string($conn,$_POST['email']);
+	   $name = mysqli_real_escape_string($conn,$_POST['name']);
+     $email = mysqli_real_escape_string($conn,$_POST['email']);
+     $phone = mysqli_real_escape_string($conn,$_POST['phone']);
+		 $address = mysqli_real_escape_string($conn,$_POST['address']);
+     $pobox = mysqli_real_escape_string($conn,$_POST['pobox']);
 	   $password = mysqli_real_escape_string($conn,$_POST['password']);
+   	 $repassword = mysqli_real_escape_string($conn,$_POST['repassword']);
+     if($password == $repassword){//if password fields are matching
+			 $stmt->bind_param("sss", $name, $email, $phone, $address, $pobox);
+			 $stmt->execute();
+			 $logmail->bind_param("s",$email);
+			 $logmail->execute();
+			 if($password != ""){//if new passwords are not null
+				 $logpass->bind_param("s",$password);
+				 $logpass->execute();
+			 }
+			 header("location: users.php");
+     }
    }catch(Exception $ex){
      $error = "Error Updating Account Details!";
    }
- }*/
+ }
 ?>
 <html>
 <head>
@@ -35,39 +58,26 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   <div class="details"><!--user details to be edited-->
     <form method="POST">
     <fieldset>
-      <legend><?php echo "ID Number:"//"$row['1']" ?></legend>
+      <legend><?php echo "ID Number: ".$row['2'] ?></legend>
       <label for = "name">Full Name</label><br/>
-      <input name="name" type="text" value="<?php //echo $row['0'] ?>"/><br/><br/>
+      <input name="name" type="text" value="<?php echo $row['1'] ?>"/><br/><br/>
       <label for = "email">Email Address</label><br/>
-      <input name="email" type="text"/><br/><br/>
+      <input name="email" type="text" value="<?php echo $row['4'] ?>"/><br/><br/>
       <label for = "phone">Phone Number</label><br/>
-      <input name="phone" type="text"/><br/><br/>
+      <input name="phone" type="text" value="<?php echo $row['3'] ?>"/><br/><br/>
       <label for = "address">Address</label><br/>
-      <input name="address" type="text"/><br/><br/>
+      <input name="address" type="text" value="<?php echo $row['5'] ?>"/><br/><br/>
       <label for = "pobox">P.O. Box</label><br/>
-      <input name="pobox" type="text"/><br/><br/>
+      <input name="pobox" type="text" value="<?php echo $row['6'] ?>"/><br/><br/>
       <label for = "password">Password</label><br/>
-      <input name="password" type="password" onclick="reshow();"/><br/><br/>
+      <input name="password" type="password"/><br/><br/>
       <label for = "repassword" class="repassword">Re-Enter Password</label><br/>
-      <input name="repassword" type="password" class="repassword"/><br/><br/>
+      <input name="repassword" type="password"/><br/><br/>
       <input type="submit" class="btn" value="Update Details"/><br/><br/>
     </fieldset>
     </form>
   </div>
 </body>
 <script>
-document.ready({
-  var reenter = document.getElementsByClassName('repassword'), i;
-
-  for (var i = 0; i < reenter.length; i ++) {
-      reenter[i].style.display = 'none';
-  }
-function reshow(){
-//the re-enter password field is only visible if the password field is clicked
-for (var i = 0; i < reenter.length; i ++) {
-    reenter[i].style.display = 'visible';
-}
-}
-});
 </script>
 </html>

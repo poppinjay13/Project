@@ -1,7 +1,11 @@
 <?php
 session_start();
 include "../config.php";
-$uid = $_SESSION['UserID'];//insert ID from sessions
+if (!isset($_SESSION['AdminID'])) {
+		header("location:../index.php");
+		exit;
+}
+$uid = $_SESSION['AdminID'];//insert ID from sessions
 $sql = "SELECT * FROM administrators where AdminID = $uid";
 $result = mysqli_query($conn,$sql);
 $row=mysqli_fetch_row($result);

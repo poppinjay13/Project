@@ -1,7 +1,11 @@
 <?php
 session_start();
 include '../config.php';
-$uid = $_SESSION['UserID'];
+if (!isset($_SESSION['AdminID'])) {
+		header("location:../index.php");
+		exit;
+}
+$uid = $_SESSION['AdminID'];
 ?>
 <html>
 <head>
@@ -31,6 +35,7 @@ $uid = $_SESSION['UserID'];
           <th>NAME</th>
           <th>EMAIL</th>
           <th>DEPARTMENT</th>
+          <th>CONTACT</th>
           <th></th>
 		</tr>
      	<tr class="spacer"></tr>
@@ -45,6 +50,7 @@ $uid = $_SESSION['UserID'];
       		<td><?php echo $row['1']?></td>
       		<td><?php echo $row['2']?></td>
       		<td><?php echo $row['3'] ?></td>
+          <td><?php echo $row['4'] ?></td>
           <td>
             <?php
             echo "<div onclick='manager($row[0])' class='editor'>EDIT USER DETAILS</div>";
@@ -113,7 +119,7 @@ $uid = $_SESSION['UserID'];
 			var input = document.createElement("input");
 			form.appendChild(input);
 			input.type = "hidden";
-			input.name = "user";
+			input.name = "deptid";
 			input.value = data;
 			document.body.appendChild(form);
 			form.submit();

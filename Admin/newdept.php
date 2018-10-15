@@ -1,6 +1,10 @@
 <?php
 session_start();
 include("../config.php");
+if (!isset($_SESSION['AdminID'])) {
+		header("location:../index.php");
+		exit;
+}
 $error = "null";
 $status = "department manager";
 $newid= mt_rand(0,100000);

@@ -1,7 +1,10 @@
 <?php
 session_start();
 include("../config.php");
-//$uid = $_SESSION['User_ID'];
+if (!isset($_SESSION['AdminID'])) {
+		header("location:../index.php");
+		exit;
+}
 $float=$tenderer=$dept=$done="";
 $float = "SELECT * FROM tenders";
 $resultf = mysqli_query($conn,$float);

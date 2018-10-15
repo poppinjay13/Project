@@ -1,6 +1,10 @@
 <?php
 session_start();
 include("../config.php");
+if (!isset($_SESSION['AdminID'])) {
+		header("location:../index.php");
+		exit;
+}
 $error = "null";
 $status = "tenderer";
 $stmt = $conn->prepare("INSERT INTO tenderers (Name, IDNo, Phone, Email, Address, POBox) VALUES (?,?,?,?,?,?)");
