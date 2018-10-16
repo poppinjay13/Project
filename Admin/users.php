@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../config.php';
+require '../config.php';
 if (!isset($_SESSION['AdminID'])) {
 		header("location:../index.php");
 		exit;
@@ -9,9 +9,10 @@ $uid = $_SESSION['AdminID'];
 ?>
 <html>
 <head>
-  <link href="../assets/css/users.css" rel="stylesheet">
-	<link href="../assets/css/alert.css" type="text/css" rel="stylesheet">
+  <link href="../assets/css/users.css" rel="stylesheet"/>
+	<link href="../assets/css/alert.css" type="text/css" rel="stylesheet"/>
   <link href="../assets/images/fav.png" rel="icon" type="image/x-icon" />
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <title>Admin Module</title>
 </head>
 <body>
@@ -43,7 +44,6 @@ $uid = $_SESSION['AdminID'];
           <th>EMAIL</th>
           <th>DEPARTMENT</th>
           <th>CONTACT</th>
-<<<<<<< HEAD
           <th></th>
           <th></th>
 		</tr>
@@ -67,7 +67,8 @@ $uid = $_SESSION['AdminID'];
           </td>
           <td>
             <?php
-            echo "<div onclick='delete()' class='del' title='Delete User'><img src = '../assets/images/delete.png'></div>";
+            echo "<div onclick='deleter($row[0],&#34manager&#34)' class='del' title='Delete User'>
+						<img src = '../assets/images/delete.png'/></div>";
             ?>
           </td>
       	</tr>
@@ -114,9 +115,9 @@ $uid = $_SESSION['AdminID'];
               ?>
             </td>
             <td>
-              <?php
-              echo "<div onclick='delete()' class='del' title='Delete User'><img src = '../assets/images/delete.png'/></div>";
-              ?>
+							<?php
+							echo "<div onclick='deleter($row[2],&#34tenderer&#34)' class='del' title='Delete User'>
+							<img src = '../assets/images/delete.png'/></div>";?>
             </td>
         	</tr>
         	<tr class="spacer"></tr>
@@ -138,18 +139,13 @@ $uid = $_SESSION['AdminID'];
 			var input = document.createElement("input");
 			form.appendChild(input);
 			input.type = "hidden";
-<<<<<<< HEAD
-			input.name = "head";
 			input.name = "deptid";
-=======
-			input.name = "deptid";
->>>>>>> e6e7e27be7aaa61c097857f629e11a50741ff4eb
 			input.value = data;
 			document.body.appendChild(form);
 			form.submit();
 			document.body.removeChild(form);
-			}
-      function user(data){
+		}
+    function user(data){
   			var form = document.createElement("form");
   			form.target = "_self";
   			form.method = "GET";
@@ -164,11 +160,20 @@ $uid = $_SESSION['AdminID'];
   			form.submit();
   			document.body.removeChild(form);
   		}
-      function delete(){
-        alert("deleted!");
-        <?php
-        $delete = $conn->prepare("DELETE FROM `heads` WHERE HeadID = echo(head)");
-        ?>
+      function deleter(id,status){
+					swal({
+			      title: "Are you sure?",
+			      text: "Once deleted, you will not be able to recover this ".concat(status," !"),
+			      icon: "warning",
+			      buttons: true,
+			      dangerMode: true,
+			    }).then((willDelete) => {
+			      if (willDelete) {
+			        location.href = "delete.php?id=".concat(id,"&status=",status);
+			      } else {
+			        swal("Process Terminated!","Phwex! That was pretty close. He! He!","info");
+			      }
+			    });
       }
 	</script>
 </body>
