@@ -1,6 +1,7 @@
 <?php
 session_start();
-include("config.php");
+require("config.php");
+require("mail.php");
 $error = "null";
 $status = "tenderer";
 $stmt = $conn->prepare("INSERT INTO tenderers (Name, IDNo, Phone, Email, Address, POBox) VALUES (?,?,?,?,?,?)");
@@ -30,6 +31,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 			 $stmt2->execute();
 		   $_SESSION['UserID'] = $id;
 		   header("location: Tenderer/home.php");
+			 $msg = "
+			 <h1>Account creation confirmation</h1><br>
+			 <h2>Welcome to Tenderama Online Tendering System <b><i>$name</i></b></h2>
+			 <h3>This email confirms that you have created a new account and are ready to start tendering with us.</h3>";
+			 sendmail($msg,$mail);
 	   }
 		}
    } catch (Exception $e) {

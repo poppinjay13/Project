@@ -25,7 +25,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	   $password = mysqli_real_escape_string($conn,$_POST['password']);
    	 $repassword = mysqli_real_escape_string($conn,$_POST['repassword']);
      if($password == $repassword){//if password fields are matching
-			 $stmt->bind_param("sss", $name, $email, $phone, $address, $pobox);
+			 $stmt->bind_param("sssss", $name, $email, $phone, $address, $pobox);
 			 $stmt->execute();
 			 $logmail->bind_param("s",$email);
 			 $logmail->execute();

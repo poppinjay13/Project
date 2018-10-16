@@ -9,7 +9,7 @@ $uid = $_SESSION['UserID'];
 $sql = "SELECT * FROM tenderers where IDNo = $uid";
 $result = mysqli_query($conn,$sql);
 $row=mysqli_fetch_row($result);
-$stmt = $conn->prepare("UPDATE tenderers SET Name = ?, Email = ?, Phone = ?, Address = ?, POBox =  ? WHERE IDNo = $uid");//update tenderers table
+$stmt = $conn->prepare("UPDATE tenderers SET Email = ?, Phone = ?, Address = ?, POBox =  ? WHERE IDNo = $uid");//update tenderers table
 $logmail = $conn->prepare("UPDATE login SET Email = ? WHERE Idnum = $uid");//update email in login table
 $logpass = $conn->prepare("UPDATE login SET Password = ? WHERE Idnum = $uid");//update email in login table
 if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -35,11 +35,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	   	$box = mysqli_real_escape_string($conn,$_POST['pobox']);
 	   	$password = mysqli_real_escape_string($conn,$_POST['password']);
 		 	$repassword = mysqli_real_escape_string($conn,$_POST['repassword']);
-		 	$stmt->bind_param("sssss",$num,$mail,$add,$box,$password);
+		 	$stmt->bind_param("ssss",$mail,$num,$add,$box);
 		 	$stmt->execute();
+			$logmail->bind_param("s",$mail);
+			$logmail->execute();
 		 	if($password != ""){
-				$stmt2->bind_param("ss",$mail,$password);
-		 		$stmt2->execute();
+				$logpass->bind_param("s",$password);
+		 		$logpass->execute();
 	 		}
 		 	header("location: port.php");
 		}

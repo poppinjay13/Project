@@ -68,6 +68,7 @@ body{
 	height: 200px;
 	float: left;
 	cursor: pointer;
+	border-radius: 50%;
 }
 input{
 	padding: 10px;

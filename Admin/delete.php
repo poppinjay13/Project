@@ -1,5 +1,10 @@
 <?php
+  session_start();
   require ("../config.php");
+  if (!isset($_SESSION['AdminID'])) {
+  		header("location:../index.php");
+  		exit;
+  }
   if($_SERVER["REQUEST_METHOD"] == "GET") {
   	$uid = $_GET['id'];
     $status = $_GET['status'];
