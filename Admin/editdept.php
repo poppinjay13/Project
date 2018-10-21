@@ -1,6 +1,7 @@
 <?php
 session_start();
-include "../config.php";
+require "../config.php";
+require "../mail.php";
 if (!isset($_SESSION['AdminID'])) {
 		header("location:../index.php");
 		exit;
@@ -27,6 +28,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 			 $stmt->execute();
 			 $logmail->bind_param("s",$email);
 			 $logmail->execute();
+			 $mail = $row['2'];
+			 $msg = "
+			 <h1>Account Modification Alert</h1><br>
+			 <h2>Alert from Tenderama Online Tendering System</h2>
+			 <h3>This email is to inform you that your account details have been modified by the administrator.<br>
+			 Feel free to contact the administrator for any clarification.</h3>";
+			 sendmail($msg,$mail);
 			 if($password != ""){//if new passwords are not null
 				 $logpass->bind_param("s",$password);
 				 $logpass->execute();

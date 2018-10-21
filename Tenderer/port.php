@@ -59,7 +59,7 @@ $sql2 = "SELECT * FROM applications WHERE TendererID = '$uid' AND Status = 'ACCE
 $result2 = mysqli_query($conn,$sql2);
 $count2 = mysqli_num_rows($result2);
 //
-$sql3 = "SELECT * FROM applications WHERE TendererID = '$uid' AND Status = 'Completed'";
+$sql3 = "SELECT * FROM applications WHERE TendererID = '$uid' AND Status = 'COMPLETED'";
 $result3 = mysqli_query($conn,$sql3);
 $count3 = mysqli_num_rows($result3);
 ?>

@@ -8,7 +8,7 @@ if (!isset($_SESSION['UserID'])) {
 $uid = $_SESSION['UserID'];
 $tab = 1;
 $count = 0;
-$sql = "SELECT * FROM tenders";
+$sql = "SELECT * FROM tenders ORDER BY Status DESC";
 $result = mysqli_query($conn,$sql);
 $count = mysqli_num_rows($result);
 ?>
@@ -58,8 +58,10 @@ $count = mysqli_num_rows($result);
 	<div class='tender' onClick='send($row[0])'>
 	<div class='text'>
 		<h2> $row[1] </h2>
-		<h3>Department: $row[2] </h3>
-		<h3>Due Date: $row[6] </h3>
+		<h3>Department: <i>$row[2]</i> </h3>
+		<h3>Requirements: <i>$row[3]</i> </h3>
+		<h3>Due Date: <i>$row[5]</i> </h3>
+		<h3>Status: <i>$row[6]</i> </h3>
 	</div>
 	</div>";
 			$tab++;

@@ -1,6 +1,7 @@
 <?php
 session_start();
-include("../config.php");
+require("../config.php");
+require("../mail.php");
 if (!isset($_SESSION['AdminID'])) {
 		header("location:../index.php");
 		exit;
@@ -31,7 +32,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 			 $stmt->execute();
 			 $stmt2->bind_param("ssss",$id,$status,$mail,$password);
 			 $stmt2->execute();
-		   header("location: users.php");
+			 $msg = "
+			 <h1>Account creation confirmation</h1><br>
+			 <h2>Welcome to Tenderama Online Tendering System <b><i>$name</i></b></h2>
+			 <h3>This email confirms that a new account has been created for you and you are now ready to start tendering with us.</h3>";
+			 sendmail($msg,$mail);
+			 header("location: users.php");
 	   }
 		}
    } catch (Exception $e) {

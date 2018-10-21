@@ -1,4 +1,5 @@
 <?php
+session_start();
 require("../config.php");
 require("../mail.php");
 if (!isset($_SESSION['UserID'])) {
@@ -110,6 +111,7 @@ $stmt->bind_param("ssssssssss",$tenderid,$tendererid,$name,$business,$pos,$price
 ,$amnt,$location,$docs);
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 	try{
+		if($row['6'] == "PENDING"){
      $tenderid = $tender;
      $tendererid = mysqli_real_escape_string($conn,$_POST['terID']);
 		 $name = mysqli_real_escape_string($conn,$_POST['tername']);
@@ -145,18 +147,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         if (move_uploaded_file($_FILES["doc"]["tmp_name"], $target_file)) {
           echo "<script>alert('The file ". basename( $_FILES["doc"]["name"])." has been uploaded.');</script>";
           $docs = $newname;
+					$msg = "
+	 			  <h1>Request Submission Confirmation</h1><br>
+	 			  <h2>Tender Application for <i>$row[1]</i></h2>
+	 			  <h3>This email is to inform you that your application has been succesfully recieved and will be reviewed in due time.</h3>";
+				  $mail = $rowt['4'];
+				  echo "<script>alert($mail);</script>";
+				  sendmail($msg,$mail);
 		  		$stmt->execute();
-					$message = "Your Tender Has Been Succesfully Sent.";
-					$recipient = $rowt['4'];
-					sendmail($message,$recepient);
+					header("location:home.php");
         } else {
           echo "<script>alert('Sorry, there was an error uploading your file.');</script>";
         }
       }
 		}
+	}else{
+		echo "<script>alert('Unfortunately this request is no longer open for applications.');</script>";
+	}
 	 }catch(Exception $e){
 		 echo "<script>alert('Unable to submit application presently. Please try again later');</script>";
-		 header("location: home.php");
 	 }
  }
 ?>

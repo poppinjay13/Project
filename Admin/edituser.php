@@ -1,6 +1,7 @@
 <?php
 session_start();
-include "../config.php";
+require ("../config.php");
+require ("../mail.php");
 if (!isset($_SESSION['AdminID'])) {
 		header("location:../index.php");
 		exit;
@@ -24,15 +25,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
      $pobox = mysqli_real_escape_string($conn,$_POST['pobox']);
 	   $password = mysqli_real_escape_string($conn,$_POST['password']);
    	 $repassword = mysqli_real_escape_string($conn,$_POST['repassword']);
-     if($password == $repassword){//if password fields are matching
+     if($password == $repassword){            //if password fields are matching
 			 $stmt->bind_param("sssss", $name, $email, $phone, $address, $pobox);
 			 $stmt->execute();
 			 $logmail->bind_param("s",$email);
 			 $logmail->execute();
-			 if($password != ""){//if new passwords are not null
+			 if($password != ""){               //if new passwords are not null
 				 $logpass->bind_param("s",$password);
 				 $logpass->execute();
 			 }
+			 $mail = $row['4'];
+			 $msg = "
+			 <h1>Account Modification Alert</h1><br>
+			 <h2>Alert from Tenderama Online Tendering System</h2>
+			 <h3>This email is to inform you that your account details have been modified by the administrator.<br>
+			 Feel free to contact the administrator for any clarification.</h3>";
+			 sendmail($msg,$mail);
 			 header("location: users.php");
      }
    }catch(Exception $ex){

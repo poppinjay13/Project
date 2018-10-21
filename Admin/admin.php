@@ -15,7 +15,7 @@ $countt = mysqli_num_rows($resultt);//total tenderers
 $dept = "SELECT * FROM heads";
 $resultd = mysqli_query($conn,$dept);
 $countd = mysqli_num_rows($resultd);//total department managers
-$done = "SELECT * FROM tenders WHERE status = 'Complete'";
+$done = "SELECT * FROM tenders WHERE status = 'Completed'";
 $resultdn = mysqli_query($conn,$done);
 $countdn = mysqli_num_rows($resultdn);//total tenderers
 //queries to populate the table
@@ -46,10 +46,10 @@ $count = mysqli_num_rows($result);
 	    }
 	    ?>
   <h1><B>Dashboard</B></h1>
-  <section><h3><?php echo $countf?><br>Tenders floated</h3></section>
-  <section><h3><?php echo $countt?><br>Tenderers</h3></section>
-  <section><h3><?php echo $countd?><br>Department Managers</h3></section>
-  <section><h3><?php echo $countdn?><br>Tenders completed</h3></section>
+  <section><h3 style="font-size: 30px;"><?php echo $countf?></h3><h3>Tenders floated</h3></section>
+  <section><h3 style="font-size: 30px;"><?php echo $countt?></h3><h3>Tenderers</h3></section>
+  <section><h3 style="font-size: 30px;"><?php echo $countd?></h3><h3>Department Managers</h3></section>
+  <section><h3 style="font-size: 30px;"><?php echo $countdn?></h3><h3>Tenders completed</h3></section>
   </div>
   <div class="load-data">
   <h2>RECENT ACTIVITY</h2>
@@ -70,11 +70,11 @@ $count = mysqli_num_rows($result);
       if($count >= 1){
         while ($row=mysqli_fetch_row($result)){
           ?>
-      	<tr>
+      	<tr class="tender" onclick="details('<?php echo $row[0]?>');" title="View Request Information">
       		<td><?php echo $row[1]?></td>
       		<td><?php echo $row[2]?></td>
       		<td><?php echo $row[4]?></td>
-      		<td><?php echo substr($row[5],0,19)?></td>
+      		<td><?php echo (substr($row[5],0,10))?></td>
       		<td><?php echo $row[6]?></td>
       	</tr>
       	<tr class="spacer"></tr>
@@ -88,4 +88,21 @@ $count = mysqli_num_rows($result);
     </table>
   </div>
 </body>
+<script>
+function details(id){
+		var form = document.createElement("form");
+		form.target = "_self";
+		form.method = "GET";
+		form.action = "tenders.php";
+		form.style.display = "none";
+		var input = document.createElement("input");
+		form.appendChild(input);
+		input.type = "hidden";
+		input.name = "id";
+		input.value = id;
+		document.body.appendChild(form);
+		form.submit();
+		document.body.removeChild(form);
+	}
+</script>
 </html>
