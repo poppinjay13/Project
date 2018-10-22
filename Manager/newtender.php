@@ -74,7 +74,7 @@ $depart = $_SESSION['Department'];
 	<body>
 	<ul class="navbar">
 
-		<li class="profpic"><img src="../assets/images/pic/<?php echo $uid?>.jpg"></li>
+		<li class="profpic"><img src="../assets/images/user.png"></li>
 
 		<li><a href="manager.php"><span>Home</span></a></li>
 

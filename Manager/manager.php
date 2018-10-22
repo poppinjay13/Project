@@ -14,10 +14,11 @@ $count2 = mysqli_num_rows($result2);
 $row2=mysqli_fetch_row($result2);
 $_SESSION['Department'] = $row2[3];
         $depart = $_SESSION['Department'];
-        
+ 
 $sql = "SELECT * FROM tenders";
 $result = mysqli_query($conn,$sql);
 $count = mysqli_num_rows($result);
+
 
 ?>
 
@@ -30,7 +31,7 @@ $count = mysqli_num_rows($result);
 	<body>
 	<ul class="navbar">
 
-		<li class="profpic"><img src="../assets/images/pic/<?php echo $uid?>.jpg"></li>
+		<li class="profpic"><img src="../assets/images/user.png"></li>
 
 		<li><a href="#" class="active"><span>Home</span></a></li>
 
@@ -63,7 +64,8 @@ $count = mysqli_num_rows($result);
 	<?php
 
         while ($row=mysqli_fetch_row($result)){
-         if($row[2]==$depart){        
+         if($row[2]==$depart){
+           
               
 	?>
 	<div class="tender">
@@ -74,15 +76,13 @@ $count = mysqli_num_rows($result);
 		<h3>Requirements: <?php printf($row[3])?></h3>
 		<h3>Due Date: <?php printf($row[5])?></h3>
 
-  
-
    <button class="cust"  >
         <?php
             echo "<a href='viewapplicants.php?TENDERID=". $row[0] ."' title='ViewApplicants'  >View Applicants</a>";//on clicking this button you can view applicants of the specific tender selected
           
         ?></button>
      <button class="cust"  ><?php
-            echo "<a href='edittender.php?TENDERID=". $row[0] ."' title='ViewApplicants' >Edit tender</a>";// this button allows you 
+            echo "<a href='edittender.php?TenderID=". $row[0] ."' title='ViewApplicants' >Edit tender</a>";// this button allows you 
           
         ?></button>
 	</div>

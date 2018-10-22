@@ -32,7 +32,7 @@ $row2=mysqli_fetch_row($result2);
 	</head>
 	<body>
 	<ul class="navbar">
-		<li class="profpic"><img src="../assets/images/pic/<?php echo $uid?>.jpg"></li>
+		<li class="profpic"><img src="../assets/images/user.png"></li>
 		<li><a href="manager.php" ><span>Home</span></a></li>
 		<li><a href="details.php"><span>My Details</span></a></li>
         <li><a href="#" class="active">View applicants</a></li>
