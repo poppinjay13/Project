@@ -79,7 +79,7 @@ $count1 = mysqli_num_rows($result1);
 		Asking Price:
 		<input type="text" name="price" placeholder="(Ksh) 12345" required><br><br>
 		Scheduled Completion:
-		<input type="text" name="complete" placeholder="12/12/2018" required><br><br>
+		<input type="date" name="complete" placeholder="12/12/2018" required><br><br>
 		Amount of Goods:
 		<input type="text" name="amount" placeholder="12345 (Kgs)" required><br><br>
 		Location:

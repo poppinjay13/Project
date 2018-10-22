@@ -110,9 +110,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
       Confrim Password:
 
                 <input name="repassword" type="password"/><br/><br/>
-	
+
 	</div>
-        
+
         <button><input type="submit" class="" value="Update Details"/></button><br/><br/>
         </form>
     </body>
