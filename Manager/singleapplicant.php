@@ -2,25 +2,26 @@
 session_start();
 include("../config.php");
 require("../mail.php");
-$Tenderid= $_GET['TENDERID'];
+$Tenderid = $_SESSION['TenderID'];
+$Tendererid= $_GET['Tendererid'];
 $depart = $_SESSION['Department'];
 
+//$Tenderid= $_GET['TENDERID'];
 $tab = 1;
 $count = 0;   
-$sql = "SELECT * FROM applications where TenderID=$Tenderid";
+$sql = "SELECT * FROM applications where TendererID=$Tendererid AND TenderID=$Tenderid ";
 $result = mysqli_query($conn,$sql);
 $count= mysqli_num_rows($result);
 $row=mysqli_fetch_row($result);
-$_SESSION['TenderID'] = $row[0];
-        $Tenderid = $_SESSION['TenderID'];
    
 
 $tab2 = 1;
 $count2 = 0;   
-$sqli = "SELECT * FROM tenders where TenderID='$Tenderid' AND Department='$depart' ";
+$sqli = "SELECT * FROM tenderers where IDNo='$Tendererid' ";
 $result2 = mysqli_query($conn,$sqli);
 $count2= mysqli_num_rows($result2);
 $row2=mysqli_fetch_row($result2);
+
 
 
 ?>
@@ -53,7 +54,7 @@ $row2=mysqli_fetch_row($result2);
 		
 	?>
 	<center>
-	<h2 style="color:white;" style="color:white;">Applicants of  <?php echo $row2[1];?></h2><br>
+	<h2 style="color:white;" style="color:white;"> <?php echo $row[2];?> tender</h2><br>
 
 	</center>
        
@@ -74,8 +75,8 @@ $row2=mysqli_fetch_row($result2);
                                     echo "<th>TenderID</th>";
                                     echo "<th>IDNo</th>";
                                     echo "<th>Submission date</th>";
-                                    echo "<th>Status</th>";
-                       
+                            echo "<th>Status</th>";
+                            echo "<th>View doc</th>";
                             
                                   
                                   
@@ -95,16 +96,24 @@ $row2=mysqli_fetch_row($result2);
              
                                 echo "<td>";
                                   
-                                    
-            echo "<a class='button2' href='singleapplicant.php?Tendererid=". $row[1] ."' title='ViewApplicants'  >View Details</a>";//on clicking this button you can view applicants of the specific tender selected
-          
-      
+                                         echo "<a href='download.php?Filename=".$row['Docs']."'>download</a> ";
 
                                     echo "</td>";
                        echo "<td>";
                     
                        
-             
+                
+               $_SESSION['IDNo'] = $row[1];
+        $_SESSION['TenderID'] = $row[0];
+                       
+                       echo "<a href='accepted.php?TendererID=".$row['TendererID']."' ><img src='../assets/images/accept.jpg'></a>";
+                     
+                       echo"</td>";
+                       echo "<td>";
+                   
+                       echo "<a href='rejected.php?TendererID=".$row['TendererID']."' ><img src='../assets/images/reject.png'></a>";
+                     
+                       echo"</td>";
                        
                                 echo "</tr>";
                                 }
@@ -117,8 +126,16 @@ $row2=mysqli_fetch_row($result2);
                         echo "<p class='lead'><em>No applicants yet.</em></p>";
                         }
                          }
+                    if($row[10]==''){
+                         $msg = "
+          <h1>Tender Application Received </h1><br>
+          <h2>Tender Application for <i></i></h2>
+          <h3>This email is to inform you that your application has been succesfully received and will be reviewed in due time.</h3>";
+          $mail = $row2[4];
+          echo "<script>alert($mail);</script>";
+          sendmail($msg,$mail);
                         
-                        
+                        }
                         // Close connection
                         $conn->close();
                         ?>

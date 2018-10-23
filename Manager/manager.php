@@ -76,15 +76,16 @@ $count = mysqli_num_rows($result);
 		<h3>Requirements: <?php printf($row[3])?></h3>
 		<h3>Due Date: <?php printf($row[5])?></h3>
 
-   <button class="cust"  >
+   <div align="center">
         <?php
-            echo "<a href='viewapplicants.php?TENDERID=". $row[0] ."' title='ViewApplicants'  >View Applicants</a>";//on clicking this button you can view applicants of the specific tender selected
+            echo "<a class='button' href='viewapplicants.php?TENDERID=". $row[0] ."' title='ViewApplicants'  >View Applicants</a>";//on clicking this button you can view applicants of the specific tender selected
           
-        ?></button>
-     <button class="cust"  ><?php
-            echo "<a href='edittender.php?TenderID=". $row[0] ."' title='ViewApplicants' >Edit tender</a>";// this button allows you 
+        ?><br>
+    <?php
+            echo "<a class='button' href='edittender.php?TenderID=". $row[0] ."' title='ViewApplicants' >Edit tender</a>";// this button allows you 
           
-        ?></button>
+        ?>
+    </div>
 	</div>
 	</div>
 	<?php

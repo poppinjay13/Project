@@ -15,4 +15,11 @@
     readfile("C:\xampp\htdocs\Tender\Project\applications/".$name); 
     exit;
 
+           $msg = "
+          <h1>Tender Application On Progress </h1><br>
+          <h2>Tender Application for <i></i></h2>
+          <h3>This email is to inform you that your application is still being analysed.</h3>";
+          $mail = $row2[4];
+          echo "<script>alert($mail);</script>";
+          sendmail($msg,$mail);
 ?>
