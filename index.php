@@ -1,10 +1,15 @@
 <?php
    session_start();
-   include("config.php");
+   require("config.php");
+   require("valid.php");
    $error = "null";
+   $myemail = $mypassword = "";
    if($_SERVER["REQUEST_METHOD"] == "POST") {
       $myemail = mysqli_real_escape_string($conn,$_POST['email']);
       $mypassword = mysqli_real_escape_string($conn,$_POST['password']);
+      if(!validemail($myemail)){
+        $error = "That email address looks incorrect. Please recheck it.";
+      }else{
       $sql = "SELECT * FROM login WHERE Email = '$myemail' and Password = '$mypassword'";
       $result = mysqli_query($conn,$sql);
       $count = mysqli_num_rows($result);
@@ -27,6 +32,7 @@
          $error = "Your Login Account or Password is invalid !";
       }
    }
+ }
 ?>
 <html>
 	<head>
@@ -48,8 +54,8 @@
 				<img src="assets/images/loginbg.png" class="loginbg"><br>
 				<h5>Please log into your account to continue</h5>
 				<form method="post">
-					<input type="text" placeholder="Email" name="email" style="background-image: url(assets/images/login.png)"><br>
-					<input type="password" placeholder="Password" name="password"  style="background-image: url(assets/images/password.png)"><br>
+					<input type="text" placeholder="Email" name="email" style="background-image: url(assets/images/login.png)" value="<?php echo $myemail ?>"><br>
+					<input type="password" placeholder="Password" name="password"  style="background-image: url(assets/images/password.png)" value="<?php echo $mypassword ?>"><br>
 					<button formaction="#">LOGIN</button>
 				</form>
 				<?php

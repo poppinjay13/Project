@@ -1,16 +1,18 @@
 <?php
 session_start();
 require("config.php");
+require("valid.php");
 require("mail.php");
 $error = "null";
 $status = "tenderer";
+$name=$id=$num=$mail=$add=$box="";
 $stmt = $conn->prepare("INSERT INTO tenderers (Name, IDNo, Phone, Email, Address, POBox) VALUES (?,?,?,?,?,?)");
 $stmt->bind_param("ssssss",$name,$id,$num,$mail,$add,$box);
 $stmt2 = $conn->prepare("INSERT INTO login (Idnum, Status, Email, Password) VALUES (?,?,?,?)");
 $stmt2->bind_param("ssss",$id,$status,$mail,$password);
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 	try{
-		$name = mysqli_real_escape_string($conn,$_POST['name']);
+	   $name = mysqli_real_escape_string($conn,$_POST['name']);
 	   $id = mysqli_real_escape_string($conn,$_POST['IDNo']);
 	   $num = mysqli_real_escape_string($conn,$_POST['phone']);
 	   $mail = mysqli_real_escape_string($conn,$_POST['email']);
@@ -19,13 +21,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	   $password = mysqli_real_escape_string($conn,$_POST['password']);
 	   $password2 = mysqli_real_escape_string($conn,$_POST['passval']);
 	   if ($password != $password2) {
-		   $error = "Please ensure passwords entered match.";
+		   $error = "These passwords don't seem to match. Please review them.";
 	   }else{
+			if(!validname($name)){
+				$error = "That name looks incorrect. Please review it.";
+			}else if(!validphone($num)){
+				$error = "That phone number doesn't seem correct. Please review it.";
+			}else if(!validemail($mail)){
+				$error = "That email address seems incorrect. Please review it.";
+			}else if(!validpassword($password)){
+				$error = "Unfortunately your password is too simple. Please make it harder.";
+			}else{
 	   $sql = "SELECT * FROM tenderers WHERE IDNo = '$id' or Email = '$mail'";
 	   $result = mysqli_query($conn,$sql);
 	   $count = mysqli_num_rows($result);
 	   if($count > 0) {
-		   $error = "The ID number or Email address you entered is already in use";
+		   $error = "It seems like you already have an account with that email or id number. Please login.";
 	   }else{
 			 $stmt->execute();
 			 $stmt2->execute();
@@ -38,6 +49,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 			 sendmail($msg,$mail);
 	   }
 		}
+	}
    } catch (Exception $e) {
     $error = "Error Signing you up for service. Please try again later!";
 	}
@@ -62,12 +74,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 			<center><section>
 				<h5>Create a new account below</h5>
 				<form method="POST">
-					<input type="text" placeholder="Full Name" name="name" required><br>
-					<input type="text" placeholder="National ID Number (12345600)" name="IDNo" required><br>
-					<input type="text" placeholder="Phone Number (0712345678)" name="phone" required><br>
-					<input type="text" placeholder="Email" name="email" required><br>
-					<input type="text" placeholder="Physical Address" name="address"><br>
-					<input type="text" placeholder="P.O.Box ..." name="pobox"><br>
+					<input type="text" placeholder="Full Name" name="name" value="<?php echo $name ?>"required><br>
+					<input type="text" placeholder="National ID Number (12345600)" name="IDNo" value="<?php echo $id ?>" required><br>
+					<input type="text" placeholder="Phone Number (0712345678)" name="phone" value="<?php echo $num ?>" required><br>
+					<input type="text" placeholder="Email" name="email" value="<?php echo $mail ?>" required><br>
+					<input type="text" placeholder="Physical Address" name="address"  value="<?php echo $add ?>"><br>
+					<input type="text" placeholder="P.O.Box ..." name="pobox" value="<?php echo $box ?>"><br>
 					<input type="password" placeholder="Enter Password" name="password" required><br>
 					<input type="password" placeholder="Re-enter Password" name="passval" required><br>
 					<input type="submit" class="button" value="SIGN UP">
