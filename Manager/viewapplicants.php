@@ -1,10 +1,15 @@
 <?php
 session_start();
 include("../config.php");
-require("../mail.php");
+if (!isset($_SESSION['UserID'])) {
+    header("location:../index.php");
+    exit;
+}
+//require("../mail.php");
 $Tenderid= $_GET['TENDERID'];
 $depart = $_SESSION['Department'];
-
+//$yes=$_GET['comments'];
+//echo $yes;
 $tab = 1;
 $count = 0;   
 $sql = "SELECT * FROM applications where TenderID=$Tenderid";

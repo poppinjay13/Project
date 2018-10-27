@@ -1,7 +1,11 @@
 <?php
 session_start();
 include("../config.php");
-require("../mail.php");
+if (!isset($_SESSION['UserID'])) {
+    header("location:../index.php");
+    exit;
+}
+//require("../mail.php");
 $Tenderid = $_SESSION['TenderID'];
 $Tendererid= $_GET['Tendererid'];
 $depart = $_SESSION['Department'];
@@ -88,7 +92,7 @@ $row2=mysqli_fetch_row($result2);
                       
                      
                                 echo "<tr>";
-                                    echo "<td>" . $row['TenderID'] . "</td>";
+                                    echo "<td >" . $row['TenderID'] . "</td>";
                                     echo "<td>" . $row['TendererID'] . "</td>";
                                     echo "<td>" . $row['Completion'] . "</td>";
                                   echo "<td>" . $row['Status'] . "</td>";
@@ -99,13 +103,31 @@ $row2=mysqli_fetch_row($result2);
                                          echo "<a href='download.php?Filename=".$row['Docs']."'>download</a> ";
 
                                     echo "</td>";
+                     echo "</tr>";
+                     echo "<tr ";
+                      echo "</tr>";
+                      echo "<tr ";
+                      echo "</tr>";
+                      echo "<tr ";
+                      echo "</tr>";
+                     echo "<tr>";
+                      echo "<td >";
+                     
+                     echo "</td>";
+                     echo "<td colspan='10'>";
+                     echo "<textarea name='comments' rows='10' cols='30' value='' placeholder='comments to tenderer' ></textarea>";
+                     echo "</td>";
+                      echo "</tr>";
+                         echo "<tr>";
+                         echo "<td >";
+                     
+                     echo "</td>";
+                     echo "<td >";
+                     
+                     echo "</td>";
                        echo "<td>";
                     
-                       
-                
-               $_SESSION['IDNo'] = $row[1];
-        $_SESSION['TenderID'] = $row[0];
-                       
+                      
                        echo "<a href='accepted.php?TendererID=".$row['TendererID']."' ><img src='../assets/images/accept.jpg'></a>";
                      
                        echo"</td>";
@@ -114,8 +136,9 @@ $row2=mysqli_fetch_row($result2);
                        echo "<a href='rejected.php?TendererID=".$row['TendererID']."' ><img src='../assets/images/reject.png'></a>";
                      
                        echo"</td>";
-                       
-                                echo "</tr>";
+                        echo "</tr>";
+
+                            
                                 }
                             echo "</tbody>";
                         echo "</table>";

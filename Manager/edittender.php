@@ -1,8 +1,12 @@
 <?php
 
 session_start();
+include("../config.php");
+if (!isset($_SESSION['UserID'])) {
+        header("location:../index.php");
+        exit;
+}
 
-include "../config.php";
 
 $tid = $_GET['TenderID'];
  echo $tid;

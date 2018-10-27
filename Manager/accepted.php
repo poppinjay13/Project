@@ -2,6 +2,11 @@
 session_start();
 include("../config.php");
 require("../mail.php");
+if (!isset($_SESSION['UserID'])) {
+    header("location:../index.php");
+    exit;
+}
+
 $idnum= $_GET['TendererID'];
 $tenderid = $_SESSION['TenderID'];
 echo $idnum;
@@ -26,10 +31,7 @@ $row3= mysqli_num_rows($result3);
 
 while ($row=mysqli_fetch_row($result)){
          if($row[2]==$idnum){ 
-            $msg = "
-                  <h1>Acception email</h1><br>
-                  <h2>Your Tender Application for <i><? php echo $row3[1]?></i> has been accepted</h2>
-                  <h3>This email is to inform you that your application has been accepted, the requirements will be sent to you shortly.</h3>";
+            $msg = "no";
                   $mail = $row[4];
                   echo "<script>alert($mail);</script>";
                   sendmail($msg,$mail);
