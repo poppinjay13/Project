@@ -34,13 +34,14 @@ $row2=mysqli_fetch_row($result2);
           
     <script src="jquery.js"></script>
        
-            
-        </script>
+    
+
 		<link href="../assets/css/home.css" type="text/css" rel="stylesheet">
 		<link href="../assets/images/fav.png" rel="icon" type="image/x-icon" />
 		<title>View tender applications</title>
 	</head>
 	<body>
+    
 	<ul class="navbar">
 		<li class="profpic"><img src="../assets/images/user.png"></li>
 		<li><a href="manager.php" ><span>Home</span></a></li>
@@ -65,7 +66,11 @@ $row2=mysqli_fetch_row($result2);
 <div class="tendernew"><br>
 <center><h3>APPLICANTS</h3>
     
-    
+    <script>
+function myFunction() {
+    document.getElementById("comm").value;
+}
+</script>
  
 			 <?php
 
@@ -89,6 +94,7 @@ $row2=mysqli_fetch_row($result2);
                             echo "<tbody>";
                             
                    while($row= $result->fetch_array()){
+                    echo "<form method='POST'>";
                       
                      
                                 echo "<tr>";
@@ -115,7 +121,7 @@ $row2=mysqli_fetch_row($result2);
                      
                      echo "</td>";
                      echo "<td colspan='10'>";
-                     echo "<textarea name='comments' rows='10' cols='30' value='' placeholder='comments to tenderer' ></textarea>";
+                     echo "<textarea name='comments' value='' id='comm' rows='10' cols='30' value='' placeholder='comments to tenderer' ></textarea>";
                      echo "</td>";
                       echo "</tr>";
                          echo "<tr>";
@@ -128,7 +134,7 @@ $row2=mysqli_fetch_row($result2);
                        echo "<td>";
                     
                       
-                       echo "<a href='accepted.php?TendererID=".$row['TendererID']."' ><img src='../assets/images/accept.jpg'></a>";
+                       echo "<a onclick='myFunction()' href='accepted.php?TendererID=".$row['TendererID']."' ><img src='../assets/images/accept.jpg'></a>";
                      
                        echo"</td>";
                        echo "<td>";
@@ -138,7 +144,7 @@ $row2=mysqli_fetch_row($result2);
                        echo"</td>";
                         echo "</tr>";
 
-                            
+                            echo "</form>";
                                 }
                             echo "</tbody>";
                         echo "</table>";
@@ -149,7 +155,7 @@ $row2=mysqli_fetch_row($result2);
                         echo "<p class='lead'><em>No applicants yet.</em></p>";
                         }
                          }
-                    if($row[10]==''){
+                    if($row['Status']==''||$row['Status']==null){
                          $msg = "
           <h1>Tender Application Received </h1><br>
           <h2>Tender Application for <i></i></h2>
