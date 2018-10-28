@@ -94,7 +94,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
         ?>
     <form method="POST">
-      <h2>Tender Details</h2>
+      <h2>Updating tender details</h2>
  
      
       <label for = "Name">Name:</label><br/>
