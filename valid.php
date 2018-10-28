@@ -9,7 +9,7 @@ function validemail($email){
 }
 //phone number validation
 function validphone($phone){
-  if(strlen($phone)<10 || strlen($phone)>13 || !is_numeric($phone)){
+  if(strlen($phone)<10 || strlen($phone)>13 || !validnum($phone)){
     return false;
   }else{
     return true;
@@ -26,6 +26,14 @@ function validname($name){
 //password validation
 function validpassword($password){
   if(strlen($password)<8){
+    return false;
+  }else{
+    return true;
+  }
+}
+//check if value is numerical
+function validnum($num){
+  if(!is_numeric($num)){
     return false;
   }else{
     return true;

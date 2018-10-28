@@ -2,6 +2,7 @@
 session_start();
 require("../config.php");
 require("../mail.php");
+require("../valid.php");
 if (!isset($_SESSION['UserID'])) {
 		header("location:../index.php");
 		exit;
@@ -14,6 +15,7 @@ $tender = $_SESSION['tendid'];
 $sql1 = "SELECT * FROM tenders where TenderID = $tender";
 $result1 = mysqli_query($conn,$sql1);
 $count1 = mysqli_num_rows($result1);
+$business = $pos = $price = $completion = $amnt = $location = "";//initialise variables
 ?>
 <html>
 	<head>
@@ -71,19 +73,19 @@ $count1 = mysqli_num_rows($result1);
 		ID Number:
 		<input type="text" name="terID" value="<?php printf($rowt[2])?>" readonly><br><br>
 		Business:
-		<input type="text" name="biz" placeholder="Registered name of your Business" required><br><br>
+		<input type="text" name="biz" placeholder="Registered name of your Business"  value="<?php echo $business ?>"required><br><br>
 		Position:
-		<input type="text" name="pos" placeholder="Positon you hold in above business"><br><br>
+		<input type="text" name="pos" placeholder="Positon you hold in above business" value="<?php echo $pos ?>"><br><br>
 	</div>
 	<div class="tendrght">
 		Asking Price:
-		<input type="text" name="price" placeholder="(Ksh) 12345" required><br><br>
+		<input type="text" name="price" placeholder="(Ksh) 12345" value="<?php echo $price ?>" required><br><br>
 		Scheduled Completion:
-		<input type="date" name="complete" placeholder="12/12/2018" required><br><br>
+		<input type="date" name="complete" placeholder="12/12/2018" value="<?php echo $completion ?>" required><br><br>
 		Amount of Goods:
-		<input type="text" name="amount" placeholder="12345 (Kgs)" required><br><br>
+		<input type="text" name="amount" placeholder="12345 (Kgs)" value="<?php echo $amnt ?>" required><br><br>
 		Location:
-		<input type="text" name="locate" placeholder="Where is the business located?"><br><br>
+		<input type="text" name="locate" placeholder="Where is the business located?" value="<?php echo $location ?>"><br><br>
 	</div>
 	</div>
 	<br><br>
@@ -121,6 +123,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	   $completion = mysqli_real_escape_string($conn,$_POST['complete']);
 	   $amnt = mysqli_real_escape_string($conn,$_POST['amount']);
 	   $location = mysqli_real_escape_string($conn,$_POST['locate']);
+		 //check if asking price is a valid value
+		 if(!validnum($price)){
+			 echo "<script>alert('Your asking price seems incorrect. Please remove any commas or currency identifiers and ensure your values are all numbers then try again.');</script>";
+			 $uploadOk = 0;
+		 }
       //code for file upload below
 			$filename = $_FILES['doc']['name'];
       $newname = $tenderid."-".$tendererid.".pdf";
