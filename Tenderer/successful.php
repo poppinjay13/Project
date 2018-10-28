@@ -57,7 +57,7 @@ $row2=mysqli_fetch_row($result2);
 		
 	?>
 	<center>
-	<h2 style="color:white;" style="color:white;"> <?php echo $row[2];?> tender</h2><br>
+	   <h2 style="color:white;" style="color:white;"> <?php echo $row2[2];?>'s successful tenders</h2><br>
 
 	</center>
        

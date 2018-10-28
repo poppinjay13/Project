@@ -14,6 +14,8 @@ $sql = "SELECT * FROM applications where TendererID=$Tendererid AND Status='ACCE
 $result = mysqli_query($conn,$sql);
 $count= mysqli_num_rows($result);
 $row=mysqli_fetch_row($result);
+
+        
    
 
 $tab2 = 1;
@@ -24,8 +26,8 @@ $count2= mysqli_num_rows($result2);
 $row2=mysqli_fetch_row($result2);
 
 
-
 ?>
+
 <html>
 <head>
           
@@ -57,7 +59,7 @@ $row2=mysqli_fetch_row($result2);
 		
 	?>
 	<center>
-	<h2 style="color:white;" style="color:white;"> <?php echo $row[2];?> tender</h2><br>
+	<h2 style="color:white;" style="color:white;"> <?php echo $row[2];?>'s approved tenders</h2><br>
 
 	</center>
        
@@ -94,7 +96,7 @@ $row2=mysqli_fetch_row($result2);
                                     echo "<td>" . $row['TendererID'] . "</td>";
                                   echo "<td>" . $row['Status'] . "</td>";
                     
-             
+             echo "<form method='post'>";
                                 echo "<td>";
                                   
                                         echo '
@@ -105,6 +107,7 @@ $row2=mysqli_fetch_row($result2);
                                     echo "<td>";
                                     echo '<input type="submit" id="btnSub" value="Submit tender docs"></button>';
                                     echo "</td>";
+                                    echo "</form>";
                      echo "</tr>";
                    
                                 }
