@@ -45,8 +45,14 @@
 			<section>
 				<h1>TENDERAMA</h1>
 				<h2>A website for all your tendering needs.</h2>
-				<h3>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra.</h3>
+        <h3>
+					This web based application is the pet project of 100446 and 99460
+					to be presented in the second year of their studies
+					for the award of a degree in their Informatics and Computer Science Course
+					at Strathmore University.
+				</h3>
 				<h4>Not yet tendering with us? <a href="signup.php">Click here.</a></h4>
+        <h4><a href="mailto:tenderama254@gmail.com?Subject=Authentication%20Error" target="_top">Having trouble logging in?</a></h4>
 			</section>
 		</div>
 		<div class="login_box">
