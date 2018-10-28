@@ -19,6 +19,11 @@ $count = 0;
 
 $sqli = "UPDATE applications SET Status='ACCEPTED' WHERE TendererID='$idnum' && TenderID='$tenderid'";
 $result2 = mysqli_query($conn,$sqli);
+//the status of the tender on the applicants table will be set to updated.
+$msqli = "UPDATE tenders SET Status='APPROVED' WHERE TenderID='$tenderid'";
+$result4 = mysqli_query($conn,$msqli);
+//the status of the tender on the tender table will be set to approved.
+
 //$count2= mysqli_num_rows($result2);
 //$row2= mysqli_num_rows($result2);
 $sql = "SELECT * FROM tenderers";

@@ -12,7 +12,7 @@ $depart = $_SESSION['Department'];
 $comm='<p id="demo"></p>';
 $_SESSION['Comments'] = $comm;
         $comments = $_SESSION['Comments'];
-echo $comm;
+//echo $comm;
 //$Tenderid= $_GET['TENDERID'];
 $tab = 1;
 $count = 0;   
@@ -72,12 +72,12 @@ function myFunction() {
 		
 	?>
 	<center>
-	<h2 style="color:white;" style="color:white;"> <?php echo $row[2];?> tender</h2><br>
+	<h2 style="color:white;" style="color:white;"> <?php echo $row[2];?> </h2><br>
 
 	</center>
        
 <div class="tendernew"><br>
-<center><h3>APPLICANTS</h3>
+<center><h3>Details of <?php echo $row[1];?> on tender <?php echo $row[0];?></h3>
     
 
 			 <?php
