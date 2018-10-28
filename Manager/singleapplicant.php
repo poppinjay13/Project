@@ -5,7 +5,7 @@ if (!isset($_SESSION['UserID'])) {
     header("location:../index.php");
     exit;
 }
-//require("../mail.php");
+require("../mail.php");
 $Tenderid = $_SESSION['TenderID'];
 $Tendererid= $_GET['Tendererid'];
 $depart = $_SESSION['Department'];
@@ -69,6 +69,7 @@ $row2=mysqli_fetch_row($result2);
     <script>
 function myFunction() {
     document.getElementById("comm").value;
+    
 }
 </script>
  
@@ -145,17 +146,11 @@ function myFunction() {
                         echo "</tr>";
 
                             echo "</form>";
-                                }
+                                
                             echo "</tbody>";
                         echo "</table>";
-                             
-                        // Free result set
-                        $result->free();
-                         }else{
-                        echo "<p class='lead'><em>No applicants yet.</em></p>";
-                        }
-                         }
-                    if($row['Status']==''||$row['Status']==null){
+                        echo $row[10];
+                                if($row[10]==''||$row[10]==null){
                          $msg = "
           <h1>Tender Application Received </h1><br>
           <h2>Tender Application for <i></i></h2>
@@ -165,6 +160,13 @@ function myFunction() {
           sendmail($msg,$mail);
                         
                         }
+                        // Free result set
+                        $result->free();
+                         }}else{
+                        echo "<p class='lead'><em>No applicants yet.</em></p>";
+                        }
+                         }
+                 
                         // Close connection
                         $conn->close();
                         ?>
