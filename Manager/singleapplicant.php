@@ -9,7 +9,10 @@ require("../mail.php");
 $Tenderid = $_SESSION['TenderID'];
 $Tendererid= $_GET['Tendererid'];
 $depart = $_SESSION['Department'];
-
+$comm='<p id="demo"></p>';
+$_SESSION['Comments'] = $comm;
+        $comments = $_SESSION['Comments'];
+echo $comm;
 //$Tenderid= $_GET['TENDERID'];
 $tab = 1;
 $count = 0;   
@@ -34,7 +37,17 @@ $row2=mysqli_fetch_row($result2);
           
     <script src="jquery.js"></script>
        
-    
+      <script>
+function myFunction() {
+    var txt;
+    var comments = prompt("Enter comments to tenderer:", "comments");
+    if (!(comments == null || comments == "")) {
+  
+        txt = comments;
+    }
+    document.getElementById("demo").innerHTML = txt;
+}
+</script>
 
 		<link href="../assets/css/home.css" type="text/css" rel="stylesheet">
 		<link href="../assets/images/fav.png" rel="icon" type="image/x-icon" />
@@ -66,13 +79,7 @@ $row2=mysqli_fetch_row($result2);
 <div class="tendernew"><br>
 <center><h3>APPLICANTS</h3>
     
-    <script>
-function myFunction() {
-    document.getElementById("comm").value;
-    
-}
-</script>
- 
+
 			 <?php
 
    
@@ -95,7 +102,7 @@ function myFunction() {
                             echo "<tbody>";
                             
                    while($row= $result->fetch_array()){
-                    echo "<form method='POST'>";
+                    echo "<form method='POST' action=''>";
                       
                      
                                 echo "<tr>";
@@ -111,46 +118,32 @@ function myFunction() {
 
                                     echo "</td>";
                      echo "</tr>";
-                     echo "<tr ";
-                      echo "</tr>";
-                      echo "<tr ";
-                      echo "</tr>";
-                      echo "<tr ";
-                      echo "</tr>";
-                     echo "<tr>";
-                      echo "<td >";
-                     
-                     echo "</td>";
-                     echo "<td colspan='10'>";
-                     echo "<textarea name='comments' value='' id='comm' rows='10' cols='30' value='' placeholder='comments to tenderer' ></textarea>";
-                     echo "</td>";
-                      echo "</tr>";
-                         echo "<tr>";
-                         echo "<td >";
-                     
-                     echo "</td>";
-                     echo "<td >";
-                     
-                     echo "</td>";
-                       echo "<td>";
-                    
-                      
-                       echo "<a onclick='myFunction()' href='accepted.php?TendererID=".$row['TendererID']."' ><img src='../assets/images/accept.jpg'></a>";
+                     echo "<tr></tr><tr></tr><tr></tr><tr><td ></td><td ></td></tr><tr><td ></td><td ></td><td>";
+                       
+                  
+                     echo "<a type='submit' onclick='myFunction()' href='accept.php?TendererID=".$row['TendererID']."' ><img src='../assets/images/accept.jpg'></a>";
                      
                        echo"</td>";
                        echo "<td>";
                    
-                       echo "<a href='rejected.php?TendererID=".$row['TendererID']."' ><img src='../assets/images/reject.png'></a>";
+                       echo "<a type='submit' href='rejected.php?TendererID=".$row['TendererID']."' ><img src='../assets/images/reject.png'></a>";
+                     
+                       echo"</td>";echo "</tr>";echo "<tr ";
+                      echo "</tr><tr </tr><tr></tr><tr><td ></td></td></tr><tr><td ></td><td ></td><td>";
+                       
+                  
+                     echo "ACCEPT";
+                     
+                       echo"</td>";
+                       echo "<td>";
+                   
+                       echo "REJECT";
                      
                        echo"</td>";
                         echo "</tr>";
-
+                      
                             echo "</form>";
-                                
-                            echo "</tbody>";
-                        echo "</table>";
-                        echo $row[10];
-                                if($row[10]==''||$row[10]==null){
+                             if($row[10]==''||$row[10]==null){
                          $msg = "
           <h1>Tender Application Received </h1><br>
           <h2>Tender Application for <i></i></h2>
@@ -160,9 +153,14 @@ function myFunction() {
           sendmail($msg,$mail);
                         
                         }
+                                }
+                            echo "</tbody>";
+                        echo "</table>";
+                        echo $row[10];
+                               
                         // Free result set
                         $result->free();
-                         }}else{
+                         }else{
                         echo "<p class='lead'><em>No applicants yet.</em></p>";
                         }
                          }

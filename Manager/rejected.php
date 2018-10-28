@@ -8,13 +8,14 @@ if (!isset($_SESSION['UserID'])) {
 }
 $idnum= $_GET['TendererID'];
 $tenderid = $_SESSION['TenderID'];
+echo $tenderid;
 echo $idnum;
 $tab2 = 1;
 $count2 = 0;   
 $sqli = "UPDATE applications SET Status='REJECTED' WHERE TendererID='$idnum' && TenderID='$tenderid'";
 $result2 = mysqli_query($conn,$sqli);
-$count2= mysqli_num_rows($result2);
-$row2= mysqli_num_rows($result2);
+//$count2= mysqli_num_rows($result2);
+//$row2= mysqli_num_rows($result2);
 
 $sql = "SELECT * FROM tenderers";
 $result = mysqli_query($conn,$sql);
@@ -27,6 +28,7 @@ $count3= mysqli_num_rows($result3);
 $row3= mysqli_num_rows($result3);
 
 while ($row=mysqli_fetch_row($result)){
+
          if($row[2]==$idnum){ 
            	$msg = "
 	 			  <h1>Rejection email</h1><br>
