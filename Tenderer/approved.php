@@ -93,7 +93,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 	<div class="bod">
 	<center>
+<<<<<<< HEAD
 	<h2 style="color:white;" style="color:white;"> <?php echo $row2[1];?>'s Approved Tenders</h2><br>
+=======
+	<h2 style="color:white;" style="color:white;"> <?php echo $row2[1];?>'s approved tenders</h2><br>
+>>>>>>> e48483276bf7bddfbe04b5f0805fca1076290cb6
 
 	</center>
 
@@ -139,7 +143,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                                     echo "</td>";
                                     echo "<td>";
+<<<<<<< HEAD
                                     echo '<input type="submit" id="btnSub" value="Submit Document" style="padding:5px;cursor:pointer;">';
+=======
+                                         echo "<button><a class='button2' type='submit' href='complete.php?TenderID=".$row['TenderID']."' >SUBMIT</a></button>";
+>>>>>>> e48483276bf7bddfbe04b5f0805fca1076290cb6
                                     echo "</td>";
                                     echo "</form>";
                      echo "</tr>";
