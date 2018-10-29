@@ -59,7 +59,7 @@ $row2=mysqli_fetch_row($result2);
 
 	?>
 	<center>
-	<h2 style="color:white;" style="color:white;"> <?php echo $row[2];?>'s approved tenders</h2><br>
+	<h2 style="color:white;" style="color:white;"> <?php echo $row2[1];?>'s approved tenders</h2><br>
 
 	</center>
 
@@ -105,7 +105,7 @@ $row2=mysqli_fetch_row($result2);
 
                                     echo "</td>";
                                     echo "<td>";
-                                    echo '<input type="submit" id="btnSub" value="Submit tender docs"></button>';
+                                         echo "<button><a class='button2' type='submit' href='complete.php?TenderID=".$row['TenderID']."' >SUBMIT</a></button>";
                                     echo "</td>";
                                     echo "</form>";
                      echo "</tr>";
