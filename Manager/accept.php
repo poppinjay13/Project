@@ -39,7 +39,10 @@ $row3= mysqli_num_rows($result3);
 //if(!($comm==''||$comm==null)){
         while ($row=mysqli_fetch_row($result)){
          if($row[2]==$idnum){ 
-            $msg = $comments;
+            $msg = "
+          <h1>Rejection email</h1><br>
+          <h2>Your Tender Application for <i>$row3[1]</i> has been accepted</h2>
+          <h3>This email is to inform you that your application has been accepted, kindly supply as per the requirements. </h3>";
                   $mail = $row[4];
                   echo "<script>alert($mail);</script>";
                   sendmail($msg,$mail);
