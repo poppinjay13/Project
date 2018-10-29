@@ -2,6 +2,11 @@
 <?php
 session_start();
 include("../config.php");
+if (!isset($_SESSION['UserID'])) {
+		header("location:../index.php");
+		exit;
+}
+
 $tab = 1;
 $count = 0;
 $tab2 = 1;

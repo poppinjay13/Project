@@ -86,17 +86,17 @@ $count3 = mysqli_num_rows($result3);
 	<div class="sidebar">
 		<!--Sidebar with tenderer's tender history-->
 		<div class="sdinfo">
-		<img src="../assets/images/pending.png">
+		<a href='submitted.php?TENDERERID=<?php echo $uid;?>'><img src="../assets/images/pending.png"></a>
 		<h2><?php echo $count1 ?></h2>
 		<h3>Submitted<br>Applications</h3>
 		</div>
 		<div class="sdinfo">
-		<img src="../assets/images/approved.png">
+		<a href='approved.php?TENDERERID=<?php echo $uid;?>'><img src="../assets/images/approved.png"></a>
 		<h2><?php echo $count2 ?></h2>
 		<h3>Approved<br>Tenders</h3>
 		</div>
 		<div class="sdinfo">
-		<img src="../assets/images/complete.png">
+		<a href='successful.php?TENDERERID=<?php echo $uid;?>'><img src="../assets/images/complete.png"></a>
 		<h2><?php echo $count3 ?></h2>
 		<h3>Succesful<br>Tenders</h3>
 		</div>

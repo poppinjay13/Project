@@ -1,6 +1,11 @@
 <?php
 
 session_start();
+if (!isset($_SESSION['UserID'])) {
+    header("location:../index.php");
+    exit;
+}
+
 
 include "../config.php";
 
@@ -107,13 +112,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <input name="password" type="password"/><br/><br/>
 
-      Confrim Password:
+      Confirm Password:
 
                 <input name="repassword" type="password"/><br/><br/>
 
 	</div>
-
-        <button><input type="submit" class="" value="Update Details"/></button><br/><br/>
+<div >
+        <input type="submit" class="btn" value="Update Details"/><br/><br/>
+    </div>
         </form>
     </body>
 </html>
