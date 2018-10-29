@@ -13,9 +13,9 @@ $idnum= $_GET['TendererID'];
 $tenderid = $_SESSION['TenderID'];
 $comments = $_SESSION['Comments'];
 $tab2 = 1;
-$count2 = 0;   
+$count2 = 0;
 $tab = 1;
-$count = 0; 
+$count = 0;
 
 $sqli = "UPDATE applications SET Status='ACCEPTED' WHERE TendererID='$idnum' && TenderID='$tenderid'";
 $result2 = mysqli_query($conn,$sqli);
@@ -38,7 +38,7 @@ $row3= mysqli_num_rows($result3);
 
 //if(!($comm==''||$comm==null)){
         while ($row=mysqli_fetch_row($result)){
-         if($row[2]==$idnum){ 
+         if($row[2]==$idnum){
             $msg = $comments;
                   $mail = $row[4];
                   echo "<script>alert($mail);</script>";
@@ -47,10 +47,10 @@ $row3= mysqli_num_rows($result3);
          }}
 
 if ($conn->query($sqli) === TRUE) {
-    
+
     echo "Record updated successfully";
     header("location:../Manager/viewapplicants.php?TENDERID=". $tenderid ."");
-    
+
 } else {
     echo "Error updating record: " . $conn->error;
      header("location:../Manager/viewapplicants.php?TENDERID=". $tenderid ."");
@@ -59,10 +59,10 @@ if ($conn->query($sqli) === TRUE) {
 <!DOCTYPE html>
 <html>
 <head>
-          
-   
-       
-    
+
+
+
+
   <script src="jquery.js"></script>
 
     <link href="../assets/css/home.css" type="text/css" rel="stylesheet">
@@ -70,7 +70,7 @@ if ($conn->query($sqli) === TRUE) {
     <title>View tender applications</title>
   </head>
   <body >
- 
+
 
   <ul class="navbar">
     <li class="profpic"><img src="../assets/images/user.png"></li>
@@ -83,17 +83,15 @@ if ($conn->query($sqli) === TRUE) {
 
     </div>
   </ul>
-          
+
   <div class="bod">
- 
-
-                         
-        
 
 
-   
+
+
+
+
+
 
 </body>
 </html>
-
-
