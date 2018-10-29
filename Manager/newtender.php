@@ -14,7 +14,7 @@ $depart = $_SESSION['Department'];
 
 
     //Define variables and initialize them with empty variables
-    $Name =  $Department = $Requirements = $Enquiries = $Deadtime = $Deaddate= "";
+    $Name =  $Department = $Requirements = $Enquiries = $Deadtime = $Deaddate= $Status= "";
    
     //Process form data when the form is submitted
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -23,21 +23,23 @@ $depart = $_SESSION['Department'];
         $Requirements = $conn->real_escape_string($_REQUEST['Requirements']);
         $Enquiries = $conn->real_escape_string($_REQUEST['Enquiries']);
         $Deaddate = $conn->real_escape_string($_REQUEST['Deaddate']);
+        $Status = $conn->real_escape_string($_REQUEST['Status']);
     
        
     
             //Prepare an insert statement
-            $sql = "INSERT into tenders(Name,Department,Requirements,Enquiries,Deaddate) VALUES(?, ?, ?, ?, ?)";
+            $sql = "INSERT into tenders(Name,Department,Requirements,Enquiries,Deaddate,Status) VALUES(?, ?, ?, ?, ?,?)";
 
             if ($stmt = $conn->prepare($sql)) {
                 # Bind variables to the prepared statement as parameters
-                $stmt->bind_param("sssss",$param_Name,$param_Department,$param_Requirements,$param_Enquiries,$param_Deaddate);
+                $stmt->bind_param("ssssss",$param_Name,$param_Department,$param_Requirements,$param_Enquiries,$param_Deaddate,$param_Status);
                 #Set the parameters
                 $param_Name = $Name;
                 $param_Department = $Department;
                 $param_Requirements = $Requirements;
                 $param_Enquiries = $Enquiries;
                 $param_Deaddate = $Deaddate;
+                 $param_Status = $Status;
            
 
                 #Attempt to execute the prepared statement
@@ -115,7 +117,7 @@ $depart = $_SESSION['Department'];
                     
                     Deaddate:<br>
                      <input  type="datetime" name="Deaddate" value="" placeholder="" size="35" id="datetime" required><br><br>
-                        
+                        <input  type="hidden" name="Status" value="PENDING" placeholder="" size="35" id="datetime" required><br><br> 
                   
                         <button  type="submit" name="submit" class="cust">submit</button>
                   
