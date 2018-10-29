@@ -95,17 +95,19 @@ $row2=mysqli_fetch_row($result2);
                                     echo "<td >" . $row['TenderID'] . "</td>";
                                     echo "<td>" . $row['TendererID'] . "</td>";
                                   echo "<td>" . $row['Status'] . "</td>";
+
                     
              echo "<form method='post'>";
+
                                 echo "<td>";
                                   
                                         echo '
-  <input type="file" id="upload" name="doc" accept="application/pdf" required/>
+  <input type="file" id="upload" name="doc" accept="application/pdf" />
   <div id="fileupload"></div> ';
 
                                     echo "</td>";
                                     echo "<td>";
-                                    echo '<input type="submit" id="btnSub" value="Submit tender docs"></button>';
+                                    echo "<a href='edittender.php?TenderID=". $row[0] ."'><input type='submit' id='btnSub' value='Submit tender docs'></a>";
                                     echo "</td>";
                                     echo "</form>";
                      echo "</tr>";

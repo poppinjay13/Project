@@ -37,17 +37,7 @@ $row2=mysqli_fetch_row($result2);
           
     <script src="jquery.js"></script>
        
-      <script>
-function myFunction() {
-    var txt;
-    var comments = prompt("Enter comments to tenderer:", "comments");
-    if (!(comments == null || comments == "")) {
-  
-        txt = comments;
-    }
-    document.getElementById("demo").innerHTML = txt;
-}
-</script>
+   
 
 		<link href="../assets/css/home.css" type="text/css" rel="stylesheet">
 		<link href="../assets/images/fav.png" rel="icon" type="image/x-icon" />
@@ -119,9 +109,9 @@ function myFunction() {
                                     echo "</td>";
                      echo "</tr>";
                      echo "<tr></tr><tr></tr><tr></tr><tr><td ></td><td ></td></tr><tr><td ></td><td ></td><td>";
-                       
-                  
-                     echo "<a type='submit' onclick='myFunction()' href='accept.php?TendererID=".$row['TendererID']."' ><img src='../assets/images/accept.jpg'></a>";
+                       echo "<textarea cols='20' rows='10' placeholder='comments to tenderer'></textarea>";
+                  echo "<tr></tr><tr></tr><tr></tr><tr><td ></td><td ></td></tr><tr><td ></td><td ></td><td>";
+                     echo "<a type='submit'  href='accept.php?TendererID=".$row['TendererID']."' ><img src='../assets/images/accept.jpg'></a>";
                      
                        echo"</td>";
                        echo "<td>";
