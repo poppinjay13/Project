@@ -24,14 +24,16 @@ $row2=mysqli_fetch_row($result2);
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
   //code for file upload below
-  $filename = $_FILES['doc']['name'];
-  $newname = $row['TenderID']."-".$row['TendererID'].".pdf";
+  if(isset($_FILES['upload'])) {
+    echo "<script>alert('Running.');</script>";
+  $filename = $_FILES["upload"]["name"];
+  $newname = $_POST['TenderID']."-".$_POST['TendererID'].".pdf";
   $target_dir = "../applications/";
   $target_file = $target_dir.$newname;
   $uploadOk = 1;
   $DocType = strtolower(pathinfo($filename,PATHINFO_EXTENSION));
   // Check file size
-  if ($_FILES["doc"]["size"] > 10000000) {
+  if ($_FILES["upload"]["size"] > 10000000) {
     echo "<script>alert('Sorry, your file is too large.');</script>";
     $uploadOk = 0;
   }
@@ -49,17 +51,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       <h1>Request Submission Confirmation</h1><br>
       <h2>Tender Application for <i>$row[1]</i></h2>
       <h3>This email is to inform you that your tender document has been succesfully updated and will be reviewed in due time.</h3>";
-      $mail = $rowt['4'];
-      echo "<script>alert($mail);</script>";
-      sendmail($msg,$mail);
-      $stmt->execute();
-      header("location:home.php");
+      //$mail = $rowt['4'];
+      //echo "<script>alert($mail);</script>";
+      //sendmail($msg,$mail);
+      //header("location:home.php");
     } else {
       echo "<script>alert('Sorry, there was an error uploading your file.');</script>";
     }
   }
 }
-
+}
 ?>
 
 <html>
@@ -93,11 +94,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 	<div class="bod">
 	<center>
-<<<<<<< HEAD
 	<h2 style="color:white;" style="color:white;"> <?php echo $row2[1];?>'s Approved Tenders</h2><br>
-=======
-	<h2 style="color:white;" style="color:white;"> <?php echo $row2[1];?>'s approved tenders</h2><br>
->>>>>>> e48483276bf7bddfbe04b5f0805fca1076290cb6
 
 	</center>
 
@@ -133,21 +130,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                     echo "<td>" . $row['TendererID'] . "</td>";
                                   echo "<td>" . $row['Status'] . "</td>";
 
-             echo "<form method='post'>";
+             echo "<form method='POST'>";
                                 echo "<td>";
-
                                         echo '
-  <label for = "doc" style="cursor:pointer;border:solid white;padding:5px;">Select Document</label>
-  <input type="file" id="upload" name="doc" accept="application/pdf" required style="width:0px;height:0px;"/>
+  <input type = "hidden" name = "TenderID" value = " '.$row["TenderID"].'">
+  <input type = "hidden" name = "TendererID" value = " '.$row["TendererID"].'">
+  <label for = "upload" style="cursor:pointer;border:solid white;padding:5px;">Select Document</label>
+  <input type="file" id="upload" name="upload" accept="application/pdf" required style="width:0px;height:0px;"/>
   <div id="fileupload"></div> ';
 
                                     echo "</td>";
                                     echo "<td>";
-<<<<<<< HEAD
-                                    echo '<input type="submit" id="btnSub" value="Submit Document" style="padding:5px;cursor:pointer;">';
-=======
-                                         echo "<button><a class='button2' type='submit' href='complete.php?TenderID=".$row['TenderID']."' >SUBMIT</a></button>";
->>>>>>> e48483276bf7bddfbe04b5f0805fca1076290cb6
+                                    echo '<input type="submit" id="btnSub" value="Submit Document" //style="padding:5px;cursor:pointer;">';
                                     echo "</td>";
                                     echo "</form>";
                      echo "</tr>";

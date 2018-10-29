@@ -80,14 +80,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 			<center><section>
 				<h5>Create a new account below</h5>
 				<form method="POST">
-					<input type="text" placeholder="Full Name" name="name" value="<?php echo $name ?>"required><br>
-					<input type="text" placeholder="National ID Number (12345600)" name="IDNo" value="<?php echo $id ?>" required><br>
-					<input type="text" placeholder="Phone Number (0712345678)" name="phone" value="<?php echo $num ?>" required><br>
-					<input type="text" placeholder="Email" name="email" value="<?php echo $mail ?>" required><br>
-					<input type="text" placeholder="Physical Address" name="address"  value="<?php echo $add ?>"><br>
-					<input type="text" placeholder="P.O.Box ..." name="pobox" value="<?php echo $box ?>"><br>
-					<input type="password" placeholder="Enter Password" name="password" required><br>
-					<input type="password" placeholder="Re-enter Password" name="passval" required><br>
+					<input type="text" placeholder="Full Name" name="name" style="background-image: url(assets/images/login.png)" value="<?php echo $name ?>"required><br>
+					<input type="text" placeholder="National ID Number (12345600)" name="IDNo" style="background-image: url(assets/images/id.png)" value="<?php echo $id ?>" required><br>
+					<input type="text" placeholder="Phone Number (0712345678)" name="phone" style="background-image: url(assets/images/phone.png)" value="<?php echo $num ?>" required><br>
+					<input type="text" placeholder="Email" name="email" style="background-image: url(assets/images/mail.png)" value="<?php echo $mail ?>" required><br>
+					<input type="text" placeholder="Physical Address" name="address" style="background-image: url(assets/images/locale.bmp)" value="<?php echo $add ?>"><br>
+					<input type="text" placeholder="P.O.Box ..." name="pobox" style="background-image: url(assets/images/pobox.png)" value="<?php echo $box ?>"><br>
+					<input type="password" placeholder="Enter Password" name="password" style="background-image: url(assets/images/password.png)" required><br>
+					<input type="password" placeholder="Re-enter Password" name="passval" style="background-image: url(assets/images/password.png)" required><br>
 					<input type="submit" class="button" value="SIGN UP">
 				</form>
 				<?php
