@@ -130,3 +130,10 @@ body{
     float:;
 
 }
+.dynabod{
+	background-color: #FFED05;
+	width: 770px;
+	float:right;
+	margin: 20px 300px 10px 50px;
+	border-radius: 60px;
+}

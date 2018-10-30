@@ -85,21 +85,27 @@ $count3 = mysqli_num_rows($result3);
 		</ul>
 	<div class="sidebar">
 		<!--Sidebar with tenderer's tender history-->
-		<div class="sdinfo">
-		<a href='submitted.php?TENDERERID=<?php echo $uid;?>'><img src="../assets/images/pending.png"></a>
-		<h2><?php echo $count1 ?></h2>
-		<h3>Submitted<br>Applications</h3>
+		<a href='submitted.php'>
+			<div class="sdinfo">
+			<img src="../assets/images/pending.png">
+			<h2><?php echo $count1 ?></h2>
+			<h3>Submitted<br>Applications</h3>
+			</div>
+		</a>
+		<a href='approved.php'>
+			<div class="sdinfo">
+			<img src="../assets/images/approved.png">
+			<h2><?php echo $count2 ?></h2>
+			<h3>Approved<br>Tenders</h3>
+			</div>
+		</a>
+		<a href='successful.php'>
+			<div class="sdinfo">
+			<img src="../assets/images/complete.png">
+			<h2><?php echo $count3 ?></h2>
+			<h3>Succesful<br>Tenders</h3>
 		</div>
-		<div class="sdinfo">
-		<a href='approved.php?TENDERERID=<?php echo $uid;?>'><img src="../assets/images/approved.png"></a>
-		<h2><?php echo $count2 ?></h2>
-		<h3>Approved<br>Tenders</h3>
-		</div>
-		<div class="sdinfo">
-		<a href='successful.php?TENDERERID=<?php echo $uid;?>'><img src="../assets/images/complete.png"></a>
-		<h2><?php echo $count3 ?></h2>
-		<h3>Succesful<br>Tenders</h3>
-		</div>
+		</a>
 	</div>
 	<div class="uhead">
 		<?php
@@ -135,7 +141,7 @@ $count3 = mysqli_num_rows($result3);
 			<input type="password" name="password"><br><br>
 			Re-enter Password:
 			<input type="password" name="repassword"><br><br>
-			<input type="checkbox" name="confirm" style="margin:0px; position:static; width:13px; margin-left:80px;" required>
+			<input type="checkbox" name="confirm" style="margin:0px; position:static; width:13px; margin-left:80px;" checked required>
 			I confirm that information entered above is true to the best of my knowledge<br><br>
 			<input type="submit" value="SUBMIT DETAILS" id="button">
 		</form>
