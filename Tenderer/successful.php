@@ -77,7 +77,7 @@ $row2=mysqli_fetch_row($result2);
                                     echo "<th>TenderID</th>";
                                     echo "<th>IDNo</th>";
                             echo "<th>Status</th>";
-                            echo "<th>Add tender doc</th>";
+                          
 
 
 
