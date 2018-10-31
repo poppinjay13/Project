@@ -17,7 +17,7 @@ $count = mysqli_num_rows($result);
 		<link href="../assets/css/home.css" type="text/css" rel="stylesheet">
 		<link href="../assets/css/alert.css" type="text/css" rel="stylesheet">
 		<link href="../assets/images/fav.png" rel="icon" type="image/x-icon" />
-		<title>Tenderer's Module</title>
+		<title>Tendererama | Home</title>
 	</head>
 	<body>
 	<ul class="navbar">

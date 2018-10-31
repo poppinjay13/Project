@@ -13,7 +13,7 @@ $uid = $_SESSION['AdminID'];
 	<link href="../assets/css/alert.css" type="text/css" rel="stylesheet"/>
   <link href="../assets/images/fav.png" rel="icon" type="image/x-icon" />
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <title>Admin Module</title>
+  <title>Tenderama | Users</title>
 </head>
 <body>
    <ul class="navbar">

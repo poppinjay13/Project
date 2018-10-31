@@ -41,7 +41,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   <link href="../assets/css/profile.css" rel="stylesheet"/>
 	<link href="../assets/css/alert.css" type="text/css" rel="stylesheet">
   <link href="../assets/images/fav.png" rel="icon" type="image/x-icon" />
-  <title>Admin Module</title>
+  <title>Tenderama | Profile</title>
 </head>
 <body>
   <ul class="navbar"><!--vertical navigation bar-->

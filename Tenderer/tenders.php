@@ -21,7 +21,7 @@ $business = $pos = $price = $completion = $amnt = $location = "";//initialise va
 	<head>
 		<link href="../assets/css/tender.css" type="text/css" rel="stylesheet">
 		<link href="../assets/images/fav.png" rel="icon" type="image/x-icon" />
-		<title>Tenderer's Module</title>
+		<title>Tendererama | Tender</title>
 	</head>
 	<body>
 	<ul class="navbar">

@@ -36,6 +36,7 @@
 <head>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js">
 </script>
+<title>Tenderama | Delete</head>
 </head>
 <body>
 <script>
