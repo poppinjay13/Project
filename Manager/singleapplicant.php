@@ -42,6 +42,11 @@ $row2=mysqli_fetch_row($result2);
 		<link href="../assets/css/home.css" type="text/css" rel="stylesheet">
 		<link href="../assets/images/fav.png" rel="icon" type="image/x-icon" />
 		<title>View tender applications</title>
+    <style>
+    th,td{
+      text-align: center;
+    }
+    </style>
 	</head>
 	<body>
 
@@ -76,7 +81,7 @@ $row2=mysqli_fetch_row($result2);
                      if($result = $conn->query($sql)){
                         if($result->num_rows > 0){
 
-                       echo "<table>";
+                       echo "<table style='width:75%;'>";
                             echo "<thead>";
                                 echo "<tr>";
                                     echo "<th>TenderID</th>";
@@ -104,35 +109,41 @@ $row2=mysqli_fetch_row($result2);
 
                                 echo "<td>";
 
-                                         echo "<a href='download.php?Filename=".$row['Docs']."'>download</a> ";
+                                         echo "<a href='download.php?Filename=".$row['Docs']."'>DOWNLOAD</a> ";
 
                                     echo "</td>";
                      echo "</tr>";
-                     echo "<tr></tr><tr></tr><tr></tr><tr><td ></td><td ></td></tr><tr><td ></td><td ></td><td>";
-
-
-                     echo "<a type='submit' href='accept.php?TendererID=".$row['TendererID']."' ><img src='../assets/images/accept.jpg'></a>";
-
-                       echo"</td>";
-                       echo "<td>";
-
-                       echo "<a type='submit' href='rejected.php?TendererID=".$row['TendererID']."' ><img src='../assets/images/reject.png'></a>";
-
-                       echo"</td>";echo "</tr>";echo "<tr ";
-                      echo "</tr><tr </tr><tr></tr><tr><td ></td></td></tr><tr><td ></td><td ></td><td>";
-
-
-                     echo "ACCEPT";
-
-                       echo"</td>";
-                       echo "<td>";
-
-                       echo "REJECT";
-
-                       echo"</td>";
-                        echo "</tr>";
-
-                            echo "</form>";
+                     ?>
+<tr>
+  <td colspan = "5">
+    <BR>
+   <h3>Enter Your Comments Below:</h3>
+   <textarea name="comments" style="width:100%;height:300px;" placeholder="This application was rejected/accepted because...">
+   </textarea>
+  </td>
+</tr>
+<tr>
+  <td colspan = "3">
+    <a type='submit'<?php echo "href='accept.php?TendererID=".$row['TendererID']."'"?>>
+      <img src='../assets/images/accept.jpg'>
+    </a>
+  </td>
+  <td>
+    <a type='submit'<?php echo "href='rejected.php?TendererID=".$row['TendererID']."'"?>>
+      <img src='../assets/images/reject.png'>
+    </a>
+  </td>
+</tr>
+<tr>
+  <td colspan="3">
+    ACCEPT
+  </td>
+  <td>
+    REJECT
+  </td>
+</tr>
+</form>
+<?php
                              if($row[10]==''||$row[10]==null){
                          $msg = "
           <h1>Tender Application Received </h1><br>
