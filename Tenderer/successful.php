@@ -41,84 +41,6 @@ $row2=mysqli_fetch_row($result2);
 		<title>Tenderama | Succesful</title>
 	</head>
 	<body>
-
-<<<<<<< HEAD
-	   <ul class="navbar">
-            <li class="profpic">
-            <object data="../assets/images/pic/<?php echo $uid?>.jpg" type="image/png">
-          <img src="../assets/images/pic/profile.jpg" alt="profile">
-        </object>
-            </li>
-            <li><a href="home.php"><span>Home</span></a></li>
-            <li><a href="#" class="active"><span>Portfolio</span></a></li>
-            <div class="top_right">
-                <li><a href="../logout.php" title="logout"><img src="../assets/images/logout.png"></a></li>
-            </div>
-        </ul>
-
-	<div class="bod">
-	<?php
-
-	?>
-	<center>
-	   <h2 style="color:white;" style="color:white;"> <?php echo $row2[2];?>'s successful tenders</h2><br>
-
-	</center>
-
-<div class="tendernew"><br>
-<center><h3>APPROVED TENDERS</h3>
-
-
-			 <?php
-
-
-                     if($result = $conn->query($sql)){
-                        if($result->num_rows > 0){
-
-                       echo "<table>";
-                            echo "<thead>";
-                                echo "<tr>";
-                                    echo "<th>TenderID</th>";
-                                    echo "<th>IDNo</th>";
-                            echo "<th>Status</th>";
-                            echo "<th>Add tender doc</th>";
-
-
-
-                                echo "</tr>";
-                            echo "</thead>";
-                            echo "<tbody>";
-
-                   while($row= $result->fetch_array()){
-
-
-
-                                echo "<tr>";
-                                    echo "<td >" . $row['TenderID'] . "</td>";
-                                    echo "<td>" . $row['TendererID'] . "</td>";
-                                  echo "<td>" . $row['Status'] . "</td>";
-
-
-
-                     echo "</tr>";
-
-                                }
-                            echo "</tbody>";
-                        echo "</table>";
-                        echo $row[10];
-
-                        // Free result set
-                        $result->free();
-                         }else{
-                        echo "<p class='lead'><em>No successful tenders  yet.</em></p>";
-                        }
-                         }
-
-                        // Close connection
-                        $conn->close();
-                        ?>
-
-=======
 	 <ul class="navbar">
       <li class="profpic">
       <object data="../assets/images/pic/<?php echo $uid?>.jpg" type="image/png">
@@ -173,7 +95,6 @@ if($result = $conn->query($sql)){
 // Close connection
 $conn->close();
 ?>
->>>>>>> a16f631b834cf3535634473e4975856d8e673b14
 </center>
 </div>
 </div>
