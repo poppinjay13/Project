@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-if (!isset($_SESSION['UserID'])) {
+if (!isset($_SESSION['ManID'])) {
     header("location:../index.php");
     exit;
 }
@@ -9,7 +9,7 @@ if (!isset($_SESSION['UserID'])) {
 
 include "../config.php";
 
-$uid = $_SESSION['UserID'];//insert ID from sessions
+$uid = $_SESSION['ManID'];//insert ID from sessions
 
 $sql = "SELECT * FROM heads where HeadID = $uid";
 

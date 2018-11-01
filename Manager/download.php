@@ -1,12 +1,12 @@
 <?php
 session_start();
-if (!isset($_SESSION['UserID'])) {
+if (!isset($_SESSION['ManID'])) {
     header("location:../index.php");
     exit;
 }
 
     $name= $_GET['Filename'];
- 
+
 
    header('Content-Description: File Transfer');
     header('Content-Type: application/pdf');
@@ -18,7 +18,7 @@ if (!isset($_SESSION['UserID'])) {
     header('Content-Length: ' . filesize($name));
     ob_clean();
     flush();
-    readfile("C:\xampp\htdocs\Tender\Project\applications/".$name); 
+    readfile("C:\xampp\htdocs\Tender\Project\applications/".$name);
     exit;
 
            $msg = "

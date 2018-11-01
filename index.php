@@ -20,7 +20,7 @@
                header("location: Tenderer/home.php");
              }
              else if($row[1]=='department manager'){
-               $_SESSION['UserID'] = $row[0];
+               $_SESSION['ManID'] = $row[0];
                header("location: Manager/manager.php");
              }else if($row[1]=='administrator'){
                $_SESSION['AdminID'] = $row[0];

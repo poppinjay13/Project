@@ -2,7 +2,7 @@
 session_start();
 include("../config.php");
 require("../mail.php");
-if (!isset($_SESSION['UserID'])) {
+if (!isset($_SESSION['ManID'])) {
 		header("location:../index.php");
 		exit;
 }
@@ -11,7 +11,7 @@ $tenderid = $_SESSION['TenderID'];
 echo $tenderid;
 echo $idnum;
 $tab2 = 1;
-$count2 = 0;   
+$count2 = 0;
 $sqli = "UPDATE applications SET Status='REJECTED' WHERE TendererID='$idnum' && TenderID='$tenderid'";
 $result2 = mysqli_query($conn,$sqli);
 //$count2= mysqli_num_rows($result2);
@@ -29,7 +29,7 @@ $row3= mysqli_num_rows($result3);
 
 while ($row=mysqli_fetch_row($result)){
 
-         if($row[2]==$idnum){ 
+         if($row[2]==$idnum){
            	$msg = "
 	 			  <h1>Rejection email</h1><br>
 	 			  <h2>Your Tender Application for <i>$row3[1]</i> has been rejected</h2>
@@ -39,7 +39,7 @@ while ($row=mysqli_fetch_row($result)){
 				  sendmail($msg,$mail);
          echo $row[3];
          }}
-                 
+
 if ($conn->query($sqli) === TRUE) {
     echo "Record updated successfully";
     header("location:../Manager/viewapplicants.php?TENDERID=". $tenderid ."");

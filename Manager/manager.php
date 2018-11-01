@@ -2,7 +2,7 @@
 <?php
 session_start();
 include("../config.php");
-if (!isset($_SESSION['UserID'])) {
+if (!isset($_SESSION['ManID'])) {
 		header("location:../index.php");
 		exit;
 }
@@ -12,14 +12,14 @@ $count = 0;
 $tab2 = 1;
 $count2 = 0;
 
-$uid = $_SESSION['UserID'];
+$uid = $_SESSION['ManID'];
 $sqli = "SELECT * FROM heads where HeadID = $uid";
 $result2 = mysqli_query($conn,$sqli);
 $count2 = mysqli_num_rows($result2);
 $row2=mysqli_fetch_row($result2);
 $_SESSION['Department'] = $row2[3];
         $depart = $_SESSION['Department'];
- 
+
 $sql = "SELECT * FROM tenders";
 $result = mysqli_query($conn,$sql);
 $count = mysqli_num_rows($result);
@@ -41,7 +41,7 @@ $count = mysqli_num_rows($result);
 		<li><a href="#" class="active"><span>Home</span></a></li>
 
 		<li><a href="details.php"><span>My Details</span></a></li>
-        
+
         <li><a href="newtender.php"><span>+ Float new tender</span></a></li>
 
     <div class="top_right">
@@ -51,7 +51,7 @@ $count = mysqli_num_rows($result);
 	</div>
 	</ul>
 
-	
+
 	<div class="bod">
 	<?php
 		if($count <= 0) {
@@ -70,8 +70,8 @@ $count = mysqli_num_rows($result);
 
         while ($row=mysqli_fetch_row($result)){
          if($row[2]==$depart){
-           
-              
+
+
 	?>
 	<div class="tender">
 	<div class="text">
@@ -84,22 +84,22 @@ $count = mysqli_num_rows($result);
    <div align="center">
         <?php
             echo "<a class='button' href='viewapplicants.php?TENDERID=". $row[0] ."' title='ViewApplicants'  >View Applicants</a>";//on clicking this button you can view applicants of the specific tender selected
-          
+
         ?><br>
     <?php
-            echo "<a class='button' href='edittender.php?TenderID=". $row[0] ."' title='ViewApplicants' >Edit tender</a>";// this button allows you 
-          
+            echo "<a class='button' href='edittender.php?TenderID=". $row[0] ."' title='ViewApplicants' >Edit tender</a>";// this button allows you
+
         ?>
     </div>
 	</div>
 	</div>
 	<?php
 			$tab++;
-		
+
             }
-            
+
 	}
-    
+
         }
 	?>
        <!-- <button class="floatnew"><a href="newtender.php" style="text-decoration:none"> <h2>+FLOAT TENDER</h2></a>
