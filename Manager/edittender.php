@@ -2,7 +2,7 @@
 
 session_start();
 include("../config.php");
-if (!isset($_SESSION['UserID'])) {
+if (!isset($_SESSION['ManID'])) {
         header("location:../index.php");
         exit;
 }
@@ -15,7 +15,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET") {
   $row = mysqli_fetch_row($result);
 }else{
   $_SESSION['alert']="Could not display tender details at this time. Please try again later!";
- 
+
 }
 if($_SERVER["REQUEST_METHOD"] == "POST"){
   $tid = $_GET['TenderID'];
@@ -47,10 +47,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       $stmt->close();
 }
 ?>
- 
+
 <html>
     <head>
-        
+
         <link href="../assets/css/home.css" type="text/css" rel="stylesheet">
         <link href="../assets/images/fav.png" rel="icon" type="image/x-icon" />
               <link rel="stylesheet" href="../assets/js/jquery.datetimepicker.min.css">
@@ -60,9 +60,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $(function(){
                 $("#datetime").datetimepicker();
         });
-            
+
         </script>
-        
+
         <title>Department manager's Module</title>
     </head>
     <body>
@@ -78,13 +78,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     <div class="bod">
     <?php
-        
+
     ?>
     <center>
     <h2 style="color:white;" style="color:white;">Edit tender details</h2><br>
 
     </center>
-    
+
     <div class="tendernew">
     <div class="text">
          <?php
@@ -95,8 +95,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         ?>
     <form method="POST">
       <h2>Updating tender details</h2>
- 
-     
+
+
       <label for = "Name">Name:</label><br/>
       <input name="Name" type="text" value="<?php echo $row['1'] ?>"/><br/><br/>
       <label for = "Department">Department:</label><br/>
@@ -114,9 +114,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <div>
     </div>
     </div>
-    
+
 
     </body>
 </html>
-
-

@@ -12,6 +12,7 @@ $uid = $_SESSION['AdminID'];
   <link href="../assets/css/users.css" rel="stylesheet"/>
 	<link href="../assets/css/alert.css" type="text/css" rel="stylesheet"/>
   <link href="../assets/images/fav.png" rel="icon" type="image/x-icon" />
+	<script src="../assets/js/notify.js" type="text/javascript"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <title>Tenderama | Users</title>
 </head>
@@ -26,8 +27,10 @@ $uid = $_SESSION['AdminID'];
   <div class="load-data">
 		<?php
 	    if(isset($_SESSION['alert'])){
-	      echo "<div class='alert'>$_SESSION[alert]</div>";
-				unset($_SESSION['alert']);
+	    ?>
+	    <script>notifyMe("<?php echo $_SESSION['alert']?>");</script>
+	    <?php
+	      unset($_SESSION['alert']);
 	    }
 	    ?>
     <!--TABLE FOR DEPARTMENT MANAGERS-->

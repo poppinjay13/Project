@@ -1,11 +1,11 @@
 
-<?php  
+<?php
 #Initialize the session
     session_start();
     #If the session is not set it will redirect you to the login page
-    if (!isset($_SESSION['UserID']) && !isset($_SESSION['Password']) || empty($_SESSION['UserID'])) {
+    if (!isset($_SESSION['ManID']) {
         # code...
-        header("location:../Manager/manager.php");
+        header("location:../index.php");
             exit;
     }
     //Include the connection file
@@ -15,7 +15,7 @@ $depart = $_SESSION['Department'];
 
     //Define variables and initialize them with empty variables
     $Name =  $Department = $Requirements = $Enquiries = $Deadtime = $Deaddate= $Status= "";
-   
+
     //Process form data when the form is submitted
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $Name = $conn->real_escape_string($_REQUEST['Name']);
@@ -24,9 +24,9 @@ $depart = $_SESSION['Department'];
         $Enquiries = $conn->real_escape_string($_REQUEST['Enquiries']);
         $Deaddate = $conn->real_escape_string($_REQUEST['Deaddate']);
         $Status = $conn->real_escape_string($_REQUEST['Status']);
-    
-       
-    
+
+
+
             //Prepare an insert statement
             $sql = "INSERT into tenders(Name,Department,Requirements,Enquiries,Deaddate,Status) VALUES(?, ?, ?, ?, ?,?)";
 
@@ -40,7 +40,7 @@ $depart = $_SESSION['Department'];
                 $param_Enquiries = $Enquiries;
                 $param_Deaddate = $Deaddate;
                  $param_Status = $Status;
-           
+
 
                 #Attempt to execute the prepared statement
                 if ($stmt->execute()){
@@ -52,7 +52,7 @@ $depart = $_SESSION['Department'];
             }
             #Close statement
             $stmt->close();
-        
+
         #Close connection
         $mysqli->close();
     }
@@ -66,9 +66,9 @@ $depart = $_SESSION['Department'];
         $(function(){
                 $("#datetime").datetimepicker();
         });
-            
+
         </script>
-        
+
 		<link href="../assets/css/home.css" type="text/css" rel="stylesheet">
 		<link href="../assets/images/fav.png" rel="icon" type="image/x-icon" />
 		<title>Floating new tender</title>
@@ -92,20 +92,20 @@ $depart = $_SESSION['Department'];
 	</ul>
         <div class="bod">
 	<?php
-		
+
 	?>
 	<center>
 	<h2 style="color:white;" style="color:white;">You are now floating a new tender</h2><br>
 
 	</center>
-	
+
 <div class="tendernew" ><br>
 <center><h3>ADD NEW TENDER</h3>
      <div id="form">
                 <form action="" method="post" accept-charset="utf-8">
                     Name:<br>
                         <input  type="text" name="Name" value="" placeholder="enter tender name" size="35" required><br><br>
-    
+
                      Department:<br>
                         <input  type="text" name="Department" value="<?php echo $depart; ?>" placeholder="" size="35" required readonly><br><br>
                     Requirements:<br>
@@ -113,18 +113,18 @@ $depart = $_SESSION['Department'];
                         <br><br>
                     Enquiries:<br>
                         <input  type="text" name="Enquiries" value="" placeholder="0712345678" size="35" required><br><br>
-                  
-                    
+
+
                     Deaddate:<br>
                      <input  type="datetime" name="Deaddate" value="" placeholder="" size="35" id="datetime" required><br><br>
-                        <input  type="hidden" name="Status" value="PENDING" placeholder="" size="35" id="datetime" required><br><br> 
-                  
+                        <input  type="hidden" name="Status" value="PENDING" placeholder="" size="35" id="datetime" required><br><br>
+
                         <button  type="submit" name="submit" class="cust">submit</button>
-                  
+
                 </form>
             </div>
 </center>
 </div>
-           
+
 	</body>
 </html>

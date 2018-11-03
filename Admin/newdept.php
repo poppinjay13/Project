@@ -51,6 +51,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 		<link href="../assets/css/adminnew.css" type="text/css" rel="stylesheet">
 		<link href="../assets/css/alert.css" type="text/css" rel="stylesheet">
 		<link href="../assets/images/fav.png" rel="icon" type="image/x-icon" />
+		<script src="../assets/js/notify.js" type="text/javascript"></script>
 		<title>Tenderama | New Manager</title>
 	</head>
 	<body>
@@ -65,8 +66,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 		<div class="data">
 			<?php
 		    if(isset($_SESSION['alert'])){
-		      echo "<div class='alert'>$_SESSION[alert]</div>";
-					unset($_SESSION['alert']);
+		    ?>
+		    <script>notifyMe("<?php echo $_SESSION['alert']?>");</script>
+		    <?php
+		      unset($_SESSION['alert']);
 		    }
 		    ?>
 			<form method="post" action="#">

@@ -1,7 +1,7 @@
 <?php
 session_start();
 include("../config.php");
-if (!isset($_SESSION['UserID'])) {
+if (!isset($_SESSION['ManID'])) {
     header("location:../index.php");
     exit;
 }
