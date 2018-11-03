@@ -67,7 +67,7 @@ $row2=mysqli_fetch_row($result2);
 
 	?>
 	<center>
-	<h2 style="color:white;" style="color:white;"> <?php echo $row[2];?> </h2><br>
+	<h2 style="color:white;" style="color:white;">Single applicant</h2><br>
 
 	</center>
 
@@ -109,10 +109,11 @@ $row2=mysqli_fetch_row($result2);
 
                                 echo "<td>";
 
-                                         echo "<a href='download.php?Filename=".$row['Docs']."'>DOWNLOAD</a> ";
+                                         echo '<a href = "../applications/'.$row['Docs'].'">View Document</a>';
 
                                     echo "</td>";
                      echo "</tr>";
+                      if($row['Status']==''||$row['Status']==null){
                      ?>
 <tr>
   <td colspan = "5">
@@ -142,8 +143,30 @@ $row2=mysqli_fetch_row($result2);
     REJECT
   </td>
 </tr>
+
 </form>
 <?php
+}
+else if($row['Status']=='ACCEPTED')
+{
+  ?>
+  <tr></tr>
+  <tr></tr>
+  <tr></tr>
+  <tr>
+<td></td>
+<td></td>
+
+    <td colspan="3">
+        <a class='button2' type='submit'<?php echo "href='finish.php?TendererID=".$row['TendererID']."'"?>>COMPLETE
+    </a>
+  </td>
+    </tr>
+
+
+<?php
+}
+
                              if($row[10]==''||$row[10]==null){
                          $msg = "
           <h1>Tender Application Received </h1><br>

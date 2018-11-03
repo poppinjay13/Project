@@ -102,6 +102,15 @@ body{
 	border-radius: 60px;
 	cursor: pointer;
 }
+.tend{
+	 background-color: #FFED05;
+	width: 770px;
+	height: 250px;
+	float:right;
+	margin: 20px 300px 10px 50px;
+	border-radius: 60px;
+	cursor: pointer;
+}
 .button{
 	 display: block;
     width: 85px;
