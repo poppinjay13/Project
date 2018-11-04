@@ -1,19 +1,18 @@
 <?php
 session_start();
 include("../config.php");
+//you have to include config.php tp connect to database
 if (!isset($_SESSION['ManID'])) {
     header("location:../index.php");
     exit;
 }
+//mail.php is required to send mails 
 require("../mail.php");
 $Tenderid = $_SESSION['TenderID'];
 $Tendererid= $_GET['Tendererid'];
 $depart = $_SESSION['Department'];
-$comm='<p id="demo"></p>';
-$_SESSION['Comments'] = $comm;
-        $comments = $_SESSION['Comments'];
-//echo $comm;
-//$Tenderid= $_GET['TENDERID'];
+
+
 $tab = 1;
 $count = 0;
 $sql = "SELECT * FROM applications where TendererID=$Tendererid AND TenderID=$Tenderid ";

@@ -1,6 +1,7 @@
 
 <?php
 session_start();
+//you have to connect to database by including config.php
 include("../config.php");
 if (!isset($_SESSION['ManID'])) {
 		header("location:../index.php");
@@ -87,7 +88,7 @@ $count = mysqli_num_rows($result);
 
         ?><br>
     <?php
-            echo "<a class='button' href='edittender.php?TenderID=". $row[0] ."' title='ViewApplicants' >Edit tender</a>";// this button allows you
+            echo "<a class='button' href='edittender.php?TenderID=". $row[0] ."' title='Edittenders' >Edit tender</a>";// this button allows you
 
         ?>
     </div>

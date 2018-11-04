@@ -1,11 +1,17 @@
+
 <?php
 session_start();
+//you have to include the config.php so as to connect to database
 include("../config.php");
+//mail.php is required to send mails 
 require("../mail.php");
+//if session is not present then the tendering process is closed.
 if (!isset($_SESSION['ManID'])) {
-		header("location:../index.php");
-		exit;
+    header("location:../index.php");
+    exit;
 }
+
+
 $idnum= $_GET['TendererID'];
 $tenderid = $_SESSION['TenderID'];
 echo $tenderid;

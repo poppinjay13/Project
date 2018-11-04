@@ -1,8 +1,11 @@
 
 <?php
 session_start();
+//you have to include the config.php so as to connect to database
 include("../config.php");
+//mail.php is required to send mails 
 require("../mail.php");
+//if session is not present then the tendering process is closed.
 if (!isset($_SESSION['ManID'])) {
     header("location:../index.php");
     exit;
@@ -24,8 +27,7 @@ $msqli = "UPDATE tenders SET Status='APPROVED' WHERE TenderID='$tenderid'";
 $result4 = mysqli_query($conn,$msqli);
 //the status of the tender on the tender table will be set to approved.
 
-//$count2= mysqli_num_rows($result2);
-//$row2= mysqli_num_rows($result2);
+
 $sql = "SELECT * FROM tenderers";
 $result = mysqli_query($conn,$sql);
 $count= mysqli_num_rows($result);
@@ -36,7 +38,6 @@ $result3 = mysqli_query($conn,$sql);
 $count3= mysqli_num_rows($result3);
 $row3= mysqli_num_rows($result3);
 
-//if(!($comm==''||$comm==null)){
         while ($row=mysqli_fetch_row($result)){
          if($row[2]==$idnum){
             $msg ="
