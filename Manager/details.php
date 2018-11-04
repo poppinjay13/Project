@@ -17,7 +17,7 @@ $result = mysqli_query($conn,$sql);
 
 $row=mysqli_fetch_row($result);
 
-$stmt = $conn->prepare("UPDATE heads SET Email = ?, Phone = ? WHERE HeadID = $uid");//update details in department manager table
+$stmt = $conn->prepare("UPDATE heads SET Email = ?, Phone_Num = ? WHERE HeadID = $uid");//update details in department manager table
 
 $logmail = $conn->prepare("UPDATE login SET Email = ? WHERE Idnum = $uid");//update email in login table
 
