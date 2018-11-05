@@ -1,4 +1,5 @@
 <?php
+//This file contains the specific database configuration information. Edit as per requirements
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');

@@ -1,20 +1,20 @@
 <?php
    session_start();
-   require("config.php");
+   require("config.php");//load required documents
    require("valid.php");
    $error = "null";
-   $myemail = $mypassword = "";
+   $myemail = $mypassword = "";//initialise variables
    if($_SERVER["REQUEST_METHOD"] == "POST") {
-      $myemail = mysqli_real_escape_string($conn,$_POST['email']);
+      $myemail = mysqli_real_escape_string($conn,$_POST['email']);//escape user input
       $mypassword = mysqli_real_escape_string($conn,$_POST['password']);
-      if(!validemail($myemail)){
+      if(!validemail($myemail)){//validate email entry
         $error = "That email address looks incorrect. Please recheck it.";
       }else{
       $sql = "SELECT * FROM login WHERE Email = '$myemail' and Password = '$mypassword'";
-      $result = mysqli_query($conn,$sql);
+      $result = mysqli_query($conn,$sql);//
       $count = mysqli_num_rows($result);
       if($count == 1) {
-        		 $row=mysqli_fetch_row($result);
+        		 $row=mysqli_fetch_row($result);//set sessions as per user type
              if($row[1]=='tenderer'){
                $_SESSION['UserID'] = $row[0];
                header("location: Tenderer/home.php");
@@ -52,7 +52,7 @@
 					at Strathmore University.
 				</h3>
 				<h4>Not yet tendering with us? <a href="signup.php">Click here.</a></h4>
-        <h4><a href="mailto:tenderama254@gmail.com?Subject=Authentication%20Error" target="_top">Having trouble logging in?</a></h4>
+        <h4><a href="mailto:tenderama254@gmail.com?Subject=Authentication%20Error" target="_top">Having trouble logging in?</a></h4><!--Contact administrator-->
 			</section>
 		</div>
 		<div class="login_box">

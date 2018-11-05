@@ -4,10 +4,10 @@ require("config.php");
 require("valid.php");
 require("mail.php");
 $error = "null";
-$status = "tenderer";
-$name=$id=$num=$mail=$add=$box="";
+$status = "tenderer";//set status of user signing up to default
+$name=$id=$num=$mail=$add=$box="";//initialise variables
 $stmt = $conn->prepare("INSERT INTO tenderers (Name, IDNo, Phone, Email, Address, POBox) VALUES (?,?,?,?,?,?)");
-$stmt->bind_param("ssssss",$name,$id,$num,$mail,$add,$box);
+$stmt->bind_param("ssssss",$name,$id,$num,$mail,$add,$box);//use prepared statements and bind parameters
 $stmt2 = $conn->prepare("INSERT INTO login (Idnum, Status, Email, Password) VALUES (?,?,?,?)");
 $stmt2->bind_param("ssss",$id,$status,$mail,$password);
 if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -20,33 +20,33 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	   $box = mysqli_real_escape_string($conn,$_POST['pobox']);
 	   $password = mysqli_real_escape_string($conn,$_POST['password']);
 	   $password2 = mysqli_real_escape_string($conn,$_POST['passval']);
-	   if ($password != $password2) {
+	   if ($password != $password2) {//if passwords are different
 		   $error = "These passwords don't seem to match. Please review them.";
 	   }else{
-			if(!validname($name)){
+			if(!validname($name)){//the name should only contain letters and whitespace
 				$error = "That name looks incorrect. Please review it.";
-			}else if(!validphone($num)){
+			}else if(!validphone($num)){//the number length should be 10 and no characters present
 				$error = "That phone number doesn't seem correct. Please review it.";
-			}else if(!validemail($mail)){
+			}else if(!validemail($mail)){//email validation
 				$error = "That email address seems incorrect. Please review it.";
-			}else if(!validpassword($password)){
+			}else if(!validpassword($password)){//password complexity as per set rules in valid.php
 				$error = "Unfortunately your password is too simple. Please make it harder.";
 			}else{
-	   $sql = "SELECT * FROM tenderers WHERE IDNo = '$id' or Email = '$mail'";
+	   $sql = "SELECT * FROM tenderers WHERE IDNo = '$id' or Email = '$mail'";//check if an account already exists
 	   $result = mysqli_query($conn,$sql);
 	   $count = mysqli_num_rows($result);
 	   if($count > 0) {
 		   $error = "It seems like you already have an account with that email or id number. Please login.";
 	   }else{
-			 $stmt->execute();
+			 $stmt->execute();//execute prepared statements
 			 $stmt2->execute();
-		   $_SESSION['UserID'] = $id;
+		   $_SESSION['UserID'] = $id;//set user session and redirect to homepage
 		   header("location: Tenderer/home.php");
 			 $msg = "
 			 <h1>Account creation confirmation</h1><br>
 			 <h2>Welcome to Tenderama Online Tendering System <b><i>$name</i></b></h2>
 			 <h3>This email confirms that you have created a new account and are ready to start tendering with us.</h3>";
-			 sendmail($msg,$mail);
+			 sendmail($msg,$mail);//send email
 	   }
 		}
 	}

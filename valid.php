@@ -1,4 +1,5 @@
 <?php
+//This document is required for validation purposes within the system
 //email validation
 function validemail($email){
   if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {

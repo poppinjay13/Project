@@ -1,5 +1,5 @@
 <?php
-session_start();
+session_start();//start session and load required files
 include("../config.php");
 if (!isset($_SESSION['UserID'])) {
 		header("location:../index.php");
@@ -8,7 +8,7 @@ if (!isset($_SESSION['UserID'])) {
 $uid = $_SESSION['UserID'];
 $tab = 1;
 $count = 0;
-$sql = "SELECT * FROM tenders ORDER BY Status DESC";
+$sql = "SELECT * FROM tenders ORDER BY Status DESC";//sort results by upload date to see more recent first
 $result = mysqli_query($conn,$sql);
 $count = mysqli_num_rows($result);
 ?>

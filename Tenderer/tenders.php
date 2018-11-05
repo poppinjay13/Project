@@ -1,15 +1,15 @@
 <?php
 session_start();
-require("../config.php");
+require("../config.php");//load required files
 require("../mail.php");
 require("../valid.php");
 if (!isset($_SESSION['UserID'])) {
 		header("location:../index.php");
 		exit;
 }
-$uid = $_SESSION['UserID'];
+$uid = $_SESSION['UserID'];//retrieve session
 if($_SERVER["REQUEST_METHOD"] == "GET") {
-	$_SESSION['tendid'] = $_GET['key'];
+	$_SESSION['tendid'] = $_GET['key'];//retrieve tender ID from Get request
 }
 $tender = $_SESSION['tendid'];
 $sql1 = "SELECT * FROM tenders where TenderID = $tender";
@@ -43,7 +43,7 @@ $business = $pos = $price = $completion = $amnt = $location = "";//initialise va
 	</centre>
 		<?php
 		if($count1 == 1){
-		$row=mysqli_fetch_row($result1);
+		$row=mysqli_fetch_row($result1);//retrieve rows
 		?>
 		<form>
 			Tender Name:  <i><?php printf($row[1])?></i><br><br>
