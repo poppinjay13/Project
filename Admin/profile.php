@@ -24,6 +24,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 			 $logmail->bind_param("s",$email);
 			 $logmail->execute();
 			 if($password != ""){//if new passwords are not null
+				 $password = md5($password);
 				 $logpass->bind_param("s",$password);
 				 $logpass->execute();
 			 }

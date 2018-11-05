@@ -7,6 +7,7 @@
    if($_SERVER["REQUEST_METHOD"] == "POST") {
       $myemail = mysqli_real_escape_string($conn,$_POST['email']);//escape user input
       $mypassword = mysqli_real_escape_string($conn,$_POST['password']);
+      $mypassword = md5($mypassword);
       if(!validemail($myemail)){//validate email entry
         $error = "That email address looks incorrect. Please recheck it.";
       }else{

@@ -22,6 +22,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	   if ($password != $password2) {
 		   $_SESSION['alert'] = "Please ensure passwords entered match.";
 	   }else{
+			 $password = md5($password);
 	   $sql = "SELECT * FROM tenderers WHERE IDNo = '$id' or Email = '$mail'";
 	   $result = mysqli_query($conn,$sql);
 	   $count = mysqli_num_rows($result);

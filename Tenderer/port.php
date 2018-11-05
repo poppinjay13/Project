@@ -40,6 +40,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 			$logmail->bind_param("s",$mail);
 			$logmail->execute();
 		 	if($password != ""){
+				$password = md5($password);
 				$logpass->bind_param("s",$password);
 		 		$logpass->execute();
 	 		}

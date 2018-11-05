@@ -19,7 +19,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	   $add = mysqli_real_escape_string($conn,$_POST['address']);
 	   $box = mysqli_real_escape_string($conn,$_POST['pobox']);
 	   $password = mysqli_real_escape_string($conn,$_POST['password']);
+		 $password = md5($password);
 	   $password2 = mysqli_real_escape_string($conn,$_POST['passval']);
+		 $password2 = md5($password2);
 	   if ($password != $password2) {//if passwords are different
 		   $error = "These passwords don't seem to match. Please review them.";
 	   }else{
