@@ -3,7 +3,7 @@
 #Initialize the session
     session_start();
     #If the session is not set it will redirect you to the login page
-    if (!isset($_SESSION['ManID']) {
+    if (!isset($_SESSION['ManID'])){
         # code...
         header("location:../index.php");
             exit;
