@@ -17,8 +17,8 @@ body{
 	padding: 12px 15px 8px;
 }
 .navbar li img, .navbar li object{
-	width: 40px;
-	height: 28px;
+	width: 30px;
+	height: 30px;
 	background-color: #283138;
 	padding: 10px 25px;
 	border-radius: 50%;
@@ -42,7 +42,7 @@ body{
 	padding: 0px;
 	margin: 0px;
 	width: 10px;
-	height: 15px;
+	height: 10px;
 }.top_right a{
 	background-color: #283138;
 	padding: 0px;
@@ -56,16 +56,23 @@ body{
   outline: none;
 }
 .tender{
-	background-color: #FFED05;
+	background-color: white;
 	width: 370px;
 	height: 300px;
 	float: left;
 	margin: 20px 20px 10px 50px;
 	border-radius: 60px;
 	cursor: pointer;
+	color: black;
 }
 .text{
 	margin: 30px;
+	text-transform: uppercase;
+	text-align: center;
+}
+.text img{
+	width: 128px;
+	height: 128px;
 }
 .bod{
 	padding-top: 63px;
@@ -73,7 +80,7 @@ body{
 .floatnew{
   position:absolute;
   top: 700px;
-  left: -100x;
+  left: -100px;
   right: 700px;
   bottom: 0px;
   background-color:gainsboro;

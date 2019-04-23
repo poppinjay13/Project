@@ -21,8 +21,8 @@ a{
 	padding: 8px 15px 8px;
 }
 .navbar li img,.navbar li object{
-	width: 40px;
-	height: 28px;
+	width: 30px;
+	height: 30px;
 	background-color: #283138;
 	padding: 10px 25px;
 	border-radius: 50%;
@@ -61,13 +61,11 @@ a{
   outline: none;
 }
 .uhead{
-	padding-top: 80px;
+	padding: 80px 0px 0px 20px;
 	width: 69%;
 	height: 250px;
 }
 .uhead img, .uhead object{
-	padding-top: 20px;
-	padding-left: 15px;
 	width: 200px;
 	height: 200px;
 	float: left;

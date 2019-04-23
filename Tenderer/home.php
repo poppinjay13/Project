@@ -57,10 +57,41 @@ $count = mysqli_num_rows($result);
 	echo "
 	<div class='tender' onClick='send($row[0])'>
 	<div class='text'>
-		<h2> $row[1] </h2>
-		<h3>Department: <i>$row[2]</i> </h3>
-		<h3>Requirements: <i>$row[3]</i> </h3>
-		<h3>Due Date: <i>$row[5]</i> </h3>
+		<h2> $row[1] </h2>";
+		if($row[2] == 'Administration'){
+			echo"<img src='../assets/images/svg/admin.png'>";
+		}
+		else if($row[2] == 'Mathematics'){
+			echo"<img src='../assets/images/svg/math.png'>";
+		}
+		else if($row[2] == 'Languages'){
+			echo"<img src='../assets/images/svg/lang.png'>";
+		}
+		else if($row[2] == 'Technical'){
+			echo"<img src='../assets/images/svg/tech.png'>";
+		}
+		else if($row[2] == 'Economics'){
+			echo"<img src='../assets/images/svg/econ.png'>";
+		}
+		else if($row[2] == 'Laboratory'){
+			echo"<img src='../assets/images/svg/lab.png'>";
+		}
+		else if($row[2] == 'Finance'){
+			echo"<img src='../assets/images/svg/fin.png'>";
+		}
+		else if($row[2] == 'Sciences'){
+			echo"<img src='../assets/images/svg/sci.png'>";
+		}
+		else if($row[2] == 'Humanities'){
+			echo"<img src='../assets/images/svg/hum.png'>";
+		}
+		else if($row[2] == 'Guidance and Counselling'){
+			echo"<img src='../assets/images/svg/guid.png'>";
+		}
+		else if($row[2] == 'Business'){
+			echo"<img src='../assets/images/svg/bus.png'>";
+		}
+		echo"
 		<h3>Status: <i>$row[6]</i> </h3>
 	</div>
 	</div>";
