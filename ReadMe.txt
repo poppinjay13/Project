@@ -1,3 +1,4 @@
+Tenderama is an online tendering system developed by a team of 2 for a project using php, js and runs on a xampp server.
 This is the Informatics and Computer Systems Project of 100446 AND 99460 during their year 2 at Strathmore University for the award of a Degree.
 
 <----------------------------------------------------------------------------------------------------------------------------------------->
